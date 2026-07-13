@@ -1899,7 +1899,13 @@ async def _run(
                 for app in apps:
                     if not app.get("enabled", True):
                         continue
-                    enabled, reason = _is_channel_enabled(app, ["ak", "sk", "agent_id"])
+                    app_mode = str(app.get("mode") or "xiaoyi_channel").strip()
+                    required_credentials = (
+                        ["uid", "api_key", "agent_id"]
+                        if app_mode == "xiaoyi_claw"
+                        else ["ak", "sk", "agent_id"]
+                    )
+                    enabled, reason = _is_channel_enabled(app, required_credentials)
                     if not enabled:
                         logger.info("[App] channels.xiaoyi.apps[].%s, skipping", reason)
                         continue
@@ -1916,7 +1922,7 @@ async def _run(
                     config = XiaoyiChannelConfig(
                         enabled=True,
                         channel_id=channel_id,
-                        mode=str(app.get("mode") or "xiaoyi_channel").strip(),
+                        mode=app_mode,
                         ak=str(app.get("ak") or "").strip(),
                         sk=str(app.get("sk") or "").strip(),
                         agent_id=str(app.get("agent_id") or "").strip(),

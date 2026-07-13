@@ -61,6 +61,13 @@ FILE_TYPE_TO_MIME_TYPE: dict[str, str] = {
 # 全局 XiaoyiChannel 实例字典（供手机端工具调用使用）
 _xiaoyi_channel_instances: dict[str, "XiaoyiChannel"] = {}
 
+_TEAM_DISPLAY_SECRET_PATTERNS = (
+    re.compile(
+        r'''(?ix)(["']?(?:api[_-]?key|access[_-]?key|secret(?:[_-]?key)?|token|password|authorization)["']?\s*[:=]\s*["']?)([^\s,;，；"'`]+)'''
+    ),
+    re.compile(r"(?i)(\bbearer\s+)([A-Za-z0-9._~+/=-]+)"),
+)
+
 
 def get_xiaoyi_channel(channel_id: str = "xiaoyi") -> Optional["XiaoyiChannel"]:
     """获取指定 channel_id 的 XiaoyiChannel 实例（供手机端工具调用使用）."""
@@ -690,6 +697,8 @@ class XiaoyiChannel(BaseChannel):
     #       CHAT_ERROR（错误）/ CHAT_TOOL_CALL/RESULT（status 透传）/ CHAT_PROCESSING_STATUS（终态信号）。
     # 丢弃：CHAT_REASONING / CHAT_DELTA / CHAT_ASK_USER_QUESTION / usage / todo / symphony_status 等。
     _TEAM_ALLOWED_EVENTS = frozenset({
+        EventType.TEAM_MEMBER,
+        EventType.TEAM_TASK,
         EventType.TEAM_MESSAGE,
         EventType.CHAT_FINAL,
         EventType.CHAT_FILE,
@@ -805,11 +814,24 @@ class XiaoyiChannel(BaseChannel):
         if not isinstance(msg.payload, dict):
             return str(msg.payload) if msg.payload else ""
         event = msg.payload.get("event", {})
-        if isinstance(event, dict) and str(event.get("type", "")).startswith("team.message"):
-            msg_type = event.get("type", "")
-            from_member = event.get("from_member", "") or "team"
-            to_member = event.get("to_member", "")
-            content = str(event.get("content", "") or "")
+        if not isinstance(event, dict):
+            event = {}
+        event_type = str(event.get("type", ""))
+        if event_type.startswith("team.member"):
+            return self._format_team_member_event(event)
+        if event_type.startswith("team.task"):
+            return self._format_team_task_event(event)
+        if event_type.startswith("team.message"):
+            msg_type = event_type
+            from_member = self._team_display_name({
+                "member_id": event.get("from_member"),
+                "name": event.get("from_member"),
+            })
+            to_member = self._team_display_name({
+                "member_id": event.get("to_member"),
+                "name": event.get("to_member"),
+            }) if event.get("to_member") else ""
+            content = self._short_team_text(event.get("content", ""), 2_000)
             if msg_type == "team.message.broadcast":
                 recipient = "📢 全员"
             elif msg_type == "team.message.p2p":
@@ -822,6 +844,72 @@ class XiaoyiChannel(BaseChannel):
         if isinstance(content, dict):
             content = content.get("output", str(content))
         return str(content)
+
+    @staticmethod
+    def _team_display_name(event: dict[str, Any]) -> str:
+        """Return a safe, user-facing member name for Xiaoyi team updates."""
+        member_id = str(event.get("member_id") or "").strip()
+        display_name = str(
+            event.get("display_name") or event.get("name") or member_id or "团队成员"
+        ).strip()
+        if member_id == "claude-coder" or display_name.lower() == "claude-coder":
+            return "Claude Code"
+        return display_name or "团队成员"
+
+    @staticmethod
+    def _short_team_text(value: Any, limit: int = 500) -> str:
+        text = str(value or "").strip()
+        for pattern in _TEAM_DISPLAY_SECRET_PATTERNS:
+            text = pattern.sub(r"\1[REDACTED]", text)
+        return text if len(text) <= limit else f"{text[:limit]}…"
+
+    def _build_inbound_params(
+            self, text: str, task_id: str, media_payload: dict[str, Any]
+    ) -> dict[str, Any]:
+        """Build Jiuwen request parameters from one Xiaoyi A2A request."""
+        params: dict[str, Any] = {"query": text, "task_id": task_id}
+        if self.config.mode == "xiaoyi_claw":
+            params["mode"] = "team"
+        if media_payload:
+            params["files"] = media_payload
+        return params
+
+    @classmethod
+    def _format_team_member_event(cls, event: dict[str, Any]) -> str:
+        event_type = str(event.get("type") or "")
+        member_name = cls._team_display_name(event)
+        if event_type == "team.member.spawned":
+            return f"[团队成员] {member_name} 已加入团队"
+        if event_type == "team.member.restarted":
+            return f"[团队成员] {member_name} 已重启"
+        if event_type == "team.member.shutdown":
+            return f"[团队成员] {member_name} 已退出"
+        if event_type in {"team.member.status_changed", "team.member.execution_changed"}:
+            status = str(event.get("new_status") or event.get("status") or "已更新").strip()
+            return f"[团队成员] {member_name} 状态：{status}"
+        return f"[团队成员] {member_name} 状态已更新"
+
+    @classmethod
+    def _format_team_task_event(cls, event: dict[str, Any]) -> str:
+        event_type = str(event.get("type") or "")
+        title = cls._short_team_text(event.get("title") or event.get("task_id") or "未命名任务", 160)
+        assignee = cls._team_display_name({
+            "member_id": event.get("assignee"),
+            "name": event.get("assignee"),
+        }) if event.get("assignee") else ""
+        labels = {
+            "team.task.created": "已创建任务",
+            "team.task.claimed": "已认领任务",
+            "team.task.completed": "任务已完成",
+            "team.task.cancelled": "任务已取消",
+            "team.task.unblocked": "任务已解除阻塞",
+            "team.task.status_snapshot": "任务状态",
+        }
+        label = labels.get(event_type, "任务已更新")
+        suffix = f"（执行者：{assignee}）" if assignee else ""
+        content = cls._short_team_text(event.get("content"), 500)
+        detail = f"\n{content}" if content and event_type == "team.task.created" else ""
+        return f"[团队任务] {label}：{title}{suffix}{detail}"
 
     async def _send_ws_to_user(
             self, session_id: str, task_id: str, msg: Message, content: str
@@ -1266,7 +1354,7 @@ class XiaoyiChannel(BaseChannel):
         # ==================== INTERCEPT TEAM MODE COMMANDS ====================
         # xiaoyi channel 不支持 team 模式，拦截并直接返回提示
         text_stripped = text.strip()
-        if text_stripped in ("/mode team", "/mode code.team"):
+        if self.config.mode != "xiaoyi_claw" and text_stripped in ("/mode team", "/mode code.team"):
             logger.info(f"XiaoYi: Intercepted team mode command: {text_stripped}")
             response_text = "小艺：暂不支持team 模式。请使用web或者飞书频道试用"
             for url_key in list(self._ws_connections.keys()):
@@ -1321,6 +1409,7 @@ class XiaoyiChannel(BaseChannel):
         user_id = agent_id
         logical_session = conversation_id or session_id
         metadata = {
+            "xiaoyi_mode": self.config.mode,
             "method": "message/stream",
             "xiaoyi_session_id": top_session_id,  # 顶层 sessionId（物理回发）
             "xiaoyi_task_id": task_id,
@@ -1329,10 +1418,10 @@ class XiaoyiChannel(BaseChannel):
             "xiaoyi_device_id": device_id,  # 设备标识（备用）
             "im_sender_user_id": user_id,  # MessageHandler whoami 用
         }
-        # Add media payload to metadata
-        params = {"query": text, "task_id": task_id}
-        if media_payload:
-            params["files"] = media_payload
+        # Xiaoyi Claw is a coding entry point. Route each request to Team
+        # mode so the Leader can apply the Claude Code routing rail without
+        # requiring an unsupported slash command in the Claw UI.
+        params = self._build_inbound_params(text, task_id, media_payload)
 
         user_message = Message(
             id=message.get("id", ""),

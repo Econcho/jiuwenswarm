@@ -565,6 +565,9 @@ channels:
     #   chat_id:
     #   enabled: false
   xiaoyi:
+    # Set to team when this Xiaoyi application should route Coding requests
+    # through the Team Leader and its external Claude Code member.
+    default_mode: agent.plan
     send_file_allowed: true
     apps:
       - name: 小艺默认应用
