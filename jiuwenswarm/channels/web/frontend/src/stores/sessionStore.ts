@@ -189,6 +189,8 @@ interface TeamMember {
   name?: string;
   execution_status?: string | null;
   mode?: string;
+  role_type?: string;
+  cli_agent?: string;
 }
 
 export type HumanShareStatus = 'pending' | 'joined' | 'left';
@@ -211,7 +213,8 @@ export type TeamMemberExecutionEventKind =
   | 'final'
   | 'tool_call'
   | 'tool_result'
-  | 'file';
+  | 'file'
+  | 'lifecycle';
 
 export interface TeamMemberExecutionEvent {
   id: string;
@@ -222,6 +225,7 @@ export interface TeamMemberExecutionEvent {
   content?: string;
   tool_name?: string;
   tool_call_id?: string;
+  lifecycle_stage?: string;
   files?: Array<{
     name: string;
     size?: number;

@@ -1,0 +1,40 @@
+# Merge this Team entry into modes.team in config.yaml, then replace the
+# project cwd or pass project_dir with the request. The fixed loopback ports
+# make this example suitable for one local Team session at a time.
+modes:
+  team:
+    jiuwen_team:
+      team_name: jiuwen_team
+      lifecycle: persistent
+      teammate_mode: build_mode
+      spawn_mode: process
+      leader:
+        member_name: team-leader
+        display_name: 团队领导
+        persona: "负责识别 Coding 任务、委派 Claude Code 并统一汇报结果"
+      agents:
+        leader: $agent_leader
+        teammate: $agent_teammate
+      workspace:
+        enabled: true
+      transport:
+        type: pyzmq
+        params:
+          direct_addr: tcp://127.0.0.1:29555
+          pubsub_publish_addr: tcp://127.0.0.1:29556
+          pubsub_subscribe_addr: tcp://127.0.0.1:29557
+          request_timeout: 20
+          metadata:
+            pubsub_bind: true
+      storage:
+        type: sqlite
+        params:
+          connection_string: external-cli-team.db
+      external_cli_agents:
+        - cli_agent: claude
+          enabled: true
+          command: null
+          cwd: null
+          inject_mcp: true
+          mcp_server_command: [openjiuwen-team-mcp]
+          env: {}

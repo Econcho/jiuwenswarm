@@ -69,6 +69,11 @@ export function MemberListItem({
           <span className={`${compact ? 'text-xs' : 'text-sm'} truncate font-medium text-text`}>
             {displayName}
           </span>
+          {member.role_type === 'external_cli' && (
+            <span className="shrink-0 rounded bg-violet-100 px-1.5 py-0.5 text-[10px] font-medium text-violet-700">
+              External CLI{member.cli_agent ? ` · ${member.cli_agent}` : ''}
+            </span>
+          )}
         </div>
         {!compact && member.mode && (
           <div className="mt-0.5 truncate text-xs text-text-muted">

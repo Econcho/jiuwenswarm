@@ -336,3 +336,76 @@ async def test_member_spawned_event_includes_mode_for_ai_member() -> None:
         assert converted["event"]["mode"] == "teammate"
     finally:
         await handler.stop()
+
+
+@pytest.mark.anyio
+async def test_external_cli_member_event_and_snapshot_include_identity() -> None:
+    event = MonitorEvent(
+        event_type=MonitorEventType.MEMBER_SPAWNED,
+        team_name="team-1",
+        timestamp=123,
+        member_name="claude-coder",
+    )
+    handler = TeamMonitorHandler(
+        _FakeMonitor(
+            members=[_FakeMember("claude-coder", display_name="Claude Code")],
+            leader_member_name=None,
+            events=[event],
+        ),
+        "sess-monitor",
+    )
+
+    await handler.start()
+    try:
+        converted = await anext(handler.events())
+        snapshot = await handler.get_team_snapshot()
+
+        assert converted["event"]["role_type"] == "external_cli"
+        assert converted["event"]["cli_agent"] == "claude"
+        assert converted["event"]["display_name"] == "Claude Code"
+        assert snapshot["members"][0]["role_type"] == "external_cli"
+        assert snapshot["members"][0]["cli_agent"] == "claude"
+    finally:
+        await handler.stop()
+
+
+@pytest.mark.anyio
+async def test_task_event_is_enriched_from_current_task_row() -> None:
+    event = MonitorEvent(
+        event_type=MonitorEventType.TASK_CLAIMED,
+        team_name="team-1",
+        timestamp=123,
+        task_id="fix-zero",
+        member_name="claude-coder",
+    )
+    handler = TeamMonitorHandler(
+        _FakeMonitor(
+            members=[],
+            leader_member_name=None,
+            events=[event],
+            tasks=[
+                _FakeTask(
+                    task_id="fix-zero",
+                    title="修复除零",
+                    content="修复并运行测试",
+                    status="claimed",
+                    assignee="claude-coder",
+                    updated_at=456,
+                )
+            ],
+        ),
+        "sess-monitor",
+    )
+
+    await handler.start()
+    try:
+        converted = await anext(handler.events())
+        task = converted["event"]
+
+        assert task["title"] == "修复除零"
+        assert task["content"] == "修复并运行测试"
+        assert task["status"] == "claimed"
+        assert task["assignee"] == "claude-coder"
+        assert task["updated_at"] == 456
+    finally:
+        await handler.stop()

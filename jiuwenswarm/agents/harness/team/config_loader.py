@@ -383,6 +383,10 @@ def load_team_spec_dict(
     )
     spec_dict = deepcopy(team_raw)
     spec_dict.pop("enable_team_plan", None)
+    # External CLI entries contain JiuwenSwarm-only fields such as ``enabled``.
+    # Do not let Pydantic silently discard those fields and materialize a spec
+    # before request-scoped cwd/runtime validation runs in swarm assembly.
+    spec_dict.pop("external_cli_agents", None)
 
     spec_dict["team_name"] = str(team_raw.get("team_name", "team")).strip() or "team"
     spec_dict["lifecycle"] = team_raw.get("lifecycle", "persistent")

@@ -16,6 +16,8 @@ interface TeamMember {
   name?: string;
   execution_status?: string | null;
   mode?: string;
+  role_type?: string;
+  cli_agent?: string;
 }
 
 interface TeamTaskEvent {
@@ -351,6 +353,8 @@ function collectTeamState(records: Record<string, unknown>[], sessionId: string)
       name: existing?.name,
       execution_status: existing?.execution_status || 'idle',
       mode: existing?.mode,
+      role_type: existing?.role_type,
+      cli_agent: existing?.cli_agent,
     });
   };
 
@@ -638,6 +642,34 @@ function collectTeamState(records: Record<string, unknown>[], sessionId: string)
     const memberId = pickString(record, ['member_name', 'member_id']);
     const toolCall = extractToolCallInput(record);
     if (toolCall) {
+      if (toolCall.name === 'spawn_external_cli') {
+        const externalMemberId = pickString(toolCall.args, ['member_name']) || 'claude-coder';
+        addMember(externalMemberId, timestamp);
+        const existingExternal = members.get(externalMemberId);
+        members.set(externalMemberId, {
+          ...(existingExternal || {
+            id: `hist-member-${externalMemberId}`,
+            member_id: externalMemberId,
+            status: 'unstarted',
+            timestamp,
+          }),
+          name: pickString(toolCall.args, ['display_name']) || 'Claude Code',
+          mode: 'external_cli',
+          role_type: 'external_cli',
+          cli_agent: pickString(toolCall.args, ['cli_agent']) || 'claude',
+        });
+        const id = eventId('hist-external-spawn', record.id, externalMemberId, timestamp);
+        executionEvents.set(id, {
+          id,
+          member_id: externalMemberId,
+          kind: 'lifecycle',
+          lifecycle_stage: 'spawn_requested',
+          timestamp,
+          title: '已识别为 Coding 任务，正在启动 Claude Code',
+          content: compactString(toolCall.args),
+          tool_name: toolCall.name,
+        });
+      }
       applyToolInput(toolCall.name, toolCall.args, timestamp, memberId);
       continue;
     }
@@ -735,6 +767,8 @@ function collectTeamState(records: Record<string, unknown>[], sessionId: string)
         name: pickString(event, ['name']) || undefined,
         execution_status: pickString(event, ['execution_status', 'new_status']) || 'idle',
         mode: pickString(event, ['mode']) || undefined,
+        role_type: pickString(event, ['role_type']) || undefined,
+        cli_agent: pickString(event, ['cli_agent']) || undefined,
       });
       continue;
     }

@@ -20,6 +20,10 @@ from jiuwenswarm.agents.harness.team.event_types import (
     get_event_category,
 )
 from jiuwenswarm.agents.harness.team.handlers.base_monitor_handler import BaseMonitorHandler
+from jiuwenswarm.agents.swarm.external_cli_specs import (
+    CLAUDE_DISPLAY_NAME,
+    CLAUDE_MEMBER_NAME,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +36,35 @@ class TeamMonitorHandler(BaseMonitorHandler):
 
     def __init__(self, monitor: TeamMonitor, session_id: str):
         super().__init__(monitor, session_id)
+
+    @staticmethod
+    def _external_member_metadata(member_name: str | None) -> dict[str, Any]:
+        if member_name == CLAUDE_MEMBER_NAME:
+            return {
+                "role_type": "external_cli",
+                "cli_agent": "claude",
+            }
+        return {}
+
+    @classmethod
+    def _serialize_member_info(cls, member: Any) -> dict[str, Any]:
+        display_name = member.display_name
+        if member.member_name == CLAUDE_MEMBER_NAME and str(display_name or "").strip().lower() in {
+            "",
+            CLAUDE_MEMBER_NAME,
+        }:
+            display_name = CLAUDE_DISPLAY_NAME
+        payload = {
+            "member_id": member.member_name,
+            "name": display_name,
+            "display_name": display_name,
+            "status": member.status,
+            "execution_status": member.execution_status,
+            "mode": member.mode,
+            "role": member.role,
+        }
+        payload.update(cls._external_member_metadata(member.member_name))
+        return payload
 
     # ------------------------------------------------------------------
     # Collect loop — consumes monitor.events()
@@ -64,12 +97,30 @@ class TeamMonitorHandler(BaseMonitorHandler):
             member_info = await self._monitor.get_member(event.member_name or "")
             if member_info is not None:
                 base["mode"] = "human" if member_info.role == "human_agent" else member_info.role
+                display_name = member_info.display_name
+                if event.member_name == CLAUDE_MEMBER_NAME and str(display_name or "").strip().lower() in {
+                    "",
+                    CLAUDE_MEMBER_NAME,
+                }:
+                    display_name = CLAUDE_DISPLAY_NAME
+                base["name"] = display_name
+                base["display_name"] = display_name
+                base["status"] = member_info.status
+                base["execution_status"] = member_info.execution_status
+                base["role"] = member_info.role
         except Exception as e:
             logger.warning(
                 "[TeamMonitorHandler] 获取成员 role 失败: member=%s, error=%s",
                 event.member_name,
                 e,
             )
+        if event.member_name == CLAUDE_MEMBER_NAME and str(base.get("name") or "").strip().lower() in {
+            "",
+            CLAUDE_MEMBER_NAME,
+        }:
+            base["name"] = CLAUDE_DISPLAY_NAME
+            base["display_name"] = CLAUDE_DISPLAY_NAME
+        base.update(self._external_member_metadata(event.member_name))
         return base
 
     @staticmethod
@@ -107,33 +158,47 @@ class TeamMonitorHandler(BaseMonitorHandler):
         })
         return base
 
-    @staticmethod
-    def _handle_task_created(base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
-        base.update({
-            "task_id": event.task_id,
-            "status": event.status,
-        })
+    async def _enrich_task_event(self, base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
+        """Attach the current task row so the UI never receives only an id."""
+        base["task_id"] = event.task_id
+        if event.status:
+            base["status"] = event.status
+        try:
+            tasks = await self._monitor.get_tasks()
+            task = next((item for item in tasks if item.task_id == event.task_id), None)
+            if task is not None:
+                base.update(
+                    {
+                        "team_name": task.team_name,
+                        "title": task.title,
+                        "content": task.content,
+                        "status": task.status,
+                        "assignee": task.assignee,
+                        "updated_at": task.updated_at,
+                    }
+                )
+        except Exception as exc:
+            logger.warning(
+                "[TeamMonitorHandler] task event enrichment failed: task=%s error=%s",
+                event.task_id,
+                exc,
+            )
         return base
 
-    @staticmethod
-    def _handle_task_claimed(base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
-        base["task_id"] = event.task_id
-        return base
+    async def _handle_task_created(self, base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
+        return await self._enrich_task_event(base, event)
 
-    @staticmethod
-    def _handle_task_completed(base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
-        base["task_id"] = event.task_id
-        return base
+    async def _handle_task_claimed(self, base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
+        return await self._enrich_task_event(base, event)
 
-    @staticmethod
-    def _handle_task_cancelled(base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
-        base["task_id"] = event.task_id
-        return base
+    async def _handle_task_completed(self, base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
+        return await self._enrich_task_event(base, event)
 
-    @staticmethod
-    def _handle_task_unblocked(base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
-        base["task_id"] = event.task_id
-        return base
+    async def _handle_task_cancelled(self, base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
+        return await self._enrich_task_event(base, event)
+
+    async def _handle_task_unblocked(self, base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
+        return await self._enrich_task_event(base, event)
 
     async def _handle_message(self, base: dict[str, Any], event: MonitorEvent) -> dict[str, Any]:
         message_content, message_protocol = await self._get_message_display(event.message_id)
@@ -259,19 +324,7 @@ class TeamMonitorHandler(BaseMonitorHandler):
                 members = [m for m in members if m.member_name != leader_name]
             tasks = await self._monitor.get_tasks() or []
             return {
-                "members": [
-                    {
-                        "member_id": m.member_name,
-                        "name": m.display_name,
-                        "status": m.status,
-                        "execution_status": m.execution_status,
-                        # MemberMode: build_mode/plan_mode（控制是否需要 leader 审批）
-                        "mode": m.mode,
-                        # role 字段：区分人类/AI（human_agent/teammate/leader）
-                        "role": m.role,
-                    }
-                    for m in members
-                ],
+                "members": [self._serialize_member_info(m) for m in members],
                 "tasks": [
                     {
                         "task_id": t.task_id,
@@ -311,17 +364,7 @@ class TeamMonitorHandler(BaseMonitorHandler):
             leader_name = team_info.leader_member_name if team_info else None
             if leader_name:
                 members = [m for m in members if m.member_name != leader_name]
-            return [
-                {
-                    "member_id": m.member_name,
-                    "name": m.display_name,
-                    "status": m.status,
-                    "execution_status": m.execution_status,
-                    "mode": m.mode,
-                    "role": m.role,
-                }
-                for m in members
-            ]
+            return [self._serialize_member_info(m) for m in members]
         except Exception as e:
             logger.warning(
                 "[TeamMonitorHandler] get_member_list failed: session_id=%s, error=%s",

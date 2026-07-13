@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import asyncio
 import copy
+import hashlib
 import logging
 import re
 import time
@@ -79,6 +80,41 @@ _PG_POST_START_READY_MAX_SLEEP = 2.0
 _PG_POST_START_READY_BACKOFF = 1.45
 _PG_POST_START_LOG_EVERY_SEC = 5.0
 _TEAM_STREAM_EXIT_GRACE_TIMEOUT_SEC = 1.5
+
+
+def _scope_pyzmq_transport_to_session(spec: TeamAgentSpec, session_id: str) -> None:
+    """Give each local pyzmq Team runtime a stable, session-scoped port block.
+
+    The user config intentionally contains a simple, runnable three-port
+    example. Reusing those literal ports for every session leaves the previous
+    Runner-owned runtime holding 29555 and makes the next chat round fail with
+    ``Address in use``. The Team spec is already a per-request copy, so it is
+    safe to retarget only this runtime without mutating config.yaml.
+    """
+    transport = getattr(spec, "transport", None)
+    if transport is None or str(getattr(transport, "type", "")).strip().lower() != "pyzmq":
+        return
+
+    params = dict(getattr(transport, "params", {}) or {})
+    digest = int(hashlib.sha256(str(session_id).encode("utf-8")).hexdigest()[:8], 16)
+    base_port = 20000 + (digest % 12000) * 3
+    fields = ("direct_addr", "pubsub_publish_addr", "pubsub_subscribe_addr")
+    changed: dict[str, str] = {}
+    for offset, field in enumerate(fields):
+        raw = str(params.get(field, "")).strip()
+        if not raw or not re.search(r":\d+$", raw):
+            continue
+        scoped = re.sub(r":\d+$", f":{base_port + offset}", raw)
+        params[field] = scoped
+        changed[field] = scoped
+
+    if changed:
+        transport.params = params
+        logger.info(
+            "[TeamManager] scoped pyzmq transport: session_id=%s ports=%s",
+            session_id,
+            changed,
+        )
 
 # ── Team Observability ──────────────────────────────────────
 # Tracks whether observability is currently active so we can
@@ -567,6 +603,7 @@ class TeamManager:
             channel_id=channel_id,
             request_metadata=request_metadata,
         )
+        _scope_pyzmq_transport_to_session(spec, session_id)
         return spec
 
     @staticmethod
@@ -966,6 +1003,7 @@ class TeamManager:
             channel_id=channel_id,
             request_metadata=request_metadata,
         )
+        _scope_pyzmq_transport_to_session(spec, session_id)
 
         logger.info("[TeamManager] TeamAgentSpec ready: team_name=%s", spec.team_name)
 

@@ -1515,7 +1515,9 @@
         "receivedMessage": "接收消息",
         "file": "发送文件",
         "executingTool": "执行工具",
-        "toolCall": "工具调用"
+        "toolCall": "工具调用",
+        "externalAgent": "外部 Agent",
+        "failed": "失败"
       },
       "counts": {
         "tasks": "执行任务",

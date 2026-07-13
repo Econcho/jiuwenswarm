@@ -29,6 +29,11 @@ from openjiuwen.agent_teams.schema.deep_agent_spec import WorkspaceSpec
 
 from jiuwenswarm.agents.swarm.config_specs import build_member_deep_agent_spec
 from jiuwenswarm.agents.swarm.context import SwarmBuildContext
+from jiuwenswarm.agents.swarm.external_cli_specs import (
+    build_external_cli_agent_specs,
+    external_cli_enabled,
+    validate_external_cli_runtime,
+)
 from jiuwenswarm.agents.swarm.registry import register_swarm_providers
 from jiuwenswarm.common.config import get_config
 from jiuwenswarm.common.mcp_config import build_enabled_mcp_server_configs
@@ -134,17 +139,43 @@ def enrich_team_spec_for_swarm(
                 member_spec = _with_project_workspace(member_spec, project_dir)
             spec.agents[role] = member_spec
 
+    if external_cli_enabled(config) and not Path(team_ws_root).is_dir():
+        # AgentCore creates this managed directory during build. Create it a
+        # little earlier when it is the CLI cwd fallback so validation and the
+        # subprocess observe the same path.
+        Path(team_ws_root).mkdir(parents=True, exist_ok=True)
+    configured_external = build_external_cli_agent_specs(
+        config,
+        mode=mode,
+        project_dir=project_dir,
+        team_workspace=team_ws_root,
+    )
+    existing_external = list(getattr(spec, "external_cli_agents", None) or [])
+    existing_names = {item.cli_agent for item in existing_external}
+    duplicate_names = sorted(
+        item.cli_agent for item in configured_external if item.cli_agent in existing_names
+    )
+    if duplicate_names:
+        raise ValueError(
+            "external_cli_agents conflicts with caller-provided adapter(s): "
+            f"{duplicate_names}"
+        )
+    merged_external = [*existing_external, *configured_external]
+    validate_external_cli_runtime(spec, merged_external)
+    spec.external_cli_agents = merged_external
+
     spec.build_context = base
     # Carry a serializable seed alongside the live context so members rebuilt
     # across a serialization boundary (spawned teammate, distributed remote,
     # cold recovery) can reconstruct the context via the registered factory.
     spec.build_context_seed = base.to_seed()
     logger.info(
-        "[swarm.assembly] enriched team spec '%s' (roles=%s, session=%s, mcps=%d)",
+        "[swarm.assembly] enriched team spec '%s' (roles=%s, session=%s, mcps=%d, external_cli=%s)",
         spec.team_name,
         [role for role in _MEMBER_ROLES if role in spec.agents],
         session_id,
         len(mcp_configs),
+        [item.cli_agent for item in merged_external],
     )
 
 

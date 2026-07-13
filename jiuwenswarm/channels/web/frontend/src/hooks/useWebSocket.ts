@@ -565,6 +565,7 @@ export function useWebSocket(options: UseWebSocketOptions): UseWebSocketReturn {
   const recentEventRef = useRef<Map<string, number>>(new Map());
   const teamToolCallMemberRef = useRef<Map<string, string>>(new Map());
   const shutdownMemberToolCallRef = useRef<Map<string, string>>(new Map());
+  const externalSpawnToolCallRef = useRef<Map<string, string>>(new Map());
   const clearedTeamPanelSessionRef = useRef<string | null>(null);
   const teamMemberOutputEventRef = useRef<Map<string, string>>(new Map());
   const eventDedupDroppedRef = useRef<Record<string, number>>({});
@@ -1920,6 +1921,51 @@ export function useWebSocket(options: UseWebSocketOptions): UseWebSocketReturn {
         const currentMode = useSessionStore.getState().mode;
         clearThinkingForVisibleOutput();
         const toolCall = normalizeToolCallPayload(payload);
+        const externalMemberName =
+          toolCall.name === 'spawn_external_cli'
+            ? pickString(toolCall.arguments.member_name) || 'claude-coder'
+            : '';
+        if (currentMode === 'team' && externalMemberName) {
+          externalSpawnToolCallRef.current.set(toolCall.id, externalMemberName);
+          useSessionStore.getState().addTeamMember({
+            id: `external-member-${externalMemberName}`,
+            member_id: externalMemberName,
+            status: 'unstarted',
+            timestamp: eventTimestampMs(payload),
+            name: pickString(toolCall.arguments.display_name) || 'Claude Code',
+            execution_status: 'starting',
+            mode: 'external_cli',
+            role_type: 'external_cli',
+            cli_agent: pickString(toolCall.arguments.cli_agent) || 'claude',
+          });
+          useSessionStore.getState().addTeamMemberExecutionEvent({
+            id: stableEventId('external-spawn', payload.session_id, externalMemberName, toolCall.id),
+            member_id: externalMemberName,
+            kind: 'lifecycle',
+            lifecycle_stage: 'spawn_requested',
+            timestamp: eventTimestampMs(payload),
+            title: '已识别为 Coding 任务，正在启动 Claude Code',
+            content: toolCall.description || stringifyCompact(toolCall.arguments),
+            tool_name: toolCall.name,
+            tool_call_id: toolCall.id,
+          });
+        } else if (
+          currentMode === 'team' &&
+          toolCall.name === 'send_message' &&
+          pickString(toolCall.arguments.to) === 'claude-coder'
+        ) {
+          useSessionStore.getState().addTeamMemberExecutionEvent({
+            id: stableEventId('external-reuse', payload.session_id, toolCall.id),
+            member_id: 'claude-coder',
+            kind: 'lifecycle',
+            lifecycle_stage: 'delegated',
+            timestamp: eventTimestampMs(payload),
+            title: '已识别为 Coding 任务，复用 Claude Code',
+            content: pickString(toolCall.arguments.content),
+            tool_name: toolCall.name,
+            tool_call_id: toolCall.id,
+          });
+        }
         const shutdownMemberId = getShutdownMemberFromToolCall(toolCall);
         if (shutdownMemberId) {
           shutdownMemberToolCallRef.current.set(toolCall.id, shutdownMemberId);
@@ -1969,6 +2015,39 @@ export function useWebSocket(options: UseWebSocketOptions): UseWebSocketReturn {
         const currentMode = useSessionStore.getState().mode;
         const toolResult = normalizeToolResultPayload(payload);
         const activeSessionId = getPayloadSessionId(payload) || activeSessionIdRef.current || undefined;
+        const externalMemberId = toolResult.toolCallId
+          ? externalSpawnToolCallRef.current.get(toolResult.toolCallId)
+          : undefined;
+        if (externalMemberId) {
+          const resultText = toolResult.summary || stringifyCompact(toolResult.result);
+          const failed =
+            /\b(fail(?:ed|ure)?|not available|not found)\b/i.test(resultText) ||
+            /["']?(?:ok|success)["']?\s*:\s*false\b/i.test(resultText) ||
+            /["']?error["']?\s*:\s*["'][^"']+["']/i.test(resultText);
+          useSessionStore.getState().addTeamMemberExecutionEvent({
+            id: stableEventId('external-spawn-result', payload.session_id, externalMemberId, toolResult.toolCallId),
+            member_id: externalMemberId,
+            kind: 'lifecycle',
+            lifecycle_stage: failed ? 'failed' : 'spawned',
+            timestamp: eventTimestampMs(payload),
+            title: failed ? 'Claude Code 启动失败' : 'Claude Code 已加入团队',
+            content: resultText,
+            tool_name: toolResult.toolName,
+            tool_call_id: toolResult.toolCallId,
+          });
+          useSessionStore.getState().addTeamMember({
+            id: `external-member-${externalMemberId}`,
+            member_id: externalMemberId,
+            status: failed ? 'failed' : 'ready',
+            timestamp: eventTimestampMs(payload),
+            name: 'Claude Code',
+            execution_status: failed ? 'failed' : 'idle',
+            mode: 'external_cli',
+            role_type: 'external_cli',
+            cli_agent: 'claude',
+          });
+          externalSpawnToolCallRef.current.delete(toolResult.toolCallId || '');
+        }
         const shutdownMemberId =
           (toolResult.toolCallId
             ? shutdownMemberToolCallRef.current.get(toolResult.toolCallId)
@@ -2569,6 +2648,9 @@ export function useWebSocket(options: UseWebSocketOptions): UseWebSocketReturn {
             name?: string;
             execution_status?: string | null;
             mode?: string;
+            role_type?: string;
+            cli_agent?: string;
+            display_name?: string;
           };
           const activeSessionId = getPayloadSessionId(payload) || activeSessionIdRef.current || undefined;
           upsertHumanShareCommandFromEvent(payload, e);
@@ -2595,6 +2677,8 @@ export function useWebSocket(options: UseWebSocketOptions): UseWebSocketReturn {
                 name: e.name,
                 execution_status: e.execution_status || e.new_status,
                 mode: e.mode,
+                role_type: e.role_type,
+                cli_agent: e.cli_agent,
               });
             }
           } else if (!e.type || e.type === 'team.member.spawned' || e.type === 'team.member.restarted') {
@@ -2603,9 +2687,11 @@ export function useWebSocket(options: UseWebSocketOptions): UseWebSocketReturn {
               member_id: e.member_id || '',
               status: e.status || '',
               timestamp: e.timestamp || Date.now(),
-              name: e.name,
+              name: e.display_name || e.name,
               execution_status: e.execution_status,
               mode: e.mode,
+              role_type: e.role_type,
+              cli_agent: e.cli_agent,
             });
           }
         }

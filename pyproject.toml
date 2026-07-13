@@ -57,6 +57,7 @@ desktop = ["pywebview>=5.4"]
 dev = ["pyinstaller>=6.0.0", "pywebview>=5.4"]
 tui = ["jiuwenswarm-tui==0.2.3.beta1"]
 distribute = ["openjiuwen[postgres,zmq]"]
+external-cli = ["openjiuwen[zmq]"]
 shell-ast = []
 # Same packages as [dependency-groups] test (pip install -e ".[test]")
 test = [

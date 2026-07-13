@@ -1042,6 +1042,19 @@ modes:
       storage:
         type: sqlite
 
+      # Third-party CLI agents are disabled by default. Enabling Claude Code
+      # also requires spawn_mode=process, a pyzmq transport with concrete
+      # direct/pub/sub addresses, file-backed SQLite, and installation with
+      # `uv sync --extra external-cli`. See config.team.external-cli.example.yaml.
+      external_cli_agents:
+        - cli_agent: claude
+          enabled: false
+          command: null
+          cwd: null
+          inject_mcp: true
+          mcp_server_command: [openjiuwen-team-mcp]
+          env: {}
+
       # ============================================================
       # Team 级共享记忆（TeamMemoryConfig）
       # ============================================================

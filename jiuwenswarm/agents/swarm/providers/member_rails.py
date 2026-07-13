@@ -62,6 +62,7 @@ CONTEXT_PROCESSOR = "swarm.context_processor"
 PLUGIN_RAILS = "swarm.plugin_rails"
 SKILL_RETRIEVAL_PROMPT = "swarm.skill_retrieval_prompt"
 TEAM_PERMISSION_POLICY = "swarm.team_permission_policy"
+EXTERNAL_CLI_ROUTING = "swarm.external_cli_routing"
 
 
 def _workspace_root(ctx: SwarmBuildContext) -> str | None:
@@ -153,6 +154,31 @@ def _build_runtime_prompt_rail(
     if inp.project_dir:
         rail.set_runtime_paths(cwd=inp.project_dir, project_dir=inp.project_dir)
     return rail
+
+
+class ExternalCliRoutingInput(ConstructionInput):
+    """Construction inputs for the leader's Claude routing policy."""
+
+    project_dir: str | None = context_field(attr="project_dir")
+    language: str = context_field(attr="language", default="cn")
+
+
+@harness_element(
+    kind=ElementKind.RAIL,
+    name=EXTERNAL_CLI_ROUTING,
+    description="Leader-only policy for spawning/reusing Claude Code for coding tasks.",
+    input_model=ExternalCliRoutingInput,
+)
+def _build_external_cli_routing_rail(
+    params: dict[str, Any],
+    context: SwarmBuildContext,
+) -> Any:
+    from jiuwenswarm.agents.harness.team.rails.external_cli_routing_rail import (
+        ExternalCliRoutingRail,
+    )
+
+    inp = ExternalCliRoutingInput.resolve(params, context)
+    return ExternalCliRoutingRail(project_dir=inp.project_dir, language=inp.language)
 
 
 class TeamSkillStoragePolicyInput(ConstructionInput):
@@ -401,6 +427,7 @@ __all__ = [
     "SKILL_RETRIEVAL_PROMPT",
     "TEAM_PERMISSION",
     "TEAM_PERMISSION_POLICY",
+    "EXTERNAL_CLI_ROUTING",
 ]
 
 

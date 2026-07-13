@@ -1516,7 +1516,9 @@
         "receivedMessage": "Received message",
         "file": "Sent file",
         "executingTool": "Running tool",
-        "toolCall": "Tool call"
+        "toolCall": "Tool call",
+        "externalAgent": "External agent",
+        "failed": "Failed"
       },
       "counts": {
         "tasks": "Tasks executed",

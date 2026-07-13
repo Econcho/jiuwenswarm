@@ -47,6 +47,7 @@ from jiuwenswarm.agents.harness.team.team_runtime_inheritance import (
     resolve_model_config,
 )
 from jiuwenswarm.agents.swarm import registry
+from jiuwenswarm.agents.swarm.external_cli_specs import external_cli_enabled
 from jiuwenswarm.agents.swarm.providers import tools as _tools
 
 # Modes that route to the code adapter and get the code member profile.
@@ -439,6 +440,9 @@ def _build_team_capability_specs(
             ),
         )
 
+    if role == "leader" and external_cli_enabled(config):
+        rails_specs.append(RailSpec(type=registry.EXTERNAL_CLI_ROUTING))
+
     rails_specs.extend(_role_evolution_rails(config, role))
 
     tool_specs: list[BuiltinToolSpec] = [
@@ -500,6 +504,9 @@ def _build_code_capability_specs(
                 params=_rail_params(registry.TEAM_PERMISSION_POLICY, config),
             ),
         )
+
+    if role == "leader" and external_cli_enabled(config):
+        rails_specs.append(RailSpec(type=registry.EXTERNAL_CLI_ROUTING))
 
     if mode != "team.plan":
         rails_specs.append(

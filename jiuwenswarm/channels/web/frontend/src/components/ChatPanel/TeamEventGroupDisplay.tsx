@@ -33,6 +33,8 @@ interface TeamMemberLike {
   member_id: string;
   name?: string;
   status?: string;
+  role_type?: string;
+  cli_agent?: string;
 }
 
 interface MemberActivity {
@@ -108,7 +110,12 @@ function isRunningTaskStatus(status: ActivityStatus): boolean {
 }
 
 function getMemberName(memberId: string, members: TeamMemberLike[]): string {
-  return members.find((member) => member.member_id === memberId)?.name?.trim() || memberId;
+  const member = members.find((item) => item.member_id === memberId);
+  const name = member?.name?.trim();
+  if (memberId === 'claude-coder' || (member?.role_type === 'external_cli' && member?.cli_agent === 'claude')) {
+    return !name || name.toLowerCase() === 'claude-coder' ? 'Claude Code' : name;
+  }
+  return name || memberId;
 }
 
 function isVisibleTeamMember(memberId?: string): memberId is string {
@@ -215,6 +222,14 @@ function pickToolActivity(
 
 function getExecutionActivityLabel(event: TeamMemberExecutionEvent, t: Translate): Pick<ActivityCandidate, 'summary' | 'statusLabel'> {
   const content = event.content || event.tool_name || event.title;
+  if (event.kind === 'lifecycle') {
+    return {
+      summary: compactText(event.title || content),
+      statusLabel: event.lifecycle_stage === 'failed'
+        ? t('chatUi.teamActivity.status.failed')
+        : t('chatUi.teamActivity.status.externalAgent'),
+    };
+  }
   if (event.kind === 'file') {
     return {
       summary: compactText(content),

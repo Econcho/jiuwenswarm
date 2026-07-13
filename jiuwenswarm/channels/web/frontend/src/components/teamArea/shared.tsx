@@ -19,6 +19,8 @@ export interface TeamMember {
   name?: string;
   execution_status?: string | null;
   mode?: string;
+  role_type?: string;
+  cli_agent?: string;
 }
 
 export interface TeamTaskEvent {
@@ -133,9 +135,16 @@ const TASK_STATUS_TO_COLUMN: Record<TeamTaskStatus, TaskColumnKey> = {
 
 export const getMemberDisplayName = (member: TeamMember | string): string => {
   if (typeof member === 'string') {
-    return member;
+    return member === 'claude-coder' ? 'Claude Code' : member;
   }
-  return member.name?.trim() || member.member_id;
+  const name = member.name?.trim();
+  if (
+    member.member_id === 'claude-coder' ||
+    (member.role_type === 'external_cli' && member.cli_agent === 'claude')
+  ) {
+    return !name || name.toLowerCase() === 'claude-coder' ? 'Claude Code' : name;
+  }
+  return name || member.member_id;
 };
 
 export const normalizeTaskStatus = (status?: string, type?: string): TaskStatus => {
@@ -479,6 +488,9 @@ export function buildProcessItems(
 }
 
 function getExecutionEventTitle(event: TeamMemberExecutionEvent, t: Translate): string {
+  if (event.kind === 'lifecycle') {
+    return event.title || t('team.process.execution.event');
+  }
   if (event.kind === 'tool_call' && event.tool_name) {
     return t('team.process.execution.toolCallTitle', { tool: event.tool_name });
   }
