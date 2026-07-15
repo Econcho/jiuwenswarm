@@ -24,21 +24,6 @@ from .workspace_sync import sync_workspace_files
 
 logger = logging.getLogger(__name__)
 
-_REQUIRED_MCP_TOOLS = {
-    "memory_open",
-    "memory_add",
-    "memory_get_l0_global_summary",
-    "memory_get_l1_index",
-    "memory_load_l1",
-    "memory_search_l2",
-    "memory_search_l3",
-    "memory_delete",
-    "memory_flush",
-    "memory_list",
-    "memory_report_round_usage",
-}
-
-
 def _items(value: Any) -> list[dict[str, Any]]:
     if isinstance(value, list):
         return [item for item in value if isinstance(item, dict)]
@@ -135,13 +120,27 @@ class CeliaMemoryProvider(MemoryProvider):
             issues = self.config.preflight_issues()
             if issues:
                 raise CeliaError("; ".join(issues))
+            self._log_model_endpoint_diagnostics()
             stage = "acquire"
             lease = await get_celia_client_manager().acquire(self.config)
             stage = "tools/list"
-            supported_tools = await lease.client.list_tools()
-            missing = sorted(_REQUIRED_MCP_TOOLS - supported_tools)
-            if missing:
-                raise CeliaError("Celia MCP is missing required tools: " + ", ".join(missing))
+            # Celia's public tools/list does not expose every internal tool.
+            # In particular, memory_open and memory_add are called by the
+            # OpenClaw-equivalent hook path but are not model-facing tools.
+            # Treat tools/list as capability discovery only; the real
+            # compatibility check is the direct memory_open call below.
+            try:
+                supported_tools = await lease.client.list_tools()
+            except Exception as exc:
+                supported_tools = None
+                logger.warning(
+                    "[CeliaMemoryProvider] tools/list probe failed: exception=%s "
+                    "message=%s db=%s log=%s; continuing with direct internal-tool probes",
+                    type(exc).__name__,
+                    _redact_diagnostic(str(exc)),
+                    self.config.normalized_db_path,
+                    self.config.log_path,
+                )
             stage = "memory_open"
             context = self._context(kwargs)
             await lease.sessions.ensure_tool_session(context.user_id)
@@ -164,10 +163,27 @@ class CeliaMemoryProvider(MemoryProvider):
         self._initialized = True
         logger.info(
             "[CeliaMemoryProvider] initialized: tools=%d db=%s log=%s",
-            len(supported_tools),
+            len(supported_tools or ()),
             self.config.normalized_db_path,
             self.config.log_path,
         )
+
+    def _log_model_endpoint_diagnostics(self) -> None:
+        missing: list[str] = []
+        for prefix, endpoint in (("CHAT", self.config.chat), ("EMBED", self.config.embed)):
+            if not endpoint.base_url:
+                missing.append(f"OPENAI_{prefix}_BASE_URL")
+            if not endpoint.api_key:
+                missing.append(f"OPENAI_{prefix}_API_KEY")
+            if not endpoint.model:
+                missing.append(f"OPENAI_{prefix}_MODEL")
+        if missing:
+            logger.warning(
+                "[CeliaMemoryProvider] model endpoint configuration incomplete: missing=%s; "
+                "MEMORYSTATE=false L0 conversation ingest can continue, but MEMORYSTATE=true "
+                "extraction/vector retrieval may be unavailable",
+                ", ".join(missing),
+            )
 
     def _context(self, explicit: Mapping[str, Any] | None = None) -> CeliaRuntimeContext:
         return resolve_runtime_context(
@@ -184,7 +200,19 @@ class CeliaMemoryProvider(MemoryProvider):
     async def _ensure_session(self, context: CeliaRuntimeContext) -> str:
         if not self._lease:
             raise CeliaError("Celia provider is not initialized")
-        return await self._lease.sessions.ensure_tool_session(context.user_id)
+        try:
+            return await self._lease.sessions.ensure_tool_session(context.user_id)
+        except Exception as exc:
+            logger.warning(
+                "[CeliaMemoryProvider] memory_open failed: stage=memory_open "
+                "exception=%s message=%s sessionId=%s conversationId=%s db=%s",
+                type(exc).__name__,
+                _redact_diagnostic(str(exc)),
+                context.tool_session_id,
+                context.conversation_id,
+                self.config.normalized_db_path,
+            )
+            raise
 
     async def _call(
         self,
@@ -196,12 +224,25 @@ class CeliaMemoryProvider(MemoryProvider):
     ) -> object:
         if not self._lease:
             raise CeliaError("Celia provider is not initialized")
-        return await self._lease.client.call_tool(
-            tool_name,
-            args,
-            timeout_ms=timeout_ms,
-            trace_id=context.trace_id,
-        )
+        try:
+            return await self._lease.client.call_tool(
+                tool_name,
+                args,
+                timeout_ms=timeout_ms,
+                trace_id=context.trace_id,
+            )
+        except Exception as exc:
+            logger.warning(
+                "[CeliaMemoryProvider] MCP call failed: method=tools/call tool=%s "
+                "exception=%s message=%s sessionId=%s conversationId=%s db=%s",
+                tool_name,
+                type(exc).__name__,
+                _redact_diagnostic(str(exc)),
+                context.tool_session_id,
+                context.conversation_id,
+                self.config.normalized_db_path,
+            )
+            raise
 
     async def prefetch(self, query: str, **kwargs: Any) -> str:
         if not self._initialized:
@@ -545,21 +586,41 @@ class CeliaMemoryProvider(MemoryProvider):
         if not cleaned:
             return
         urgent = self._store.consume_urgent(context.store_key)
-        result = await self._call(
-            "memory_add",
-            {
-                "tenant_id": context.tenant_id,
-                "content": json.dumps(cleaned, ensure_ascii=False, separators=(",", ":")),
-                "userId": context.user_id,
-                "scope": context.scope_id,
-                "sessionId": session_id,
-                "conversationId": context.conversation_id,
-                "ingestMode": "deferred-urgent" if urgent else "deferred",
-                "memoryState": 1 if context.memory_state else 0,
-                "_trace_id": context.trace_id,
-            },
-            context,
+        add_args = {
+            "tenant_id": context.tenant_id,
+            "content": json.dumps(cleaned, ensure_ascii=False, separators=(",", ":")),
+            "userId": context.user_id,
+            "scope": context.scope_id,
+            "sessionId": session_id,
+            "conversationId": context.conversation_id,
+            "ingestMode": "deferred-urgent" if urgent else "deferred",
+            "memoryState": 1 if context.memory_state else 0,
+            "_trace_id": context.trace_id,
+        }
+        logger.info(
+            "[CeliaMemoryProvider] memory_add start: method=tools/call sessionId=%s "
+            "conversationId=%s memoryState=%s ingestMode=%s db=%s",
+            session_id,
+            context.conversation_id,
+            add_args["memoryState"],
+            add_args["ingestMode"],
+            self.config.normalized_db_path,
         )
+        try:
+            result = await self._call("memory_add", add_args, context)
+        except Exception as exc:
+            if urgent:
+                self._store.mark_urgent(context.store_key)
+            logger.warning(
+                "[CeliaMemoryProvider] memory_add failed: method=tools/call "
+                "exception=%s message=%s sessionId=%s conversationId=%s db=%s",
+                type(exc).__name__,
+                _redact_diagnostic(str(exc)),
+                session_id,
+                context.conversation_id,
+                self.config.normalized_db_path,
+            )
+            raise
         _ = result
         self._fixed_cache.mark_dirty(context.fixed_context_key)
 

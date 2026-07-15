@@ -187,14 +187,26 @@ class CeliaMcpClient:
         )
         if isinstance(result, dict) and result.get("isError"):
             session_id = augmented.get("sessionId") or augmented.get("session_id") or ""
+            detail = result.get("error") or result.get("message") or ""
+            if not detail and isinstance(result.get("content"), list):
+                detail = " ".join(
+                    str(item.get("text"))
+                    for item in result["content"]
+                    if isinstance(item, dict) and item.get("text") is not None
+                )
+            detail = _redact_diagnostic(str(detail))[:1000]
             logger.warning(
                 "[CeliaMcpClient] MCP tool returned isError: method=tools/call "
-                "tool=%s sessionId=%s db=%s",
+                "tool=%s error=%s sessionId=%s db=%s",
                 name,
+                detail,
                 str(session_id)[:200],
                 self.config.normalized_db_path,
             )
-            raise CeliaMcpError(f"Celia tool failed: {name}")
+            raise CeliaMcpError(
+                f"Celia tool failed: {name}"
+                + (f": {detail}" if detail else "")
+            )
         if not isinstance(result, dict):
             return result
         content = result.get("content")

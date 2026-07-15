@@ -149,6 +149,53 @@ class _FailingSessions:
 
 
 @pytest.mark.asyncio
+async def test_provider_initialization_does_not_require_hidden_memory_add(monkeypatch):
+    class Client:
+        def __init__(self):
+            self.calls = []
+
+        async def list_tools(self):
+            # memory_add and memory_open are internal hook tools and are not
+            # required to appear in the public tools/list response.
+            return {"memory_store", "memory_flush"}
+
+        async def call_tool(self, name, args, **kwargs):
+            self.calls.append((name, args))
+            return {"status": 0}
+
+    class Sessions:
+        async def ensure_tool_session(self, user_id):
+            return f"tools-{user_id}"
+
+    client = Client()
+    lease = SimpleNamespace(client=client, sessions=Sessions())
+
+    class Manager:
+        async def acquire(self, config):
+            return lease
+
+        async def release(self, current_lease):
+            return None
+
+    monkeypatch.setattr(
+        "jiuwenswarm.agents.harness.common.memory.celia.provider.get_celia_client_manager",
+        lambda: Manager(),
+    )
+    monkeypatch.setattr(CeliaConfig, "preflight_issues", lambda self: [])
+    provider = CeliaMemoryProvider(_config(), user_id="alice")
+
+    await provider.initialize()
+
+    assert provider.is_initialized is True
+    assert provider._supported_mcp_tools == {"memory_store", "memory_flush"}
+
+    await provider.sync_turn("user question", "assistant answer")
+    assert client.calls[0][0] == "memory_add"
+
+    await provider.shutdown()
+
+
+@pytest.mark.asyncio
 async def test_session_manager_deduplicates_concurrent_memory_open():
     client = _FakeClient()
     manager = CeliaSessionManager(client)
@@ -267,3 +314,49 @@ async def test_client_decodes_double_encoded_tool_payload(monkeypatch):
     monkeypatch.setattr(client, "start", fake_start)
     monkeypatch.setattr(client, "_request", fake_request)
     assert await client.call_tool("memory_flush", {}) == {"status": 0}
+
+
+@pytest.mark.asyncio
+async def test_rail_captures_context_messages_without_final_result():
+    calls = []
+
+    class Provider:
+        name = "celia"
+        config = SimpleNamespace(request_timeout=1.0, normalized_db_path="/tmp/celia.db")
+
+        async def sync_turn(self, user_msg, assistant_msg, **kwargs):
+            calls.append((user_msg, assistant_msg, kwargs))
+
+        async def report_round_usage(self, **kwargs):
+            return None
+
+    rail = celia_rail_module.CeliaMemoryRail(
+        Provider(), user_id="alice", session_id="conversation-a"
+    )
+    rail._initialized = True
+    ctx = SimpleNamespace(
+        inputs=SimpleNamespace(
+            query="",
+            result=None,
+            messages=[
+                {"role": "system", "content": "startup"},
+                {"role": "user", "content": "记一下我喜欢去海边旅游"},
+                {
+                    "role": "assistant",
+                    "content": "Noted",
+                    "tool_calls": [
+                        {"id": "call-1", "name": "memory_store", "arguments": "{}"}
+                    ],
+                },
+            ],
+        )
+    )
+
+    await rail.after_invoke(ctx)
+
+    assert len(calls) == 1
+    user_msg, assistant_msg, kwargs = calls[0]
+    assert user_msg == "记一下我喜欢去海边旅游"
+    assert assistant_msg == "Noted"
+    assert kwargs["events"][0]["role"] == "user"
+    assert kwargs["events"][1]["role"] == "assistant"
