@@ -1,0 +1,249 @@
+
+
+The following skills provide specialized instructions for specific tasks.
+Use the read tool to load a skill's file when the task matches its description.
+If a skill's <version> differs from a previous turn, re-read its SKILL.md before using it.
+When a skill file references a relative path, resolve it against the skill directory (parent of SKILL.md / dirname of the path) and use that absolute path in tool commands.
+
+<available_skills>
+  <skill>
+    <name>aigc_marker</name>
+    <description>为已存在的 DOCX、PDF、Excel、PPT、MD、HTML (.html, .htm)、图片、音频及视频文件添加 AIGC 标识</description>
+    <location>~/core_skills/aigc_marker/SKILL.md</location>
+    <version>sha256:fb5d8269aa331416</version>
+  </skill>
+  <skill>
+    <name>browser-automation</name>
+    <description>Use when controlling web pages with the OpenClaw browser tool, especially multi-step flows, login checks, tab management, or recovery from stale refs/timeouts.</description>
+    <location>~/.openclaw/plugin-skills/browser-automation/SKILL.md</location>
+    <version>sha256:c24be5084b5d93ea</version>
+  </skill>
+  <skill>
+    <name>canvas</name>
+    <description>Present HTML on connected OpenClaw node canvases, navigate/eval/snapshot, and debug canvas host URLs.</description>
+    <location>~/openclaw/node_modules/openclaw/skills/canvas/SKILL.md</location>
+    <version>sha256:7419e23f242397b3</version>
+  </skill>
+  <skill>
+    <name>content-compliance</name>
+    <description>OpenClaw 内容生成合规准则。本技能在生成任何内容前检查内容合规性，确保不违反法律法规和公序良俗。</description>
+    <location>~/.openclaw/workspace/skills/content-compliance/SKILL.md</location>
+    <version>sha256:d8c75b0991a83d72</version>
+  </skill>
+  <skill>
+    <name>diagram-maker</name>
+    <description>Create SVG/HTML or Excalidraw diagrams for concepts, architecture, flows, and whiteboards.</description>
+    <location>~/openclaw/node_modules/openclaw/skills/diagram-maker/SKILL.md</location>
+    <version>sha256:6195e03fcb04a1a6</version>
+  </skill>
+  <skill>
+    <name>execution-validator</name>
+    <description>Use this skill to enforce safety checks before command execution, content access, and content transmission, preventing dangerous operations and sensitive data leakage.</description>
+    <location>~/core_skills/execution-validator-skill/SKILL.md</location>
+    <version>sha256:6d1e5ba0b6144aa1</version>
+  </skill>
+  <skill>
+    <name>find-skills</name>
+    <description>帮助用户查询或安装 agent skill。触发条件包括：1）用户明确要求查找、搜索、推荐、安装、重装、重载某个 Skill 时（例如：“查找有没有做 XX 的 skill”、“帮我安装一个 XX”），应使用本 skill；2）当用户表达对当前任务完成效果不满意，且上下文中没有合适的 skill 可以解决该问题时，应主动调用本 skill。</description>
+    <location>~/.openclaw/workspace/skills/find-skills/SKILL.md</location>
+    <version>sha256:a25a4d3e0cb35ab3</version>
+  </skill>
+  <skill>
+    <name>fitness-coach</name>
+    <description>科学健身指导技能，帮助用户制定个性化健身计划并提供渐进式调整方案。Use when: 用户需要制定健身计划、询问训练动作、寻求渐进式负荷调整、需要营养建议、或想要评估健身进展。</description>
+    <location>~/.openclaw/workspace/skills/fitness-coach/SKILL.md</location>
+    <version>sha256:83bd93f56a2859ea</version>
+  </skill>
+  <skill>
+    <name>huawei-drive</name>
+    <description>华为云空间云盘文件管理工具，支持文件上传、文件列表查询、云空间用量查询和文件存在性检查。当 AgentBot 需要处理云盘相关操作时使用，包括：(1) 将本地文件上传到云盘&quot;小艺Claw&quot;目录，(2) 查询云盘文件列表和文件信息，(3) 查询云空间总空间、已用空间和可用空间，(4) 检查云盘是否存在指定文件。触发关键词：华为云空间、云空间、华为云盘、云盘、云空间云盘、文件上传、文件查询、备份文件。</description>
+    <location>~/.openclaw/workspace/skills/huawei-drive/SKILL.md</location>
+    <version>sha256:bdb784b6df26bd8b</version>
+  </skill>
+  <skill>
+    <name>imap-smtp-email</name>
+    <description>Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, and send emails with attachments. Supports multiple accounts. Works with any IMAP/SMTP server including Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, and vip.188.com.</description>
+    <location>~/.openclaw/workspace/skills/imap-smtp-email/SKILL.md</location>
+    <version>sha256:01345a894f2863a4</version>
+  </skill>
+  <skill>
+    <name>markitdown</name>
+    <description>Convert files and office documents to Markdown. Supports PDF, DOCX, PPTX, XLSX, images (with OCR), audio (with transcription), HTML, CSV, JSON, XML, ZIP, YouTube URLs, EPubs and more.</description>
+    <location>~/.openclaw/workspace/skills/markitdown/SKILL.md</location>
+    <version>sha256:b37d8d2f59a913d1</version>
+  </skill>
+  <skill>
+    <name>meme-maker</name>
+    <description>Search meme templates, suggest formats, and generate local or hosted image memes.</description>
+    <location>~/openclaw/node_modules/openclaw/skills/meme-maker/SKILL.md</location>
+    <version>sha256:8b8832f9f0f58b16</version>
+  </skill>
+  <skill>
+    <name>node-inspect-debugger</name>
+    <description>Debug Node.js with node inspect, --inspect, breakpoints, CDP, heap, and CPU profiles.</description>
+    <location>~/openclaw/node_modules/openclaw/skills/node-inspect-debugger/SKILL.md</location>
+    <version>sha256:50d2f6828eaf4bbf</version>
+  </skill>
+  <skill>
+    <name>notion</name>
+    <description>Notion CLI/API for pages, Markdown content, data sources, files, comments, search, Workers, and raw API calls.</description>
+    <location>~/openclaw/node_modules/openclaw/skills/notion/SKILL.md</location>
+    <version>sha256:d45e2c1270d58c78</version>
+  </skill>
+  <skill>
+    <name>plugin-audit</name>
+    <description>插件代码安全审计。当用户请求安装任意插件（plugin）时自动触发，对插件源码进行静态代码审计，检测恶意模式并生成报告，让用户自行决定是否继续安装。</description>
+    <location>~/.openclaw/workspace/skills/plugin-audit/SKILL.md</location>
+    <version>sha256:83d27a5c0362bd3e</version>
+  </skill>
+  <skill>
+    <name>python-debugpy</name>
+    <description>Debug Python with pdb, breakpoint(), post-mortem inspection, and debugpy remote attach.</description>
+    <location>~/openclaw/node_modules/openclaw/skills/python-debugpy/SKILL.md</location>
+    <version>sha256:bfb1891204b67260</version>
+  </skill>
+  <skill>
+    <name>secret-guardian</name>
+    <description>Use this skill when OpenClaw is handling configuration files, logs, prompts, reports, model providers, channels, browser profiles, environment variables, or any workspace content that may contain secrets or sensitive identifiers. This skill audits outputs before they are shown, blocks direct disclosure of secrets, redacts sensitive values, and limits file and network access to the minimum necessary scope.</description>
+    <location>~/core_skills/secret-guardian/SKILL.md</location>
+    <version>sha256:de978f3cd9d035f8</version>
+  </skill>
+  <skill>
+    <name>seedance-video-gen</name>
+    <description>小艺视频创作，基于Seedance 2.0 mini实现视频生成。支持文本、图片、音频、视频多模态参考输入，可生成、编辑、延长4-15秒视频。适用于短视频创作、剧情片段、动画短片、电商产品展示等场景。触发词：生成视频、做视频、视频创作、小艺视频、续写视频、text-to-video、image-to-video。</description>
+    <location>~/.openclaw/workspace/skills/seedance-video-gen/SKILL.md</location>
+    <version>sha256:18905a0adfd42106</version>
+  </skill>
+  <skill>
+    <name>seedream-image-gen</name>
+    <description>小艺图像创作，基于Seedream5的AI图像生成能力，支持文本、单图、多图多种输入方式，可实现主体一致性多图融合、图像编辑、系列组图生成等创作功能。触发词：生成图片、画图、图像创作、小艺图像、照片修复、文生图、编辑图片等。</description>
+    <location>~/.openclaw/workspace/skills/seedream-image_gen/SKILL.md</location>
+    <version>sha256:b8b8abd5a0f94111</version>
+  </skill>
+  <skill>
+    <name>ship-learn-next</name>
+    <description>Transform learning content (like YouTube transcripts, articles, tutorials) into actionable implementation plans using the Ship-Learn-Next framework. Use when user wants to turn advice, lessons, or educational content into concrete action steps, reps, or a learning quest.</description>
+    <location>~/.openclaw/workspace/skills/davila7-claude-code-templates-ship-learn-next/SKILL.md</location>
+    <version>sha256:503b2265e8d97ab8</version>
+  </skill>
+  <skill>
+    <name>skill-creator</name>
+    <description>Create or update AgentSkills. Use when designing, structuring, or packaging skills with scripts, references, and assets.</description>
+    <location>~/.openclaw/workspace/skills/skill-creator/SKILL.md</location>
+    <version>sha256:4a9bb47629ca9ef8</version>
+  </skill>
+  <skill>
+    <name>skill-scope</name>
+    <description>校验新安装技能（Skill）的安全性。在从 ClawdHub、GitHub、用户、find-skills技能或其他任何来源安装任何Skill之前，请使用此工具，它会检查被安装的Skill是否为恶意Skill。（任何形式的Skill安装，无论是通过 `clawhub install`、`npx skill add`、通过网络下载、通过`find-skills`技能下载、手动放入 `skills` 目录，或者是推荐下载的Skill，都必须经过安全扫描。这是必须遵循的强制安全策略。）</description>
+    <location>~/core_skills/skill-scope/SKILL.md</location>
+    <version>sha256:f8e7f95156dc7ae9</version>
+  </skill>
+  <skill>
+    <name>soulcraft</name>
+    <description>Create or improve SOUL.md files for OpenClaw agents through guided conversation. Use when designing agent personality, crafting a soul, or saying &quot;help me create a soul&quot;. Supports self-improvement.</description>
+    <location>~/.openclaw/workspace/skills/openclaw-skills-soulcraft/SKILL.md</location>
+    <version>sha256:bcf21e985ef67ed6</version>
+  </skill>
+  <skill>
+    <name>spike</name>
+    <description>Run throwaway prototypes to validate feasibility, compare approaches, and report a verdict.</description>
+    <location>~/openclaw/node_modules/openclaw/skills/spike/SKILL.md</location>
+    <version>sha256:1258cde2d0e53267</version>
+  </skill>
+  <skill>
+    <name>vercel-react-best-practices</name>
+    <description>React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.</description>
+    <location>~/.openclaw/workspace/skills/react-best-practices/SKILL.md</location>
+    <version>sha256:b0bc1161fa20c5d2</version>
+  </skill>
+  <skill>
+    <name>video-frames</name>
+    <description>Extract frames or short clips from videos using ffmpeg.</description>
+    <location>~/openclaw/node_modules/openclaw/skills/video-frames/SKILL.md</location>
+    <version>sha256:bdaaa9964db9584f</version>
+  </skill>
+  <skill>
+    <name>weather</name>
+    <description>Current weather and forecasts with wttr.in via curl for locations, rain, temperature, travel planning.</description>
+    <location>~/.openclaw/workspace/skills/weather/SKILL.md</location>
+    <version>sha256:c9b141814760b73b</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-doc-convert</name>
+    <description>文档格式综合转换技能。 适用情形：处理 Word(doc/docx)、PowerPoint(ppt/pptx)、Excel(xls/xlsx)、PDF、Markdown(md) 及 HTML 之间的相互转换。 当用户意图涉及“格式转换”或明确的转换指令（如“docx转pdf”、“md转word”、“网页转ppt”、“excel转pdf”等）时必须触发。支持单文件与批量处理，系统会自动识别各类格式的中英文及扩展名别名。 不适用情形：不支持将 PDF 转换为 Word (doc/docx) 格式。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-doc-convert/SKILL.md</location>
+    <version>sha256:11d61e644b03b234</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-docx</name>
+    <description>Use this skill whenever you need to create, modify, or generate Word documents (.docx). This includes writing reports, creating formatted documents, generating tables, adding Table of Contents, handling Chinese/CJK fonts, or any document output task. Even if the user just mentions &quot;Word document&quot;, &quot;docx&quot;, &quot;report&quot;, or &quot;document generation&quot;, use this skill.</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-docx/SKILL.md</location>
+    <version>sha256:a830e273a75ed59a</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-file-upload</name>
+    <description>通过 upload 命令上传本地文件到对象存储（OSMS/NSP），获取可共享的下载 URL。适用于需要将本地文件分享、传递给其他服务、或生成临时下载链接的场景。当用户提到&quot;上传文件&quot;、&quot;获取下载链接&quot;、&quot;文件分享链接&quot;、&quot;把文件传到云上&quot;等需求时使用此 skill。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-file-upload/SKILL.md</location>
+    <version>sha256:b4a04fbb81d453db</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-gui-agent</name>
+    <description>通过自然语言指令自动操控手机 App，完成购物下单、外卖点餐、酒旅预订、信息检索、内容发布、签到打卡、系统设置等任务。当用户需要在手机上操作 App 时使用此 Skill——包括但不限于：在淘宝/京东/拼多多等电商 App 比价或下单、查询高铁机票酒店、在小红书/抖音等平台搜索浏览内容、发布帖子或动态、修改 App 或系统设置、完成签到打卡等。不适用于纯文本处理、计算、代码生成、图像生成等不涉及手机 App 操作的任务。</description>
+    <location>~/.openclaw/workspace/skills/xiao-gui-agent/SKILL.md</location>
+    <version>sha256:1c5bbe2148a73043</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-health-cli-index</name>
+    <description>查询个人运动健康相关数据，提供分析解读。覆盖领域：心率、静息心率、HRV、心律（房颤/早搏）、血压；睡眠时长/阶段/质量、午睡；步数、活动量、锻炼时长、运动记录（跑步/骑行/健身）、VO2Max、体能趋势、训练负荷、恢复状态；压力、情绪、焦虑、倦怠；血氧（SpO2）；血糖、餐后血糖；体温、发烧；体重、BMI、体脂率；营养摄入、饮食热量；月经周期、经期、基础体温（BBT）、排卵；今日健康概览、每周健康总结；体重管理、减脂、增肌；饮食记录、饮食打卡、记一下吃了什么、吃了XX、早上喝了XX、拍照记录饮食、食物图片识别、照片打卡。读此索引确定应加载的具体 skill，再按需加载，不得一次性加载所有 skill。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-health/SKILL.md</location>
+    <version>sha256:72348c2b359ee7bc</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-image-search</name>
+    <description>图片搜索技能。支持搜索图片并直接下载到本地临时目录，返回本地路径而非URL链接。适用于为文档、PPT、报告等场景查找配图素材。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-image-search/SKILL.md</location>
+    <version>sha256:8b7d41ce3c45318a</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-image-understanding</name>
+    <description>使用小艺图像理解API进行图像内容识别和描述，获取图像的详细文本描述。当用户需要分析图片内容、识别图像中的物体、场景理解、提取图像信息、图像问答、OCR文字识别、图表分析等任务时使用此技能。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-image-understanding/SKILL.md</location>
+    <version>sha256:4c721aaeed8261a9</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-pdf</name>
+    <description>PDF 综合处理技能，处理文档生成、编辑、安全与解析。 适用情形： 1. 创建与排版：从零生成报告、提案、简历等 PDF，或对现有文档重新排版美化； 2. 表单与水印：自动填写 PDF 表单字段，或添加文字/图片水印（如打水印、标机密）； 3. 页面管理：合并多个 PDF，或拆分、提取指定页码； 4. 安全控制：为 PDF 添加密码（加密）或移除密码（解密）； 5. 内容提取：从 PDF 中提取纯文本或导出表格数据。 只要用户诉求涉及生成、排版、美化、转换、拼接、拆分 PDF，或处理水印、表单、密码，必须触发本技能。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-pdf/SKILL.md</location>
+    <version>sha256:b80e4ec4dd057f3a</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-ppt</name>
+    <description>PPT/幻灯片综合处理技能，支持演示文稿的从零生成与现有文件的直接编辑。 适用情形： 1. 新建 PPT：根据给定的主题、上传的文档或网络检索内容，规划大纲并生成完整幻灯片； 2. 编辑 PPT：对已有的 PPTX 文件进行修改，包括调整排版、修改文本、增删与重排页面； 3. 模板套用：基于用户提供的模板 PPT 文件填入新内容。 只要用户意图涉及“做PPT”、“生成幻灯片”、“修改演示文稿”或“排版PPT”时必须触发。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-ppt/SKILL.md</location>
+    <version>sha256:7b9c78ada23bbd3e</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-report</name>
+    <description>从多源信息生成带引用的专业分析报告。当用户要求研究、调研、调查、分析某个主题，或需要搜索资料、收集信息时使用。支持学术研究、市场调研、竞品分析、技术调研、深度研究。相关请求示例：&apos;帮我调研XXX&apos;、&apos;帮我分析XXX&apos;、&apos;写一份关于XXX的深度研究报告&apos;、&apos;深度分析XXX&apos;。任务完成后主动将生成的HTML报告文件通过channel发送给用户查看。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-report/SKILL.md</location>
+    <version>sha256:1934fa5a3caecb9f</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-self-evolution</name>
+    <description>自进化功能用于将高价值经验沉淀为经用户审批的文件（AGENTS.md、TOOLS.md、MEMORY.md 或 ~/.agents/skills/ 目录下的skill）。触发时机：1. 当用户回复包含“下次应该”、“记住”、“以后都这样做”、“注意”等强烈建议/纠正词汇时；2. 用户明确要求固化经验时；3. 识别出可复用的多步骤工作流或需规避的踩坑。满足以上任一条件，请调用本skill。</description>
+    <location>~/core_skills/xiaoyi-self-evolution/SKILL.md</location>
+    <version>sha256:72bdaa4f0c63a63e</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-web-search</name>
+    <description>使用华为云AI联网搜索API进行网页内容检索，获取实时网络信息</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-web-search/SKILL.md</location>
+    <version>sha256:38d303c2df2f7851</version>
+  </skill>
+  <skill>
+    <name>xiaoyi-xlsx</name>
+    <description>电子表格综合处理技能，涵盖 .xlsx/.xlsm/.csv/.tsv 的创建、编辑与数据分析。 触发条件： 1. 用户上传了 .xlsx/.xlsm/.csv/.tsv 文件——无条件触发； 2. 意图包含做表、整理、汇总、分析、对比数据、建预算、建财务模型； 3. 涉及公式（VLOOKUP/SUMIFS等）、数据透视表、条件格式、跨表引用； 4. 任务的自然输出为表格格式。不适用：主要交付物为 Word 文档、HTML 报告或独立脚本，即使涉及表格数据也不触发。</description>
+    <location>~/.openclaw/workspace/skills/xiaoyi-xlsx/SKILL.md</location>
+    <version>sha256:7667888a527f3990</version>
+  </skill>
+</available_skills>

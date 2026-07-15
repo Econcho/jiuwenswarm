@@ -1,0 +1,33 @@
+{
+  "agents": {
+    "defaults": {
+      "compaction": {
+        "memoryFlush": {
+          "enabled": false
+        }
+      }
+    }
+  },
+  "plugins": {
+    "slots": {
+      "memory": "memory-celia"
+    },
+    "load": {
+      "paths": [
+        "${CELIA_INSTALL_ROOT}/memory-plugin"
+      ]
+    },
+    "entries": {
+      "memory-celia": {
+        "enabled": true,
+        "hooks": {
+          "allowConversationAccess": true
+        },
+        "config": {
+          "serverBinaryPath": "${CELIA_INSTALL_ROOT}/bin/celia_memory_mcp_server",
+          "dbPath": "${CELIA_CONFIG_ROOT}/workspace/memory/celia_memory/celia_memory.db"
+        }
+      }
+    }
+  }
+}

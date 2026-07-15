@@ -1,0 +1,935 @@
+{
+  "agent:main:direct:9258e446b3fe4274921c7b8c19489607": {
+    "sessionId": "9258e446b3fe4274921c7b8c19489607",
+    "updatedAt": 1783496006922,
+    "providerOverride": "xiaoyiprovider",
+    "modelOverride": "Auto-Model",
+    "modelOverrideSource": "user",
+    "contextTokens": 256000,
+    "sessionStartedAt": 1783495640238,
+    "lastInteractionAt": 1783495985082,
+    "systemSent": true,
+    "abortedLastRun": false,
+    "chatType": "direct",
+    "route": {
+      "channel": "xiaoyi-channel",
+      "accountId": "default",
+      "target": {
+        "to": "9258e446b3fe4274921c7b8c19489607"
+      }
+    },
+    "deliveryContext": {
+      "channel": "xiaoyi-channel",
+      "to": "9258e446b3fe4274921c7b8c19489607",
+      "accountId": "default"
+    },
+    "lastChannel": "xiaoyi-channel",
+    "lastTo": "9258e446b3fe4274921c7b8c19489607",
+    "lastAccountId": "default",
+    "origin": {
+      "label": "9258e446b3fe4274921c7b8c19489607",
+      "provider": "xiaoyi-channel",
+      "surface": "xiaoyi-channel",
+      "chatType": "direct",
+      "from": "9258e446b3fe4274921c7b8c19489607",
+      "to": "9258e446b3fe4274921c7b8c19489607",
+      "accountId": "default"
+    },
+    "sessionFile": "/home/sandbox/.openclaw/agents/main/sessions/9258e446b3fe4274921c7b8c19489607.jsonl",
+    "skillsSnapshot": {
+      "skills": [
+        {
+          "name": "aigc_marker"
+        },
+        {
+          "name": "browser-automation"
+        },
+        {
+          "name": "canvas"
+        },
+        {
+          "name": "content-compliance"
+        },
+        {
+          "name": "diagram-maker"
+        },
+        {
+          "name": "execution-validator"
+        },
+        {
+          "name": "find-skills"
+        },
+        {
+          "name": "fitness-coach"
+        },
+        {
+          "name": "huawei-drive"
+        },
+        {
+          "name": "imap-smtp-email",
+          "requiredEnv": []
+        },
+        {
+          "name": "markitdown"
+        },
+        {
+          "name": "meme-maker",
+          "requiredEnv": []
+        },
+        {
+          "name": "node-inspect-debugger",
+          "requiredEnv": []
+        },
+        {
+          "name": "notion",
+          "primaryEnv": "NOTION_API_TOKEN",
+          "requiredEnv": []
+        },
+        {
+          "name": "plugin-audit"
+        },
+        {
+          "name": "python-debugpy",
+          "requiredEnv": []
+        },
+        {
+          "name": "secret-guardian"
+        },
+        {
+          "name": "seedance-video-gen"
+        },
+        {
+          "name": "seedream-image-gen"
+        },
+        {
+          "name": "ship-learn-next"
+        },
+        {
+          "name": "skill-creator"
+        },
+        {
+          "name": "skill-scope"
+        },
+        {
+          "name": "soulcraft"
+        },
+        {
+          "name": "spike"
+        },
+        {
+          "name": "vercel-react-best-practices"
+        },
+        {
+          "name": "video-frames",
+          "requiredEnv": []
+        },
+        {
+          "name": "weather",
+          "requiredEnv": []
+        },
+        {
+          "name": "xiaoyi-doc-convert"
+        },
+        {
+          "name": "xiaoyi-docx"
+        },
+        {
+          "name": "xiaoyi-file-upload"
+        },
+        {
+          "name": "xiaoyi-gui-agent"
+        },
+        {
+          "name": "xiaoyi-health-cli-index"
+        },
+        {
+          "name": "xiaoyi-image-search"
+        },
+        {
+          "name": "xiaoyi-image-understanding"
+        },
+        {
+          "name": "xiaoyi-pdf"
+        },
+        {
+          "name": "xiaoyi-ppt",
+          "requiredEnv": []
+        },
+        {
+          "name": "xiaoyi-report"
+        },
+        {
+          "name": "xiaoyi-self-evolution"
+        },
+        {
+          "name": "xiaoyi-web-search"
+        },
+        {
+          "name": "xiaoyi-xlsx"
+        }
+      ],
+      "version": 1783495643355,
+      "promptRef": {
+        "version": 1,
+        "algorithm": "sha256",
+        "hash": "94b14f9916f208e4174949a54337d04a86c612c191b928ff551e90c9fad77488",
+        "bytes": 20650
+      }
+    },
+    "status": "done",
+    "startedAt": 1783495986611,
+    "systemPromptReport": {
+      "source": "run",
+      "generatedAt": 1783495985709,
+      "sessionId": "9258e446b3fe4274921c7b8c19489607",
+      "sessionKey": "agent:main:direct:9258e446b3fe4274921c7b8c19489607",
+      "provider": "xiaoyiprovider",
+      "model": "Auto-Model",
+      "workspaceDir": "/home/sandbox/.openclaw/workspace",
+      "bootstrapMaxChars": 20000,
+      "bootstrapTotalMaxChars": 60000,
+      "bootstrapTruncation": {
+        "warningMode": "always",
+        "warningShown": false,
+        "truncatedFiles": 0,
+        "nearLimitFiles": 0,
+        "totalNearLimit": false
+      },
+      "sandbox": {
+        "mode": "off",
+        "sandboxed": false
+      },
+      "systemPrompt": {
+        "chars": 47478,
+        "hash": "d984b50bd3d5c951408b39a04c7d1cb1f2f45950504a2ed4396f4c8d5228fa9f",
+        "projectContextChars": 18161,
+        "nonProjectContextChars": 29317
+      },
+      "injectedWorkspaceFiles": [
+        {
+          "name": "AGENTS.md",
+          "path": "/home/sandbox/.openclaw/workspace/AGENTS.md",
+          "missing": false,
+          "rawChars": 9665,
+          "injectedChars": 9665,
+          "truncated": false
+        },
+        {
+          "name": "SOUL.md",
+          "path": "/home/sandbox/.openclaw/workspace/SOUL.md",
+          "missing": false,
+          "rawChars": 2018,
+          "injectedChars": 2018,
+          "truncated": false
+        },
+        {
+          "name": "TOOLS.md",
+          "path": "/home/sandbox/.openclaw/workspace/TOOLS.md",
+          "missing": false,
+          "rawChars": 4480,
+          "injectedChars": 4480,
+          "truncated": false
+        },
+        {
+          "name": "IDENTITY.md",
+          "path": "/home/sandbox/.openclaw/workspace/IDENTITY.md",
+          "missing": false,
+          "rawChars": 448,
+          "injectedChars": 448,
+          "truncated": false
+        },
+        {
+          "name": "USER.md",
+          "path": "/home/sandbox/.openclaw/workspace/USER.md",
+          "missing": false,
+          "rawChars": 1167,
+          "injectedChars": 1167,
+          "truncated": false
+        },
+        {
+          "name": "MEMORY.md",
+          "path": "/home/sandbox/.openclaw/workspace/MEMORY.md",
+          "missing": false,
+          "rawChars": 0,
+          "injectedChars": 0,
+          "truncated": false
+        }
+      ],
+      "skills": {
+        "promptChars": 15694,
+        "hash": "5ca3428e03ea4fe6780ba4651ef04ff804d40b1ac719879dbc692c3064149419",
+        "entries": [
+          {
+            "name": "aigc_marker",
+            "blockChars": 253
+          },
+          {
+            "name": "browser-automation",
+            "blockChars": 371
+          },
+          {
+            "name": "canvas",
+            "blockChars": 303
+          },
+          {
+            "name": "content-compliance",
+            "blockChars": 267
+          },
+          {
+            "name": "diagram-maker",
+            "blockChars": 306
+          },
+          {
+            "name": "execution-validator",
+            "blockChars": 375
+          },
+          {
+            "name": "find-skills",
+            "blockChars": 372
+          },
+          {
+            "name": "fitness-coach",
+            "blockChars": 293
+          },
+          {
+            "name": "huawei-drive",
+            "blockChars": 413
+          },
+          {
+            "name": "imap-smtp-email",
+            "blockChars": 518
+          },
+          {
+            "name": "markitdown",
+            "blockChars": 382
+          },
+          {
+            "name": "meme-maker",
+            "blockChars": 291
+          },
+          {
+            "name": "node-inspect-debugger",
+            "blockChars": 317
+          },
+          {
+            "name": "notion",
+            "blockChars": 312
+          },
+          {
+            "name": "plugin-audit",
+            "blockChars": 277
+          },
+          {
+            "name": "python-debugpy",
+            "blockChars": 305
+          },
+          {
+            "name": "secret-guardian",
+            "blockChars": 602
+          },
+          {
+            "name": "seedance-video-gen",
+            "blockChars": 372
+          },
+          {
+            "name": "seedream-image-gen",
+            "blockChars": 327
+          },
+          {
+            "name": "ship-learn-next",
+            "blockChars": 510
+          },
+          {
+            "name": "skill-creator",
+            "blockChars": 325
+          },
+          {
+            "name": "skill-scope",
+            "blockChars": 427
+          },
+          {
+            "name": "soulcraft",
+            "blockChars": 420
+          },
+          {
+            "name": "spike",
+            "blockChars": 291
+          },
+          {
+            "name": "vercel-react-best-practices",
+            "blockChars": 555
+          },
+          {
+            "name": "video-frames",
+            "blockChars": 269
+          },
+          {
+            "name": "weather",
+            "blockChars": 295
+          },
+          {
+            "name": "xiaoyi-doc-convert",
+            "blockChars": 464
+          },
+          {
+            "name": "xiaoyi-docx",
+            "blockChars": 599
+          },
+          {
+            "name": "xiaoyi-file-upload",
+            "blockChars": 389
+          },
+          {
+            "name": "xiaoyi-gui-agent",
+            "blockChars": 421
+          },
+          {
+            "name": "xiaoyi-health-cli-index",
+            "blockChars": 520
+          },
+          {
+            "name": "xiaoyi-image-search",
+            "blockChars": 280
+          },
+          {
+            "name": "xiaoyi-image-understanding",
+            "blockChars": 326
+          },
+          {
+            "name": "xiaoyi-pdf",
+            "blockChars": 460
+          },
+          {
+            "name": "xiaoyi-ppt",
+            "blockChars": 411
+          },
+          {
+            "name": "xiaoyi-report",
+            "blockChars": 418
+          },
+          {
+            "name": "xiaoyi-self-evolution",
+            "blockChars": 401
+          },
+          {
+            "name": "xiaoyi-web-search",
+            "blockChars": 244
+          },
+          {
+            "name": "xiaoyi-xlsx",
+            "blockChars": 436
+          }
+        ]
+      },
+      "tools": {
+        "listChars": 0,
+        "schemaChars": 35744,
+        "entries": [
+          {
+            "name": "read",
+            "summaryChars": 298,
+            "summaryHash": "f8a1d7cf1ecfe02b1b5865c93387e6a5891e5079117b4fe18614b6f912521727",
+            "schemaChars": 304,
+            "schemaHash": "134f19bcabe3e29d63c5cebb38f1d2556759fd08adad6bc90a4b4d3cd1fb8441",
+            "propertiesCount": 3
+          },
+          {
+            "name": "edit",
+            "summaryChars": 326,
+            "summaryHash": "c498a85576e187d069e8e8ea4f70f81bddd57829600d385ef61c4359fd634c9e",
+            "schemaChars": 834,
+            "schemaHash": "457e8bb9f800b21be76c4fd8c0e3078bf07ee9bf93ac82f39944c171bd8f6d84",
+            "propertiesCount": 2
+          },
+          {
+            "name": "write",
+            "summaryChars": 127,
+            "summaryHash": "cdb1c46027b22d1f1b923b47bfe297821d9fe589a9f9d92994961948060a4d89",
+            "schemaChars": 225,
+            "schemaHash": "e98a2484f667cf7c22d76ca103bf2022bf9113dc63fe38b899e71c328cb1e833",
+            "propertiesCount": 2
+          },
+          {
+            "name": "apply_patch",
+            "summaryChars": 132,
+            "summaryHash": "432bf38688a4f011d2b765a441ac07e1fdfa9faf2051679adee04abcd9332d93",
+            "schemaChars": 153,
+            "schemaHash": "05521268363ff4f191472c90d69ef08a503ba9acf1d2febc50b3ee68db32ab65",
+            "propertiesCount": 1
+          },
+          {
+            "name": "exec",
+            "summaryChars": 539,
+            "summaryHash": "4825198988fbfa8ebf5c2a8fbe3946da0be639b1e3b737ceaa4364195bba3f04",
+            "schemaChars": 1283,
+            "schemaHash": "2608ea36cf51376859b7204cda1bf1a2507134eb542097b9e8dbc8af617f216b",
+            "propertiesCount": 12
+          },
+          {
+            "name": "process",
+            "summaryChars": 456,
+            "summaryHash": "55297e65d460e0e1e06e7fad4cedb75ffda8fac9fa8b10aa06d6cead3c5a76ea",
+            "schemaChars": 1074,
+            "schemaHash": "a2d30a25569f409d7e8539844c89a088044535388b24031d014577b96ed27c5c",
+            "propertiesCount": 12
+          },
+          {
+            "name": "get_user_location",
+            "summaryChars": 169,
+            "summaryHash": "92311be36c65d566e3cb8afe1e57555c5b26ebe68644948b5339574d93a913a6",
+            "schemaChars": 47,
+            "schemaHash": "ab7bd4d62ff6dceead46c152b2ebb362c3ff9bd30b5e7894f5d8835830218dcb",
+            "propertiesCount": 0
+          },
+          {
+            "name": "discover_cross_devices",
+            "summaryChars": 169,
+            "summaryHash": "632b3b17b1186d9d5b8f6f7fe2e0f141dfc563de109dfc82b5df39aec056d26d",
+            "schemaChars": 179,
+            "schemaHash": "6cb77109400545aeb7af941d8bc86668f3fd9b9a498d37047ad6d49bdd012dae",
+            "propertiesCount": 1
+          },
+          {
+            "name": "send_cross_device_task",
+            "summaryChars": 246,
+            "summaryHash": "11e653d3586a42e5960f0cb9431f9a439a2b935cd39641e6490b9abce98a227c",
+            "schemaChars": 514,
+            "schemaHash": "66e1f32825b0e572104180dd7b5e06ba331d45256c160aca9ee88661b076d8a6",
+            "propertiesCount": 2
+          },
+          {
+            "name": "display-a2ui-card-bypath",
+            "summaryChars": 69,
+            "summaryHash": "bb34ef96094df4da36bd09f870d4a5eab963580b603b77cca03ceca8c9d26ccb",
+            "schemaChars": 146,
+            "schemaHash": "6b1d27a7a2d241c19c24c42591d9b5b80da9c0f003fcdc0298f9d3bc18f45a64",
+            "propertiesCount": 1
+          },
+          {
+            "name": "call_device_tool",
+            "summaryChars": 66,
+            "summaryHash": "61b1546773db75c7fabc3416a768fca32a25b77dc9616681cc629f2471133d6f",
+            "schemaChars": 219,
+            "schemaHash": "9152611cd0a2e130f5b6a471d04c94aa4bf892ff5c9039efc59b8dadcbcf2aed",
+            "propertiesCount": 2
+          },
+          {
+            "name": "get_note_tool_schema",
+            "summaryChars": 29,
+            "summaryHash": "5c15466f46fbc9991d1c97edd4c4a682246081fa2fe202dae2792073161cd8df",
+            "schemaChars": 47,
+            "schemaHash": "ab7bd4d62ff6dceead46c152b2ebb362c3ff9bd30b5e7894f5d8835830218dcb",
+            "propertiesCount": 0
+          },
+          {
+            "name": "get_calendar_tool_schema",
+            "summaryChars": 25,
+            "summaryHash": "b5774213eba650c1b688899a57e529bc2ed4d90c3ba65fcd620e501138d4a4f9",
+            "schemaChars": 47,
+            "schemaHash": "ab7bd4d62ff6dceead46c152b2ebb362c3ff9bd30b5e7894f5d8835830218dcb",
+            "propertiesCount": 0
+          },
+          {
+            "name": "get_contact_tool_schema",
+            "summaryChars": 43,
+            "summaryHash": "143451bf87ecfc64b9233352fc6da687a77cd49f7b3ab5e352d471d1c3689864",
+            "schemaChars": 47,
+            "schemaHash": "ab7bd4d62ff6dceead46c152b2ebb362c3ff9bd30b5e7894f5d8835830218dcb",
+            "propertiesCount": 0
+          },
+          {
+            "name": "get_photo_tool_schema",
+            "summaryChars": 49,
+            "summaryHash": "a8bf6e465079a5cb78b52ddb772eacc37fe76ae021c04bf542af3567f48e38a3",
+            "schemaChars": 47,
+            "schemaHash": "ab7bd4d62ff6dceead46c152b2ebb362c3ff9bd30b5e7894f5d8835830218dcb",
+            "propertiesCount": 0
+          },
+          {
+            "name": "xiaoyi_gui_agent",
+            "summaryChars": 431,
+            "summaryHash": "776aab239006d754283b8649aa3b487ea3580e8b07f0475154bafe6a2e15b2f7",
+            "schemaChars": 113,
+            "schemaHash": "316bd8b43990b529d72f3ec4d229ff1a9c9ba3710b6f06d0612b570b6d916fc6",
+            "propertiesCount": 1
+          },
+          {
+            "name": "get_device_file_tool_schema",
+            "summaryChars": 58,
+            "summaryHash": "c5525ce6da44102d6baba7b1806013cf0bd4e9c612a96bc903c9920dbde3c9e7",
+            "schemaChars": 47,
+            "schemaHash": "ab7bd4d62ff6dceead46c152b2ebb362c3ff9bd30b5e7894f5d8835830218dcb",
+            "propertiesCount": 0
+          },
+          {
+            "name": "get_alarm_tool_schema",
+            "summaryChars": 31,
+            "summaryHash": "2c04051af722a109c3fb11519f40775a65c3d7d5e00420c747d73623fe74a26f",
+            "schemaChars": 47,
+            "schemaHash": "ab7bd4d62ff6dceead46c152b2ebb362c3ff9bd30b5e7894f5d8835830218dcb",
+            "propertiesCount": 0
+          },
+          {
+            "name": "get_collection_tool_schema",
+            "summaryChars": 46,
+            "summaryHash": "c585f654ca9cc0072550ca98730b68d2fdf30ae0c0d377798ae4e4c77a87bdb3",
+            "schemaChars": 47,
+            "schemaHash": "ab7bd4d62ff6dceead46c152b2ebb362c3ff9bd30b5e7894f5d8835830218dcb",
+            "propertiesCount": 0
+          },
+          {
+            "name": "send_file_to_user",
+            "summaryChars": 171,
+            "summaryHash": "9a71af945621ced7ba6062aebe6c52a7269dca6a3e8d1b575d8fdd2c62f1c298",
+            "schemaChars": 348,
+            "schemaHash": "13cc8da01595c9b2e6a072f8d7a6e3d430a9932b9d1fe1764359846a08b0ba67",
+            "propertiesCount": 3
+          },
+          {
+            "name": "send_html_card",
+            "summaryChars": 352,
+            "summaryHash": "8a4b86cc1a8fc9f1b5d9ae78184695d2824bd99a9e2d5cd2164800809291f3e2",
+            "schemaChars": 172,
+            "schemaHash": "9289ad2e013f03c90b71265bc048312185dd002fba7534c26b5f637379f42d12",
+            "propertiesCount": 2
+          },
+          {
+            "name": "view_push_result",
+            "summaryChars": 225,
+            "summaryHash": "095703473c4ccbced91326cb21c328c390032388a73d489f04fcd42ea4fe29a9",
+            "schemaChars": 231,
+            "schemaHash": "3731673f31a6e18e1894877a62edfd54df408ccc2dd1ef9973c2b3c8382b6bca",
+            "propertiesCount": 2
+          },
+          {
+            "name": "image_reading",
+            "summaryChars": 63,
+            "summaryHash": "b1563143d9aedcc7a4b82927f5542d1dd2b7d31b8d74ad0964a208f23180275f",
+            "schemaChars": 220,
+            "schemaHash": "d90612b3be6db8fd569b8319685977e3195f0c258e4c57ab396c82e14e60f13b",
+            "propertiesCount": 2
+          },
+          {
+            "name": "convert_timestamp_to_utc8_time",
+            "summaryChars": 351,
+            "summaryHash": "28229dcba960488f0a109dd0466a4215d65f13f806475e6346c7d687870c47fb",
+            "schemaChars": 129,
+            "schemaHash": "bef94d4e54865e32e6b8ea85839babd2e4938a95bc1c6c3c908282b18ff56b69",
+            "propertiesCount": 1
+          },
+          {
+            "name": "save_self_evolution_skill",
+            "summaryChars": 66,
+            "summaryHash": "8087c9d4fe2491bcae714eccb1413070d0fea95702c5246a032b423185e81abd",
+            "schemaChars": 627,
+            "schemaHash": "7160afb0e0168480ebcce4708afb89b9fe2a665794ea7cd03f9e75f6acbc7810",
+            "propertiesCount": 7
+          },
+          {
+            "name": "huawei_id_tool",
+            "summaryChars": 66,
+            "summaryHash": "b425f56dd7c61290576ff65eb7e529ac3300c02595f88206aba2c791575279f6",
+            "schemaChars": 196,
+            "schemaHash": "da439b1cacd54d845812f6d216d382ffd6855ada0a25268d67612433513bd078",
+            "propertiesCount": 2
+          },
+          {
+            "name": "agent_as_a_tool",
+            "summaryChars": 229,
+            "summaryHash": "3bfc9309dd7c806acfe30f4aacdf3a300d3b788e6eb70d36c4988dc1c558dcd3",
+            "schemaChars": 557,
+            "schemaHash": "22b1bddaa18cd00c46ed3f65e3f458555e930c1b30b87bd272e033272d5f5b4b",
+            "propertiesCount": 3
+          },
+          {
+            "name": "check_plugin_privilege",
+            "summaryChars": 886,
+            "summaryHash": "b637e991dcbb27e9facc16f05e6c606f123e5850818c0e7d2328569f2e6962b8",
+            "schemaChars": 205,
+            "schemaHash": "e4abc86ad843d619a1953de04f49311bf16f5d0b0eab533a733771ce9613047f",
+            "propertiesCount": 1
+          },
+          {
+            "name": "invoke",
+            "summaryChars": 194,
+            "summaryHash": "a5f6f8be5b3a73f0537fc47965abcd707eaa356a0a1285b4cd46cd0d880b73d5",
+            "schemaChars": 943,
+            "schemaHash": "e905e708f246c3f3f79f54d572e05c1702831945d2e420edd1c087dbfd59824f",
+            "propertiesCount": 4
+          },
+          {
+            "name": "nodes",
+            "summaryChars": 143,
+            "summaryHash": "ea1b0a5498ca3c788b26d164245652e1aaa989806e0123715793ab25f9578121",
+            "schemaChars": 1764,
+            "schemaHash": "339c9b744f121ff6a5b2a8a2a7e19286c4114d8dc165a172d3708e993d8b0e55",
+            "propertiesCount": 32
+          },
+          {
+            "name": "cron",
+            "summaryChars": 3721,
+            "summaryHash": "8eb177e0cdf7d5bc0144f544bf0072e38b6bab267e0699a2859b4a8db97af0b3",
+            "schemaChars": 8601,
+            "schemaHash": "6905f52059cd7b0e4abca1251160f13877ced2a6b101158a6192f4e9a279665a",
+            "propertiesCount": 15
+          },
+          {
+            "name": "message",
+            "summaryChars": 60,
+            "summaryHash": "76c05ee1f105661df34669c4e3b9b095dc597e625633abb3fae8f88b9d684681",
+            "schemaChars": 1793,
+            "schemaHash": "f3a5be2b9ddfec2a9933b822796fb4aa384716f713f54338f48acfe9768548e1",
+            "propertiesCount": 27
+          },
+          {
+            "name": "gateway",
+            "summaryChars": 566,
+            "summaryHash": "1bef48b95fc67d7dc10e2f5f0cc3522951b067b762de6c3e77bc446de0f608b1",
+            "schemaChars": 649,
+            "schemaHash": "1a4f609a948c183832ee8a11c0cfcbe1afddf0732c30c67a593dfcdb630a5ee7",
+            "propertiesCount": 14
+          },
+          {
+            "name": "agents_list",
+            "summaryChars": 63,
+            "summaryHash": "a7afb8adbaf98833df68160db0677ec2a6bc30b1b96f3592392c9df59e310c65",
+            "schemaChars": 33,
+            "schemaHash": "8243f0af367f188a376f2c17b5eabe872a2f7a979813e0d4e2be6d594c2aa259",
+            "propertiesCount": 0
+          },
+          {
+            "name": "get_goal",
+            "summaryChars": 71,
+            "summaryHash": "58dea7906d9e17e5f89a75fea24597ee068d8a56af824370dc27f8501374d6e3",
+            "schemaChars": 33,
+            "schemaHash": "8243f0af367f188a376f2c17b5eabe872a2f7a979813e0d4e2be6d594c2aa259",
+            "propertiesCount": 0
+          },
+          {
+            "name": "create_goal",
+            "summaryChars": 155,
+            "summaryHash": "f01e3a63d673a410ba55213ce6bd3fa2b0d2279e8e780c18aa0cb5aa991b29b3",
+            "schemaChars": 267,
+            "schemaHash": "27ee794432736471bd76390e236cc7d7e98f8469a02656e7a27109041eea0f8c",
+            "propertiesCount": 2
+          },
+          {
+            "name": "update_goal",
+            "summaryChars": 212,
+            "summaryHash": "285201690e5f2456b4cdcd252ff391709b84d69538df61bad694d3c0cfc19958",
+            "schemaChars": 207,
+            "schemaHash": "c37894492eedfad02f1e7fe1488900765bfe547f3b3f34cefbab4f7f57441c2c",
+            "propertiesCount": 2
+          },
+          {
+            "name": "skill_workshop",
+            "summaryChars": 171,
+            "summaryHash": "577c1d2b8f56bf3e9dd5e00463bbce8b8bf4cf201da9b21b588dcaa3bc6ed8cf",
+            "schemaChars": 2273,
+            "schemaHash": "15481d6889a320a46728ee32304f0a2b510c0bcf77d445052c1ef2fa5dd5368b",
+            "propertiesCount": 13
+          },
+          {
+            "name": "update_plan",
+            "summaryChars": 163,
+            "summaryHash": "ea18cc44224e849c68cdf0a4839c295c1b20daf2699e2fc2be4c4e1552327455",
+            "schemaChars": 489,
+            "schemaHash": "50cb08b8a29e72637eb6720e6f5f3786783824537574f05ee9ae7a5f4ecacc4b",
+            "propertiesCount": 2
+          },
+          {
+            "name": "sessions_list",
+            "summaryChars": 135,
+            "summaryHash": "c7e411ae02e3adff5504aaee48f02d262a8abb9152558a3172aae289e3b05faf",
+            "schemaChars": 435,
+            "schemaHash": "c29c6b82c36a2d95a88c8944f129929b2621ee2af6d17b2ab101d4d7e9633d89",
+            "propertiesCount": 9
+          },
+          {
+            "name": "sessions_history",
+            "summaryChars": 117,
+            "summaryHash": "f5d45b76f11a8ac63cc45d456fb6f675f0b1a2e191feb9671924cb5830058f03",
+            "schemaChars": 162,
+            "schemaHash": "ac33b8af2252262afe479236046f5a04bc018f1fcf24d1a8bf32743f0e867598",
+            "propertiesCount": 3
+          },
+          {
+            "name": "sessions_send",
+            "summaryChars": 282,
+            "summaryHash": "061e9ef3487676bb2a4fd4c0336bd973aaab5eea0725e7443c4cb17518cd1e78",
+            "schemaChars": 275,
+            "schemaHash": "f1fbaa412fe6b6aee102234c87c5aa140f39c9086f9bae6e1e9691309a602ffb",
+            "propertiesCount": 5
+          },
+          {
+            "name": "sessions_spawn",
+            "summaryChars": 332,
+            "summaryHash": "5ced554d0c09b9c71fa003139eca7871bbfdc0917a323fc17af2a9faec46c5b7",
+            "schemaChars": 1151,
+            "schemaHash": "9a91c7668463da8a66386260ce2ae97e7efe3bb93b9b6f03ac85102c354457e1",
+            "propertiesCount": 15
+          },
+          {
+            "name": "sessions_yield",
+            "summaryChars": 79,
+            "summaryHash": "f3782fc41c1522657e1d3494f486a2df998fed38a6b89dcf7f6934fb41424320",
+            "schemaChars": 60,
+            "schemaHash": "b1c4c753820bc3096d85ef7a266a14c9fbe12450536db58076b75bb61d14dbbb",
+            "propertiesCount": 1
+          },
+          {
+            "name": "subagents",
+            "summaryChars": 132,
+            "summaryHash": "1c2ffd38549c0444b118d43736fc4b875ea1aaabc446bbf8bc1fc4ee9180cca4",
+            "schemaChars": 122,
+            "schemaHash": "c4a241d2c3d46ba7985abfce4d3fcd63298ce81f89d49183c8f3d584c48d0c33",
+            "propertiesCount": 2
+          },
+          {
+            "name": "session_status",
+            "summaryChars": 278,
+            "summaryHash": "71177e543dc6235bad4b1a26761995681dcec27ab58dcb4f4f8a7fc9a7b2b5aa",
+            "schemaChars": 89,
+            "schemaHash": "d2995f3d69d126e98ac93eec3c2a9fe5556925bd7979a8e4b6b5a2bf62d329dd",
+            "propertiesCount": 2
+          },
+          {
+            "name": "web_fetch",
+            "summaryChars": 93,
+            "summaryHash": "8875afbb51bd63673e5e6836ca31eeda73914a464862665cd73b346e28d28fd5",
+            "schemaChars": 317,
+            "schemaHash": "d2d8ad58a1b84d849dd16142282aff6c5606f7b0e3d08405e1b740a6a79e6bcc",
+            "propertiesCount": 3
+          },
+          {
+            "name": "memory_store",
+            "summaryChars": 643,
+            "summaryHash": "21099d7a44400e214a6941d03ac838ed0cee6d41f6bce07d5e00d1456f152ed6",
+            "schemaChars": 77,
+            "schemaHash": "f3a1e2d34406faebd04fb2d3a36b944f82700651a62f56d3aec380a34f12dcd0",
+            "propertiesCount": 1
+          },
+          {
+            "name": "memory_forget",
+            "summaryChars": 47,
+            "summaryHash": "12792fd91aabdb61c273481651d4a07c0513101a71090eaf13018cb1b71e15f3",
+            "schemaChars": 180,
+            "schemaHash": "44824e514ebd8d65392443d75fd2ffb6ca82ec6e8e71af8f284cc78b766bfbe4",
+            "propertiesCount": 2
+          },
+          {
+            "name": "memory_scene_load",
+            "summaryChars": 237,
+            "summaryHash": "f942cd8ce3a6de70dab4e787262cf025fc452397906a1e523e785345b86aaad1",
+            "schemaChars": 328,
+            "schemaHash": "36fad37d23ad1aa632d2be76057cc46d40716f2a781dcde3fde226dbb465c571",
+            "propertiesCount": 3
+          },
+          {
+            "name": "memory_record_search",
+            "summaryChars": 432,
+            "summaryHash": "1ab173eb1641dd969b94c02fd20431fa38835bf09b05bdfdc8604d4ac52390ae",
+            "schemaChars": 774,
+            "schemaHash": "3e1cf88e3af8c5fdc8cba280aa0ea51389599dbad4f53187721a5de701675037",
+            "propertiesCount": 7
+          },
+          {
+            "name": "memory_chat_history_search",
+            "summaryChars": 356,
+            "summaryHash": "2ee0d33f332c7f91cdea689c578f4222cf33db7e44e6565d513be5bf665dec10",
+            "schemaChars": 400,
+            "schemaHash": "7fbc368fa2e3c64192c198ac06cce12b8f9804f84effc2b83c3ea322bfcff808",
+            "propertiesCount": 5
+          },
+          {
+            "name": "memory_scene_list_load",
+            "summaryChars": 139,
+            "summaryHash": "d328a06c769403711e99dc014648af8538165ed258117c4af651a8d380c17a71",
+            "schemaChars": 208,
+            "schemaHash": "15c8b4b14c4fb2a712bc7a6bc9ce3be85389895ab9a908c5ed2d076a0b4320ba",
+            "propertiesCount": 2
+          },
+          {
+            "name": "memory_get_global_summary",
+            "summaryChars": 280,
+            "summaryHash": "f3aa7c9672f223288004f85a49171bca4d41b96a18f24bbc7d604628c1a46d52",
+            "schemaChars": 428,
+            "schemaHash": "0639b0f0190ebd9a92b212ccb0dfb74683f7f480364edec3854a82e4bbed2a54",
+            "propertiesCount": 3
+          },
+          {
+            "name": "memory_flush",
+            "summaryChars": 207,
+            "summaryHash": "6c3ea8504439d9856343595ee75b99c6f6685247df74fb1fd087afa3aa8880f9",
+            "schemaChars": 295,
+            "schemaHash": "2bdd183795bdff1883c573be127560ca880e6b0f1ea898eea75dfde053766266",
+            "propertiesCount": 3
+          },
+          {
+            "name": "memory_list",
+            "summaryChars": 166,
+            "summaryHash": "d1bfe725807ef50ccf04c1fecadc687cede7d9c3dd511c95d19560632259afbd",
+            "schemaChars": 387,
+            "schemaHash": "74e4ccdf873d8114e8bc1786728c94d158aaccb12e0ba71751230f4a10b9027d",
+            "propertiesCount": 3
+          },
+          {
+            "name": "memory_dump",
+            "summaryChars": 130,
+            "summaryHash": "692fc3239e87556f3860928d5783028c2142c38adaab3774b3c4dfbbbb32e26e",
+            "schemaChars": 822,
+            "schemaHash": "9cd2832722c67168aa41ea840efc1f77b2f44633e2c2edfc005c5f9f322a4465",
+            "propertiesCount": 8
+          },
+          {
+            "name": "dream_status",
+            "summaryChars": 124,
+            "summaryHash": "2d41b219dedc9790bb9b559e7cc96709960934ef66e7a3386ff49cd2e120775b",
+            "schemaChars": 216,
+            "schemaHash": "af0fa735077d3b6fb63d7792245d1217bbd2fc25efbe5e2fc32d3cb730550e9b",
+            "propertiesCount": 2
+          },
+          {
+            "name": "dream_run_summary",
+            "summaryChars": 157,
+            "summaryHash": "57a1cffaa84bca873018d16aa5f186aa416d937a4a17dc9b9421343af3c02c89",
+            "schemaChars": 155,
+            "schemaHash": "91f75ef4fa7ac16709c142f33b1a441f88931795e535bd21a1893c205d877780",
+            "propertiesCount": 2
+          },
+          {
+            "name": "dream_recent_runs",
+            "summaryChars": 96,
+            "summaryHash": "31b5baf49bb7197b0420068334e4dc8d683e9ed55fb916a595522e5fd137851b",
+            "schemaChars": 136,
+            "schemaHash": "9a824e9839c8758a9eb8da1e0842be0434e59c037df0a6efe3f1d59367576e38",
+            "propertiesCount": 2
+          },
+          {
+            "name": "browser",
+            "summaryChars": 1537,
+            "summaryHash": "8a4aab8d6a66131c4f065bc2672af8fbcc19555e55fb4fbb1c24261d02e63e28",
+            "schemaChars": 3570,
+            "schemaHash": "fcbd681856651c4d2817a3c0f9786a321a20a50a6c117866bf08d4df6f40486a",
+            "propertiesCount": 53
+          }
+        ]
+      },
+      "currentTurn": {
+        "promptChars": 529,
+        "runtimeContextChars": 0
+      }
+    },
+    "inputTokens": 31758,
+    "outputTokens": 781,
+    "cacheRead": 0,
+    "cacheWrite": 0,
+    "estimatedCostUsd": 0.00003332,
+    "totalTokens": 31758,
+    "totalTokensFresh": true,
+    "endedAt": 1783496006755,
+    "runtimeMs": 20144,
+    "modelProvider": "xiaoyiprovider",
+    "model": "Auto-Model"
+  }
+}

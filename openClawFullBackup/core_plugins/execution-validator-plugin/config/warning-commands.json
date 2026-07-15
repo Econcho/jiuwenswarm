@@ -1,0 +1,7 @@
+{
+  "description": "Confirmation-required command rules",
+  "level": "confirm",
+  "commands": [
+    "chmod.*777"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "destructive-action-guidance",
+  "version": "0.1.0",
+  "description": "Manual JavaScript distribution for Destructive Action Guidance.",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.5.6-beta.1"
+    }
+  }
+}

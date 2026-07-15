@@ -6652,6 +6652,7 @@ class JiuWenSwarmDeepAdapter:
         return build_external_memory_rail(
             config=get_config(),
             workspace_dir=self._workspace_dir,
+            session_id=self._parent_session_id or "__default__",
         )
 
     async def _handle_external_memory_rail_by_config(self):

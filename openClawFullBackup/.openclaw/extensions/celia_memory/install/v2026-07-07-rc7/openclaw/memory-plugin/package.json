@@ -1,0 +1,20 @@
+{
+  "name": "@openclaw/memory-celia",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenClaw Celia memory plugin \u2014 four semantic memory layers with original conversations, atomic facts, scene memory, and global overview backed by C/SQLite engine",
+  "type": "module",
+  "scripts": {
+    "test": "node ./scripts/run-tests.mjs"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "@openclaw/celia-shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared utilities for openclaw memory-celia and context-celia plugins",
+  "type": "module"
+}

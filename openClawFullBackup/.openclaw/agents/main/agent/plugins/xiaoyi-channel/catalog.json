@@ -1,0 +1,35 @@
+{
+  "generatedBy": "openclaw-plugin-model-catalog-v1",
+  "providers": {
+    "xiaoyiprovider": {
+      "timeoutSeconds": 600,
+      "baseUrl": "http://lfhagmirror.hwcloudtest.cn:80/celia-claw/v1/sse-api",
+      "api": "openai-completions",
+      "apiKey": "apiKey",
+      "headers": {
+        "Accept": "text/event-stream",
+        "x-request-from": "openclaw",
+        "x-uid": "uid-virtual",
+        "x-api-key": "sk-virtual"
+      },
+      "models": [
+        {
+          "id": "Auto-Model",
+          "name": "Auto-Model",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "cost": {
+            "input": 0.001,
+            "output": 0.002,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "contextWindow": 256000,
+          "maxTokens": 6000
+        }
+      ]
+    }
+  }
+}

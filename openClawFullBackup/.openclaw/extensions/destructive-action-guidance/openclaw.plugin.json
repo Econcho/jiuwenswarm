@@ -1,0 +1,37 @@
+{
+  "id": "destructive-action-guidance",
+  "activation": {
+    "onStartup": true
+  },
+  "name": "Destructive Action Guidance",
+  "description": "Injects behavior guidance when recent user intent involves destructive or irreversible actions.",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable destructive action guidance injection."
+      },
+      "extraKeywords": {
+        "type": "array",
+        "default": [],
+        "maxItems": 64,
+        "description": "Additional destructive-action keywords that should trigger guidance injection.",
+        "items": {
+          "type": "string",
+          "maxLength": 64
+        }
+      },
+      "recentUserMessageLimit": {
+        "type": "number",
+        "default": 5,
+        "minimum": 0,
+        "maximum": 10,
+        "description": "Number of recent user messages to inspect in addition to the current prompt."
+      }
+    }
+  }
+}

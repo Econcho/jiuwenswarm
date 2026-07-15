@@ -1,0 +1,8 @@
+--- Page 1 ---
+Page 1 of Document A
+
+--- Page 2 ---
+Page 2 of Document A
+
+--- Page 3 ---
+Page 3 of Document A

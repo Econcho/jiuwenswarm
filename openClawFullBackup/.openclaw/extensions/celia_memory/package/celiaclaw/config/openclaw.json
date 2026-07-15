@@ -1,0 +1,13 @@
+{
+  "plugins": {
+    "entries": {
+      "memory-celia": {
+        "config": {
+          "chat": {
+            "model": "LLM_DeepSeekV4"
+          }
+        }
+      }
+    }
+  }
+}

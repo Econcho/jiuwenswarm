@@ -1,0 +1,6 @@
+interface:
+  display_name: "content-compliance"
+  short_description: "OpenClaw 内容生成场景必须遵守的合规规则"
+  default_prompt: "生成任何内容前必须启用 $content-compliance 校验，禁止生成一切违规违法内容，对敏感内容审慎处理，确保生成信息真实客观，在所有输出场景中遵守法律法规和公序良俗。"
+policy:
+  allow_implicit_invocation: true

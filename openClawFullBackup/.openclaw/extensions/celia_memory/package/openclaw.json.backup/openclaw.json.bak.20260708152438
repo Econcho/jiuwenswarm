@@ -1,0 +1,290 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/home/sandbox/.openclaw/workspace",
+      "reasoningDefault": "stream",
+      "thinkingDefault": "high",
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "90s",
+        "softTrimRatio": 0.06,
+        "keepLastAssistants": 5,
+        "softTrim": {
+          "maxChars": 3200,
+          "headChars": 1200,
+          "tailChars": 1000
+        },
+        "hardClear": {
+          "enabled": false
+        }
+      },
+      "heartbeat": {
+        "every": "0m",
+        "isolatedSession": true
+      },
+      "model": {
+        "primary": "xiaoyiprovider/Auto-Model"
+      },
+      "compaction": {
+        "mode": "safeguard",
+        "reserveTokens": 120000,
+        "recentTurnsPreserve": 2,
+        "provider": "xiaoyiprovider",
+        "timeoutSeconds": 600
+      },
+      "memorySearch": {
+        "enabled": true,
+        "sources": [
+          "memory",
+          "sessions"
+        ],
+        "provider": "openai",
+        "model": "xiaoyiprovider/text-embedding-v1.0",
+        "fallback": "none",
+        "experimental": {
+          "sessionMemory": true
+        },
+        "multimodal": {
+          "enabled": false
+        },
+        "remote": {
+          "baseUrl": "http://lfhagmirror.hwcloudtest.cn:80/celia-claw/v1/rest-api",
+          "apiKey": "apikey",
+          "headers": {
+            "x-request-from": "openclaw",
+            "x-hag-trace-id": "openclaw-embedding-trace-id",
+            "x-uid": "uid-virtual",
+            "x-api-key": "sk-virtual"
+          }
+        },
+        "chunking": {
+          "tokens": 128,
+          "overlap": 16
+        },
+        "sync": {
+          "watch": true,
+          "intervalMinutes": 5,
+          "sessions": {
+            "deltaBytes": 15000,
+            "deltaMessages": 15,
+            "postCompactionForce": true
+          }
+        },
+        "store": {
+          "fts": {
+            "tokenizer": "trigram"
+          }
+        },
+        "query": {
+          "maxResults": 10,
+          "minScore": 0.1,
+          "hybrid": {
+            "enabled": true,
+            "vectorWeight": 1,
+            "textWeight": 0,
+            "candidateMultiplier": 4
+          }
+        },
+        "cache": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "1255ad96ebac3d7e93ebf7971afad30a8f69cc70ef4807921a399cd77d48eeb6"
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.6.6",
+    "lastTouchedAt": "2026-07-08T07:24:36.137Z"
+  },
+  "discovery": {
+    "mdns": {
+      "mode": "off"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "execution-validator-plugin": {
+        "enabled": true
+      },
+      "xiaoyi-channel": {
+        "enabled": true
+      },
+      "memory-core": {
+        "enabled": true
+      },
+      "file-transfer": {
+        "enabled": false
+      },
+      "tool-truncator": {
+        "enabled": true
+      },
+      "destructive-action-guidance": {
+        "enabled": true
+      }
+    },
+    "load": {
+      "paths": [
+        "/home/sandbox/core_plugins/execution-validator-plugin"
+      ]
+    },
+    "slots": {
+      "memory": "memory-core"
+    }
+  },
+  "messages": {
+    "queue": {
+      "mode": "steer"
+    }
+  },
+  "session": {
+    "dmScope": "per-peer"
+  },
+  "skills": {
+    "limits": {
+      "maxSkillsPromptChars": 30000
+    },
+    "load": {
+      "extraDirs": [
+        "~/.openclaw/workspace/skills/",
+        "/home/sandbox/core_skills/"
+      ],
+      "watch": true,
+      "watchDebounceMs": 250
+    },
+    "entries": {
+      "experimental-memory-install": {
+        "enabled": false
+      },
+      "experimental-memory-status": {
+        "enabled": false
+      },
+      "experimental-memory-uninstall": {
+        "enabled": false
+      },
+      "experimental-memory-upgrade": {
+        "enabled": false
+      },
+      "healthcheck": {
+        "enabled": false
+      },
+      "node-connect": {
+        "enabled": false
+      },
+      "taskflow": {
+        "enabled": false
+      },
+      "taskflow-inbox-triage": {
+        "enabled": false
+      }
+    }
+  },
+  "models": {
+    "mode": "replace",
+    "providers": {
+      "xiaoyiprovider": {
+        "timeoutSeconds": 600,
+        "baseUrl": "http://lfhagmirror.hwcloudtest.cn:80/celia-claw/v1/sse-api",
+        "api": "openai-completions",
+        "apiKey": "apiKey",
+        "headers": {
+          "Accept": "text/event-stream",
+          "x-request-from": "openclaw",
+          "x-uid": "uid-virtual",
+          "x-api-key": "sk-virtual"
+        },
+        "models": [
+          {
+            "id": "Auto-Model",
+            "name": "Auto-Model",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0.001,
+              "output": 0.002,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 6000
+          }
+        ]
+      }
+    }
+  },
+  "browser": {
+    "enabled": true,
+    "remoteCdpTimeoutMs": 5000,
+    "remoteCdpHandshakeTimeoutMs": 10000,
+    "color": "#FF4500",
+    "executablePath": "/home/sandbox/chrome-headless.sh",
+    "headless": true,
+    "noSandbox": true,
+    "attachOnly": false,
+    "defaultProfile": "openclaw",
+    "ssrfPolicy": {
+      "dangerouslyAllowPrivateNetwork": true
+    },
+    "tabCleanup": {
+      "enabled": true,
+      "idleMinutes": 3,
+      "maxTabsPerSession": 12,
+      "sweepMinutes": 5
+    },
+    "profiles": {
+      "openclaw": {
+        "cdpPort": 18800,
+        "color": "#FF4500"
+      },
+      "work": {
+        "cdpPort": 18801,
+        "color": "#0066CC"
+      }
+    }
+  },
+  "tools": {
+    "deny": [
+      "web_search",
+      "tts",
+      "canvas"
+    ],
+    "profile": "full",
+    "sessions": {
+      "visibility": "all"
+    }
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "bootstrap-extra-files": {
+          "enabled": true,
+          "paths": [
+            "/opt/security/AGENTS.md"
+          ]
+        }
+      }
+    }
+  },
+  "channels": {
+    "xiaoyi-channel": {
+      "wsUrl1": "ws://127.0.0.1:8765/ws/link",
+      "wsUrl2": "ws://lfhagcp.hwcloudtest.cn:80/openclaw/v1/xiaoyi/ws/link",
+      "apiKey": "sk-virtual",
+      "agentId": "agent0c18a408653f4ab6a61d38edb782d273",
+      "apiId": "webhook6f94791a554b4b64a45",
+      "pushId": 123456,
+      "uid": "uid-virtual",
+      "enabled": true,
+      "fileUploadUrl": "http://lfhagmirror.hwcloudtest.cn:80",
+      "pushUrl": "http://lfhagcp.hwcloudtest.cn:80/open-ability-agent/v1/agent-webhook"
+    }
+  }
+}

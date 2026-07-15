@@ -1,0 +1,1659 @@
+0 verbose cli /opt/nodejs/bin/node /opt/nodejs/bin/npm
+1 info using npm@11.12.1
+2 info using node@v24.15.0
+3 silly config load:file:/opt/nodejs/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/sandbox/.openclaw/extensions/.openclaw-install-stage-4skCUN/.npmrc
+5 silly config load:file:/home/sandbox/.npmrc
+6 silly config load:file:/home/sandbox/openclaw/etc/npmrc
+7 verbose title npm install
+8 verbose argv "install" "--omit" "dev" "--loglevel" "error" "--ignore-scripts"
+9 verbose logfile logs-max:10 dir:/home/sandbox/.openclaw/npm-cache/_logs/2026-07-08T07_23_37_224Z-
+10 verbose logfile /home/sandbox/.openclaw/npm-cache/_logs/2026-07-08T07_23_37_224Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:1174405120 maxSize:293601280 maxEntrySize:146800640
+13 silly idealTree buildDeps
+14 silly fetch manifest node-fetch@^3.3.2
+15 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/node-fetch cache-miss
+16 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-fetch 119ms (cache miss)
+17 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/node-fetch set size:897642 disposed:false
+18 silly fetch manifest pino@^10.3.1
+19 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/pino cache-miss
+20 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pino 51ms (cache miss)
+21 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/pino set size:1279598 disposed:false
+22 silly fetch manifest uuid@^9.0.0
+23 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/uuid cache-miss
+24 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/uuid 83ms (cache miss)
+25 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/uuid set size:257207 disposed:false
+26 silly fetch manifest ws@^8.14.2
+27 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/ws cache-miss
+28 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ws 15ms (cache miss)
+29 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/ws set size:430149 disposed:false
+30 silly fetch manifest bufferutil@^4.0.1
+31 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/bufferutil cache-miss
+32 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/bufferutil 12ms (cache miss)
+33 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/bufferutil set size:53205 disposed:false
+34 silly fetch manifest utf-8-validate@>=5.0.2
+35 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/utf-8-validate cache-miss
+36 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/utf-8-validate 12ms (cache miss)
+37 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/utf-8-validate set size:77726 disposed:false
+38 silly fetch manifest openclaw@2026.6.6
+39 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/openclaw cache-miss
+40 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/openclaw 567ms (cache miss)
+41 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/openclaw set size:14646255 disposed:false
+42 silly fetch manifest @types/node@^20.8.0
+43 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@types%2fnode cache-miss
+44 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@types%2fnode 436ms (cache miss)
+45 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@types%2fnode set size:11120835 disposed:false
+46 silly fetch manifest @types/uuid@^9.0.5
+47 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@types%2fuuid cache-miss
+48 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@types%2fuuid 16ms (cache miss)
+49 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@types%2fuuid set size:119972 disposed:false
+50 silly fetch manifest @types/ws@^8.5.8
+51 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@types%2fws cache-miss
+52 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@types%2fws 13ms (cache miss)
+53 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@types%2fws set size:169319 disposed:false
+54 silly fetch manifest typescript@^5.9.2
+55 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/typescript cache-miss
+56 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/typescript 583ms (cache miss)
+57 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/typescript set size:15474893 disposed:false
+58 silly placeDep ROOT @types/node@20.19.43 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: ^20.8.0
+59 silly placeDep ROOT @types/uuid@9.0.8 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: ^9.0.5
+60 silly placeDep ROOT @types/ws@8.18.1 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: ^8.5.8
+61 silly placeDep ROOT node-fetch@3.3.2 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: ^3.3.2
+62 silly placeDep ROOT openclaw@2026.6.6 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: 2026.6.6
+63 silly placeDep ROOT pino@10.3.1 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: ^10.3.1
+64 silly placeDep ROOT typescript@5.9.3 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: ^5.9.2
+65 silly placeDep ROOT uuid@9.0.1 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: ^9.0.0
+66 silly placeDep ROOT ws@8.21.0 OK for: @ynhcj/xiaoyi-channel@0.0.3-test20260606 want: ^8.14.2
+67 silly fetch manifest undici-types@~6.21.0
+68 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/undici-types cache-miss
+69 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/undici-types 85ms (cache miss)
+70 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/undici-types set size:239675 disposed:false
+71 silly fetch manifest data-uri-to-buffer@^4.0.0
+72 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer cache-miss
+73 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer 9ms (cache miss)
+74 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer set size:48323 disposed:false
+75 silly fetch manifest fetch-blob@^3.1.4
+76 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/fetch-blob cache-miss
+77 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fetch-blob 10ms (cache miss)
+78 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/fetch-blob set size:74078 disposed:false
+79 silly fetch manifest formdata-polyfill@^4.0.10
+80 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/formdata-polyfill cache-miss
+81 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/formdata-polyfill 10ms (cache miss)
+82 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/formdata-polyfill set size:95194 disposed:false
+83 silly fetch manifest ws@8.21.0
+84 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/ws cache-hit
+85 silly fetch manifest tar@7.5.15
+86 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/tar cache-miss
+87 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/tar 39ms (cache miss)
+88 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/tar set size:574276 disposed:false
+89 silly fetch manifest zod@4.4.3
+90 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/zod cache-miss
+91 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/zod 38ms (cache miss)
+92 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/zod set size:3557245 disposed:false
+93 silly fetch manifest diff@9.0.0
+94 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/diff cache-miss
+95 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/diff 36ms (cache miss)
+96 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/diff set size:155352 disposed:false
+97 silly fetch manifest glob@13.0.6
+98 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/glob cache-miss
+99 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/glob 56ms (cache miss)
+100 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/glob set size:472321 disposed:false
+101 silly fetch manifest jiti@2.7.0
+102 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/jiti cache-miss
+103 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/jiti 15ms (cache miss)
+104 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/jiti set size:389822 disposed:false
+105 silly fetch manifest yaml@2.9.0
+106 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/yaml cache-miss
+107 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/yaml 12ms (cache miss)
+108 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/yaml set size:387505 disposed:false
+109 silly fetch manifest chalk@5.6.2
+110 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/chalk cache-miss
+111 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/chalk 11ms (cache miss)
+112 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/chalk set size:118592 disposed:false
+113 silly fetch manifest json5@2.2.3
+114 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/json5 cache-miss
+115 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/json5 12ms (cache miss)
+116 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/json5 set size:86603 disposed:false
+117 silly fetch manifest jszip@3.10.1
+118 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/jszip cache-miss
+119 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/jszip 9ms (cache miss)
+120 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/jszip set size:98973 disposed:false
+121 silly fetch manifest tslog@4.10.2
+122 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/tslog cache-miss
+123 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/tslog 24ms (cache miss)
+124 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/tslog set size:606055 disposed:false
+125 silly fetch manifest croner@10.0.1
+126 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/croner cache-miss
+127 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/croner 16ms (cache miss)
+128 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/croner set size:732863 disposed:false
+129 silly fetch manifest dotenv@17.4.2
+130 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/dotenv cache-miss
+131 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/dotenv 14ms (cache miss)
+132 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/dotenv set size:279586 disposed:false
+133 silly fetch manifest grammy@1.43.0
+134 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/grammy cache-miss
+135 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/grammy 14ms (cache miss)
+136 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/grammy set size:422887 disposed:false
+137 silly fetch manifest ignore@7.0.5
+138 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/ignore cache-miss
+139 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ignore 68ms (cache miss)
+140 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/ignore set size:239046 disposed:false
+141 silly fetch manifest kysely@0.29.2
+142 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/kysely cache-miss
+143 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/kysely 60ms (cache miss)
+144 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/kysely set size:703767 disposed:false
+145 silly fetch manifest openai@6.39.1
+146 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/openai cache-miss
+147 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/openai 47ms (cache miss)
+148 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/openai set size:4932532 disposed:false
+149 silly fetch manifest qrcode@1.5.4
+150 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/qrcode cache-miss
+151 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/qrcode 92ms (cache miss)
+152 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/qrcode set size:132339 disposed:false
+153 silly fetch manifest undici@8.3.0
+154 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/undici cache-miss
+155 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/undici 20ms (cache miss)
+156 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/undici set size:1500257 disposed:false
+157 silly fetch manifest clawpdf@0.3.0
+158 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/clawpdf cache-miss
+159 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/clawpdf 14ms (cache miss)
+160 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/clawpdf set size:12790 disposed:false
+161 silly fetch manifest express@5.2.1
+162 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/express cache-miss
+163 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/express 16ms (cache miss)
+164 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/express set size:809829 disposed:false
+165 silly fetch manifest typebox@1.1.39
+166 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/typebox cache-miss
+167 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/typebox 34ms (cache miss)
+168 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/typebox set size:455128 disposed:false
+169 silly fetch manifest chokidar@5.0.0
+170 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/chokidar cache-miss
+171 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/chokidar 13ms (cache miss)
+172 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/chokidar set size:257651 disposed:false
+173 silly fetch manifest linkedom@0.18.12
+174 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/linkedom cache-miss
+175 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/linkedom 19ms (cache miss)
+176 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/linkedom set size:1012365 disposed:false
+177 silly fetch manifest web-push@3.6.7
+178 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/web-push cache-miss
+179 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/web-push 13ms (cache miss)
+180 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/web-push set size:127094 disposed:false
+181 silly fetch manifest commander@14.0.3
+182 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/commander cache-miss
+183 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/commander 12ms (cache miss)
+184 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/commander set size:355223 disposed:false
+185 silly fetch manifest file-type@22.0.1
+186 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/file-type cache-miss
+187 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/file-type 107ms (cache miss)
+188 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/file-type set size:560881 disposed:false
+189 silly fetch manifest minimatch@10.2.5
+190 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/minimatch cache-miss
+191 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/minimatch 15ms (cache miss)
+192 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/minimatch set size:377730 disposed:false
+193 silly fetch manifest rastermill@0.3.1
+194 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/rastermill cache-miss
+195 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/rastermill 10ms (cache miss)
+196 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/rastermill set size:12637 disposed:false
+197 silly fetch manifest typescript@6.0.3
+198 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/typescript cache-miss
+199 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/typescript 598ms (cache updated)
+200 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/typescript set size:15474893 disposed:false
+201 silly fetch manifest @clack/core@1.3.1
+202 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@clack%2fcore cache-miss
+203 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@clack%2fcore 103ms (cache miss)
+204 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@clack%2fcore set size:147406 disposed:false
+205 silly fetch manifest cross-spawn@7.0.6
+206 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/cross-spawn cache-miss
+207 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/cross-spawn 10ms (cache miss)
+208 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/cross-spawn set size:110052 disposed:false
+209 silly fetch manifest highlight.js@11.11.1
+210 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/highlight.js cache-miss
+211 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/highlight.js 56ms (cache miss)
+212 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/highlight.js set size:1246166 disposed:false
+213 silly fetch manifest partial-json@0.1.7
+214 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/partial-json cache-miss
+215 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/partial-json 15ms (cache miss)
+216 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/partial-json set size:22747 disposed:false
+217 silly fetch manifest quickjs-wasi@3.0.0
+218 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/quickjs-wasi cache-miss
+219 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/quickjs-wasi 9ms (cache miss)
+220 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/quickjs-wasi set size:79741 disposed:false
+221 silly fetch manifest @google/genai@2.7.0
+222 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@google%2fgenai cache-miss
+223 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@google%2fgenai 12ms (cache miss)
+224 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@google%2fgenai set size:486893 disposed:false
+225 silly fetch manifest node-edge-tts@1.2.10
+226 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/node-edge-tts cache-miss
+227 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-edge-tts 9ms (cache miss)
+228 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/node-edge-tts set size:37012 disposed:false
+229 silly fetch manifest @clack/prompts@1.4.0
+230 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@clack%2fprompts cache-miss
+231 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@clack%2fprompts 10ms (cache miss)
+232 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@clack%2fprompts set size:177059 disposed:false
+233 silly fetch manifest hosted-git-info@10.1.1
+234 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/hosted-git-info cache-miss
+235 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/hosted-git-info 11ms (cache miss)
+236 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/hosted-git-info set size:191085 disposed:false
+237 silly fetch manifest playwright-core@1.60.0
+238 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/playwright-core cache-miss
+239 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/playwright-core 740ms (cache miss)
+240 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/playwright-core set size:18252756 disposed:false
+241 silly fetch manifest proper-lockfile@4.1.2
+242 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/proper-lockfile cache-miss
+243 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/proper-lockfile 13ms (cache miss)
+244 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/proper-lockfile set size:82982 disposed:false
+245 silly fetch manifest web-tree-sitter@0.26.9
+246 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/web-tree-sitter cache-miss
+247 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/web-tree-sitter 10ms (cache miss)
+248 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/web-tree-sitter set size:187788 disposed:false
+249 silly fetch manifest @grammyjs/runner@2.0.3
+250 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@grammyjs%2frunner cache-miss
+251 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@grammyjs%2frunner 8ms (cache miss)
+252 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@grammyjs%2frunner set size:47597 disposed:false
+253 silly fetch manifest @homebridge/ciao@1.3.9
+254 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@homebridge%2fciao cache-miss
+255 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@homebridge%2fciao 15ms (cache miss)
+256 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@homebridge%2fciao set size:631966 disposed:false
+257 silly fetch manifest @lydell/node-pty@1.2.0-beta.12
+258 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@lydell%2fnode-pty cache-miss
+259 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@lydell%2fnode-pty 9ms (cache miss)
+260 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@lydell%2fnode-pty set size:31972 disposed:false
+261 silly fetch manifest tree-sitter-bash@0.25.1
+262 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/tree-sitter-bash cache-miss
+263 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/tree-sitter-bash 9ms (cache miss)
+264 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/tree-sitter-bash set size:101610 disposed:false
+265 silly fetch manifest @anthropic-ai/sdk@0.100.1
+266 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@anthropic-ai%2fsdk cache-miss
+267 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@anthropic-ai%2fsdk 19ms (cache miss)
+268 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@anthropic-ai%2fsdk set size:924968 disposed:false
+269 silly fetch manifest @openclaw/fs-safe@0.3.0
+270 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@openclaw%2ffs-safe cache-miss
+271 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@openclaw%2ffs-safe 9ms (cache miss)
+272 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@openclaw%2ffs-safe set size:74211 disposed:false
+273 silly fetch manifest @openclaw/proxyline@0.3.3
+274 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@openclaw%2fproxyline cache-miss
+275 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@openclaw%2fproxyline 9ms (cache miss)
+276 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@openclaw%2fproxyline set size:22618 disposed:false
+277 silly fetch manifest @mistralai/mistralai@2.2.5
+278 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@mistralai%2fmistralai cache-miss
+279 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@mistralai%2fmistralai 11ms (cache miss)
+280 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@mistralai%2fmistralai set size:189284 disposed:false
+281 silly fetch manifest @mozilla/readability@0.6.0
+282 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@mozilla%2freadability cache-miss
+283 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@mozilla%2freadability 8ms (cache miss)
+284 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@mozilla%2freadability set size:33380 disposed:false
+285 silly fetch manifest @earendil-works/pi-tui@0.78.0
+286 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@earendil-works%2fpi-tui cache-miss
+287 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@earendil-works%2fpi-tui 10ms (cache miss)
+288 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@earendil-works%2fpi-tui set size:86432 disposed:false
+289 silly fetch manifest @agentclientprotocol/sdk@0.22.1
+290 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@agentclientprotocol%2fsdk cache-miss
+291 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@agentclientprotocol%2fsdk 10ms (cache miss)
+292 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@agentclientprotocol%2fsdk set size:169873 disposed:false
+293 silly fetch manifest @modelcontextprotocol/sdk@1.29.0
+294 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@modelcontextprotocol%2fsdk cache-miss
+295 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@modelcontextprotocol%2fsdk 13ms (cache miss)
+296 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@modelcontextprotocol%2fsdk set size:295556 disposed:false
+297 silly fetch manifest @grammyjs/transformer-throttler@1.2.1
+298 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@grammyjs%2ftransformer-throttler cache-miss
+299 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@grammyjs%2ftransformer-throttler 12ms (cache miss)
+300 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@grammyjs%2ftransformer-throttler set size:30673 disposed:false
+301 silly fetch manifest sqlite-vec@0.1.9
+302 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/sqlite-vec cache-miss
+303 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sqlite-vec 11ms (cache miss)
+304 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/sqlite-vec set size:140139 disposed:false
+305 silly fetch manifest atomic-sleep@^1.0.0
+306 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/atomic-sleep cache-miss
+307 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/atomic-sleep 10ms (cache miss)
+308 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/atomic-sleep set size:5217 disposed:false
+309 silly fetch manifest on-exit-leak-free@^2.1.0
+310 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/on-exit-leak-free cache-miss
+311 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/on-exit-leak-free 10ms (cache miss)
+312 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/on-exit-leak-free set size:18838 disposed:false
+313 silly fetch manifest pino-abstract-transport@^3.0.0
+314 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/pino-abstract-transport cache-miss
+315 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pino-abstract-transport 12ms (cache miss)
+316 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/pino-abstract-transport set size:28857 disposed:false
+317 silly fetch manifest pino-std-serializers@^7.0.0
+318 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/pino-std-serializers cache-miss
+319 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pino-std-serializers 14ms (cache miss)
+320 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/pino-std-serializers set size:96737 disposed:false
+321 silly fetch manifest process-warning@^5.0.0
+322 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/process-warning cache-miss
+323 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/process-warning 11ms (cache miss)
+324 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/process-warning set size:32667 disposed:false
+325 silly fetch manifest quick-format-unescaped@^4.0.3
+326 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/quick-format-unescaped cache-miss
+327 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/quick-format-unescaped 11ms (cache miss)
+328 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/quick-format-unescaped set size:36376 disposed:false
+329 silly fetch manifest real-require@^0.2.0
+330 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/real-require cache-miss
+331 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/real-require 11ms (cache miss)
+332 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/real-require set size:10935 disposed:false
+333 silly fetch manifest safe-stable-stringify@^2.3.1
+334 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/safe-stable-stringify cache-miss
+335 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/safe-stable-stringify 11ms (cache miss)
+336 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/safe-stable-stringify set size:45312 disposed:false
+337 silly fetch manifest @pinojs/redact@^0.4.0
+338 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@pinojs%2fredact cache-miss
+339 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@pinojs%2fredact 10ms (cache miss)
+340 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/@pinojs%2fredact set size:16915 disposed:false
+341 silly fetch manifest sonic-boom@^4.0.1
+342 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/sonic-boom cache-miss
+343 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sonic-boom 11ms (cache miss)
+344 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/sonic-boom set size:171737 disposed:false
+345 silly fetch manifest thread-stream@^4.0.0
+346 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/thread-stream cache-miss
+347 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/thread-stream 11ms (cache miss)
+348 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/thread-stream set size:132107 disposed:false
+349 silly placeDep ROOT undici-types@6.21.0 OK for: @types/node@20.19.43 want: ~6.21.0
+350 silly placeDep ROOT data-uri-to-buffer@4.0.1 OK for: node-fetch@3.3.2 want: ^4.0.0
+351 silly placeDep ROOT fetch-blob@3.2.0 OK for: node-fetch@3.3.2 want: ^3.1.4
+352 silly placeDep ROOT formdata-polyfill@4.0.10 OK for: node-fetch@3.3.2 want: ^4.0.10
+353 silly fetch manifest node-domexception@^1.0.0
+354 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/node-domexception cache-miss
+355 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-domexception 12ms (cache miss)
+356 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/node-domexception set size:11584 disposed:false
+357 silly fetch manifest web-streams-polyfill@^3.0.3
+358 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/web-streams-polyfill cache-miss
+359 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/web-streams-polyfill 12ms (cache miss)
+360 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/web-streams-polyfill set size:141322 disposed:false
+361 silly placeDep ROOT node-domexception@1.0.0 OK for: fetch-blob@3.2.0 want: ^1.0.0
+362 silly placeDep ROOT web-streams-polyfill@3.3.3 OK for: fetch-blob@3.2.0 want: ^3.0.3
+363 silly placeDep ROOT @pinojs/redact@0.4.0 OK for: pino@10.3.1 want: ^0.4.0
+364 silly placeDep ROOT atomic-sleep@1.0.0 OK for: pino@10.3.1 want: ^1.0.0
+365 silly placeDep ROOT on-exit-leak-free@2.1.2 OK for: pino@10.3.1 want: ^2.1.0
+366 silly placeDep ROOT pino-abstract-transport@3.0.0 OK for: pino@10.3.1 want: ^3.0.0
+367 silly placeDep ROOT pino-std-serializers@7.1.0 OK for: pino@10.3.1 want: ^7.0.0
+368 silly placeDep ROOT process-warning@5.0.0 OK for: pino@10.3.1 want: ^5.0.0
+369 silly placeDep ROOT quick-format-unescaped@4.0.4 OK for: pino@10.3.1 want: ^4.0.3
+370 silly placeDep ROOT real-require@0.2.0 OK for: pino@10.3.1 want: ^0.2.0
+371 silly placeDep ROOT safe-stable-stringify@2.5.0 OK for: pino@10.3.1 want: ^2.3.1
+372 silly placeDep ROOT sonic-boom@4.2.1 OK for: pino@10.3.1 want: ^4.0.1
+373 silly placeDep ROOT thread-stream@4.2.0 OK for: pino@10.3.1 want: ^4.0.0
+374 silly fetch manifest split2@^4.0.0
+375 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/split2 cache-miss
+376 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/split2 27ms (cache miss)
+377 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/split2 set size:47812 disposed:false
+378 silly fetch manifest real-require@^1.0.0
+379 silly packumentCache full:https://repo.huaweicloud.com/repository/npm/real-require cache-hit
+380 silly placeDep ROOT split2@4.2.0 OK for: pino-abstract-transport@3.0.0 want: ^4.0.0
+381 silly placeDep node_modules/thread-stream real-require@1.0.0 OK for: thread-stream@4.2.0 want: ^1.0.0
+382 silly reify moves {}
+383 http cache openclaw@https://repo.huaweicloud.com/repository/npm/openclaw/-/openclaw-2026.6.6.tgz 0ms (cache hit)
+384 silly tarball no local data for openclaw@https://repo.huaweicloud.com/repository/npm/openclaw/-/openclaw-2026.6.6.tgz. Extracting by manifest.
+385 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/openclaw/-/openclaw-2026.6.6.tgz 7084ms (cache miss)
+386 http cache split2@https://repo.huaweicloud.com/repository/npm/split2/-/split2-4.2.0.tgz 0ms (cache hit)
+387 http cache thread-stream@https://repo.huaweicloud.com/repository/npm/thread-stream/-/thread-stream-4.2.0.tgz 0ms (cache hit)
+388 http cache sonic-boom@https://repo.huaweicloud.com/repository/npm/sonic-boom/-/sonic-boom-4.2.1.tgz 0ms (cache hit)
+389 http cache safe-stable-stringify@https://repo.huaweicloud.com/repository/npm/safe-stable-stringify/-/safe-stable-stringify-2.5.0.tgz 0ms (cache hit)
+390 http cache real-require@https://repo.huaweicloud.com/repository/npm/real-require/-/real-require-0.2.0.tgz 0ms (cache hit)
+391 http cache quick-format-unescaped@https://repo.huaweicloud.com/repository/npm/quick-format-unescaped/-/quick-format-unescaped-4.0.4.tgz 0ms (cache hit)
+392 http cache process-warning@https://repo.huaweicloud.com/repository/npm/process-warning/-/process-warning-5.0.0.tgz 0ms (cache hit)
+393 http cache pino-std-serializers@https://repo.huaweicloud.com/repository/npm/pino-std-serializers/-/pino-std-serializers-7.1.0.tgz 0ms (cache hit)
+394 http cache pino-abstract-transport@https://repo.huaweicloud.com/repository/npm/pino-abstract-transport/-/pino-abstract-transport-3.0.0.tgz 0ms (cache hit)
+395 http cache on-exit-leak-free@https://repo.huaweicloud.com/repository/npm/on-exit-leak-free/-/on-exit-leak-free-2.1.2.tgz 0ms (cache hit)
+396 http cache atomic-sleep@https://repo.huaweicloud.com/repository/npm/atomic-sleep/-/atomic-sleep-1.0.0.tgz 0ms (cache hit)
+397 http cache @pinojs/redact@https://repo.huaweicloud.com/repository/npm/@pinojs/redact/-/redact-0.4.0.tgz 0ms (cache hit)
+398 http cache web-streams-polyfill@https://repo.huaweicloud.com/repository/npm/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz 0ms (cache hit)
+399 http cache node-domexception@https://repo.huaweicloud.com/repository/npm/node-domexception/-/node-domexception-1.0.0.tgz 0ms (cache hit)
+400 http cache formdata-polyfill@https://repo.huaweicloud.com/repository/npm/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz 0ms (cache hit)
+401 http cache fetch-blob@https://repo.huaweicloud.com/repository/npm/fetch-blob/-/fetch-blob-3.2.0.tgz 0ms (cache hit)
+402 http cache data-uri-to-buffer@https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz 0ms (cache hit)
+403 http cache ws@https://repo.huaweicloud.com/repository/npm/ws/-/ws-8.21.0.tgz 0ms (cache hit)
+404 http cache uuid@https://repo.huaweicloud.com/repository/npm/uuid/-/uuid-9.0.1.tgz 0ms (cache hit)
+405 http cache typescript@https://repo.huaweicloud.com/repository/npm/typescript/-/typescript-5.9.3.tgz 0ms (cache hit)
+406 http cache pino@https://repo.huaweicloud.com/repository/npm/pino/-/pino-10.3.1.tgz 0ms (cache hit)
+407 http cache node-fetch@https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-3.3.2.tgz 0ms (cache hit)
+408 http cache real-require@https://repo.huaweicloud.com/repository/npm/real-require/-/real-require-1.0.0.tgz 0ms (cache hit)
+409 http cache zod-to-json-schema@https://repo.huaweicloud.com/repository/npm/zod-to-json-schema/-/zod-to-json-schema-3.25.2.tgz 0ms (cache hit)
+410 http cache zod@https://repo.huaweicloud.com/repository/npm/zod/-/zod-4.4.3.tgz 0ms (cache hit)
+411 http cache yargs-parser@https://repo.huaweicloud.com/repository/npm/yargs-parser/-/yargs-parser-21.1.1.tgz 0ms (cache hit)
+412 http cache yargs@https://repo.huaweicloud.com/repository/npm/yargs/-/yargs-17.7.2.tgz 0ms (cache hit)
+413 http cache yaml@https://repo.huaweicloud.com/repository/npm/yaml/-/yaml-2.9.0.tgz 0ms (cache hit)
+414 http cache yallist@https://repo.huaweicloud.com/repository/npm/yallist/-/yallist-5.0.0.tgz 0ms (cache hit)
+415 http cache y18n@https://repo.huaweicloud.com/repository/npm/y18n/-/y18n-5.0.8.tgz 0ms (cache hit)
+416 http cache ws@https://repo.huaweicloud.com/repository/npm/ws/-/ws-8.21.0.tgz 0ms (cache hit)
+417 http cache wrappy@https://repo.huaweicloud.com/repository/npm/wrappy/-/wrappy-1.0.2.tgz 0ms (cache hit)
+418 http cache wrap-ansi@https://repo.huaweicloud.com/repository/npm/wrap-ansi/-/wrap-ansi-7.0.0.tgz 0ms (cache hit)
+419 http cache which-module@https://repo.huaweicloud.com/repository/npm/which-module/-/which-module-2.0.1.tgz 0ms (cache hit)
+420 http cache which@https://repo.huaweicloud.com/repository/npm/which/-/which-2.0.2.tgz 0ms (cache hit)
+421 http cache whatwg-url@https://repo.huaweicloud.com/repository/npm/whatwg-url/-/whatwg-url-5.0.0.tgz 0ms (cache hit)
+422 http cache webidl-conversions@https://repo.huaweicloud.com/repository/npm/webidl-conversions/-/webidl-conversions-3.0.1.tgz 0ms (cache hit)
+423 http cache web-tree-sitter@https://repo.huaweicloud.com/repository/npm/web-tree-sitter/-/web-tree-sitter-0.26.9.tgz 0ms (cache hit)
+424 http cache web-streams-polyfill@https://repo.huaweicloud.com/repository/npm/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz 0ms (cache hit)
+425 http cache web-push@https://repo.huaweicloud.com/repository/npm/web-push/-/web-push-3.6.7.tgz 0ms (cache hit)
+426 http cache vary@https://repo.huaweicloud.com/repository/npm/vary/-/vary-1.1.2.tgz 0ms (cache hit)
+427 http cache util-deprecate@https://repo.huaweicloud.com/repository/npm/util-deprecate/-/util-deprecate-1.0.2.tgz 0ms (cache hit)
+428 http cache unpipe@https://repo.huaweicloud.com/repository/npm/unpipe/-/unpipe-1.0.0.tgz 0ms (cache hit)
+429 http cache undici@https://repo.huaweicloud.com/repository/npm/undici/-/undici-8.3.0.tgz 0ms (cache hit)
+430 http cache uint8array-extras@https://repo.huaweicloud.com/repository/npm/uint8array-extras/-/uint8array-extras-1.5.0.tgz 0ms (cache hit)
+431 http cache uhyphen@https://repo.huaweicloud.com/repository/npm/uhyphen/-/uhyphen-0.2.0.tgz 0ms (cache hit)
+432 http cache typescript@https://repo.huaweicloud.com/repository/npm/typescript/-/typescript-6.0.3.tgz 0ms (cache hit)
+433 http cache typebox@https://repo.huaweicloud.com/repository/npm/typebox/-/typebox-1.1.39.tgz 0ms (cache hit)
+434 http cache type-is@https://repo.huaweicloud.com/repository/npm/type-is/-/type-is-2.1.0.tgz 0ms (cache hit)
+435 http cache content-type@https://repo.huaweicloud.com/repository/npm/content-type/-/content-type-2.0.0.tgz 0ms (cache hit)
+436 http cache tslog@https://repo.huaweicloud.com/repository/npm/tslog/-/tslog-4.10.2.tgz 0ms (cache hit)
+437 http cache tslib@https://repo.huaweicloud.com/repository/npm/tslib/-/tslib-2.8.1.tgz 0ms (cache hit)
+438 http cache ts-algebra@https://repo.huaweicloud.com/repository/npm/ts-algebra/-/ts-algebra-2.0.0.tgz 0ms (cache hit)
+439 http cache tree-sitter-bash@https://repo.huaweicloud.com/repository/npm/tree-sitter-bash/-/tree-sitter-bash-0.25.1.tgz 0ms (cache hit)
+440 http cache tr46@https://repo.huaweicloud.com/repository/npm/tr46/-/tr46-0.0.3.tgz 0ms (cache hit)
+441 http cache token-types@https://repo.huaweicloud.com/repository/npm/token-types/-/token-types-6.1.2.tgz 0ms (cache hit)
+442 http cache toidentifier@https://repo.huaweicloud.com/repository/npm/toidentifier/-/toidentifier-1.0.1.tgz 0ms (cache hit)
+443 http cache tar@https://repo.huaweicloud.com/repository/npm/tar/-/tar-7.5.15.tgz 0ms (cache hit)
+444 http cache strtok3@https://repo.huaweicloud.com/repository/npm/strtok3/-/strtok3-10.3.5.tgz 0ms (cache hit)
+445 http cache strip-ansi@https://repo.huaweicloud.com/repository/npm/strip-ansi/-/strip-ansi-6.0.1.tgz 0ms (cache hit)
+446 http cache string-width@https://repo.huaweicloud.com/repository/npm/string-width/-/string-width-4.2.3.tgz 0ms (cache hit)
+447 http cache string_decoder@https://repo.huaweicloud.com/repository/npm/string_decoder/-/string_decoder-1.1.1.tgz 0ms (cache hit)
+448 http cache safe-buffer@https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.1.2.tgz 0ms (cache hit)
+449 http cache statuses@https://repo.huaweicloud.com/repository/npm/statuses/-/statuses-2.0.2.tgz 0ms (cache hit)
+450 http cache standardwebhooks@https://repo.huaweicloud.com/repository/npm/standardwebhooks/-/standardwebhooks-1.0.0.tgz 0ms (cache hit)
+451 http cache sqlite-vec-windows-x64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-windows-x64/-/sqlite-vec-windows-x64-0.1.9.tgz 0ms (cache hit)
+452 http cache sqlite-vec-linux-x64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-linux-x64/-/sqlite-vec-linux-x64-0.1.9.tgz 0ms (cache hit)
+453 http cache sqlite-vec-linux-arm64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-linux-arm64/-/sqlite-vec-linux-arm64-0.1.9.tgz 0ms (cache hit)
+454 http cache sqlite-vec-darwin-x64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-darwin-x64/-/sqlite-vec-darwin-x64-0.1.9.tgz 0ms (cache hit)
+455 http cache sqlite-vec-darwin-arm64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-darwin-arm64/-/sqlite-vec-darwin-arm64-0.1.9.tgz 0ms (cache hit)
+456 http cache sqlite-vec@https://repo.huaweicloud.com/repository/npm/sqlite-vec/-/sqlite-vec-0.1.9.tgz 0ms (cache hit)
+457 http cache source-map-support@https://repo.huaweicloud.com/repository/npm/source-map-support/-/source-map-support-0.5.21.tgz 0ms (cache hit)
+458 http cache source-map@https://repo.huaweicloud.com/repository/npm/source-map/-/source-map-0.6.1.tgz 0ms (cache hit)
+459 http cache sisteransi@https://repo.huaweicloud.com/repository/npm/sisteransi/-/sisteransi-1.0.5.tgz 0ms (cache hit)
+460 http cache signal-exit@https://repo.huaweicloud.com/repository/npm/signal-exit/-/signal-exit-3.0.7.tgz 0ms (cache hit)
+461 http cache side-channel-weakmap@https://repo.huaweicloud.com/repository/npm/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz 0ms (cache hit)
+462 http cache side-channel-map@https://repo.huaweicloud.com/repository/npm/side-channel-map/-/side-channel-map-1.0.1.tgz 0ms (cache hit)
+463 http cache side-channel-list@https://repo.huaweicloud.com/repository/npm/side-channel-list/-/side-channel-list-1.0.1.tgz 0ms (cache hit)
+464 http cache side-channel@https://repo.huaweicloud.com/repository/npm/side-channel/-/side-channel-1.1.0.tgz 0ms (cache hit)
+465 http cache shebang-regex@https://repo.huaweicloud.com/repository/npm/shebang-regex/-/shebang-regex-3.0.0.tgz 0ms (cache hit)
+466 http cache shebang-command@https://repo.huaweicloud.com/repository/npm/shebang-command/-/shebang-command-2.0.0.tgz 0ms (cache hit)
+467 http cache setprototypeof@https://repo.huaweicloud.com/repository/npm/setprototypeof/-/setprototypeof-1.2.0.tgz 0ms (cache hit)
+468 http cache setimmediate@https://repo.huaweicloud.com/repository/npm/setimmediate/-/setimmediate-1.0.5.tgz 0ms (cache hit)
+469 http cache set-blocking@https://repo.huaweicloud.com/repository/npm/set-blocking/-/set-blocking-2.0.0.tgz 0ms (cache hit)
+470 http cache serve-static@https://repo.huaweicloud.com/repository/npm/serve-static/-/serve-static-2.2.1.tgz 0ms (cache hit)
+471 http cache send@https://repo.huaweicloud.com/repository/npm/send/-/send-1.2.1.tgz 0ms (cache hit)
+472 http cache safer-buffer@https://repo.huaweicloud.com/repository/npm/safer-buffer/-/safer-buffer-2.1.2.tgz 0ms (cache hit)
+473 http cache safe-buffer@https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.2.1.tgz 0ms (cache hit)
+474 http cache router@https://repo.huaweicloud.com/repository/npm/router/-/router-2.2.0.tgz 0ms (cache hit)
+475 http cache retry@https://repo.huaweicloud.com/repository/npm/retry/-/retry-0.13.1.tgz 0ms (cache hit)
+476 http cache require-main-filename@https://repo.huaweicloud.com/repository/npm/require-main-filename/-/require-main-filename-2.0.0.tgz 0ms (cache hit)
+477 http cache require-from-string@https://repo.huaweicloud.com/repository/npm/require-from-string/-/require-from-string-2.0.2.tgz 0ms (cache hit)
+478 http cache require-directory@https://repo.huaweicloud.com/repository/npm/require-directory/-/require-directory-2.1.1.tgz 0ms (cache hit)
+479 http cache readdirp@https://repo.huaweicloud.com/repository/npm/readdirp/-/readdirp-5.0.0.tgz 0ms (cache hit)
+480 http cache readable-stream@https://repo.huaweicloud.com/repository/npm/readable-stream/-/readable-stream-2.3.8.tgz 0ms (cache hit)
+481 http cache safe-buffer@https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.1.2.tgz 0ms (cache hit)
+482 http cache raw-body@https://repo.huaweicloud.com/repository/npm/raw-body/-/raw-body-3.0.2.tgz 0ms (cache hit)
+483 http cache rastermill@https://repo.huaweicloud.com/repository/npm/rastermill/-/rastermill-0.3.1.tgz 0ms (cache hit)
+484 http cache range-parser@https://repo.huaweicloud.com/repository/npm/range-parser/-/range-parser-1.2.1.tgz 0ms (cache hit)
+485 http cache quickjs-wasi@https://repo.huaweicloud.com/repository/npm/quickjs-wasi/-/quickjs-wasi-3.0.0.tgz 0ms (cache hit)
+486 http cache qs@https://repo.huaweicloud.com/repository/npm/qs/-/qs-6.15.2.tgz 0ms (cache hit)
+487 http cache qrcode@https://repo.huaweicloud.com/repository/npm/qrcode/-/qrcode-1.5.4.tgz 0ms (cache hit)
+488 http cache yargs-parser@https://repo.huaweicloud.com/repository/npm/yargs-parser/-/yargs-parser-18.1.3.tgz 0ms (cache hit)
+489 http cache yargs@https://repo.huaweicloud.com/repository/npm/yargs/-/yargs-15.4.1.tgz 0ms (cache hit)
+490 http cache y18n@https://repo.huaweicloud.com/repository/npm/y18n/-/y18n-4.0.3.tgz 0ms (cache hit)
+491 http cache wrap-ansi@https://repo.huaweicloud.com/repository/npm/wrap-ansi/-/wrap-ansi-6.2.0.tgz 0ms (cache hit)
+492 http cache cliui@https://repo.huaweicloud.com/repository/npm/cliui/-/cliui-6.0.0.tgz 0ms (cache hit)
+493 http cache proxy-addr@https://repo.huaweicloud.com/repository/npm/proxy-addr/-/proxy-addr-2.0.7.tgz 0ms (cache hit)
+494 http cache protobufjs@https://repo.huaweicloud.com/repository/npm/protobufjs/-/protobufjs-8.4.0.tgz 0ms (cache hit)
+495 http cache proper-lockfile@https://repo.huaweicloud.com/repository/npm/proper-lockfile/-/proper-lockfile-4.1.2.tgz 0ms (cache hit)
+496 http cache retry@https://repo.huaweicloud.com/repository/npm/retry/-/retry-0.12.0.tgz 0ms (cache hit)
+497 http cache process-nextick-args@https://repo.huaweicloud.com/repository/npm/process-nextick-args/-/process-nextick-args-2.0.1.tgz 0ms (cache hit)
+498 http cache pngjs@https://repo.huaweicloud.com/repository/npm/pngjs/-/pngjs-5.0.0.tgz 0ms (cache hit)
+499 http cache playwright-core@https://repo.huaweicloud.com/repository/npm/playwright-core/-/playwright-core-1.60.0.tgz 1ms (cache hit)
+500 http cache pkce-challenge@https://repo.huaweicloud.com/repository/npm/pkce-challenge/-/pkce-challenge-5.0.1.tgz 0ms (cache hit)
+501 http cache path-to-regexp@https://repo.huaweicloud.com/repository/npm/path-to-regexp/-/path-to-regexp-8.4.0.tgz 0ms (cache hit)
+502 http cache path-scurry@https://repo.huaweicloud.com/repository/npm/path-scurry/-/path-scurry-2.0.2.tgz 0ms (cache hit)
+503 http cache path-key@https://repo.huaweicloud.com/repository/npm/path-key/-/path-key-3.1.1.tgz 0ms (cache hit)
+504 http cache path-exists@https://repo.huaweicloud.com/repository/npm/path-exists/-/path-exists-4.0.0.tgz 0ms (cache hit)
+505 http cache partial-json@https://repo.huaweicloud.com/repository/npm/partial-json/-/partial-json-0.1.7.tgz 0ms (cache hit)
+506 http cache parseurl@https://repo.huaweicloud.com/repository/npm/parseurl/-/parseurl-1.3.3.tgz 0ms (cache hit)
+507 http cache pako@https://repo.huaweicloud.com/repository/npm/pako/-/pako-1.0.11.tgz 0ms (cache hit)
+508 http cache p-try@https://repo.huaweicloud.com/repository/npm/p-try/-/p-try-2.2.0.tgz 0ms (cache hit)
+509 http cache p-retry@https://repo.huaweicloud.com/repository/npm/p-retry/-/p-retry-4.6.2.tgz 0ms (cache hit)
+510 http cache p-locate@https://repo.huaweicloud.com/repository/npm/p-locate/-/p-locate-4.1.0.tgz 0ms (cache hit)
+511 http cache p-limit@https://repo.huaweicloud.com/repository/npm/p-limit/-/p-limit-2.3.0.tgz 0ms (cache hit)
+512 http cache openai@https://repo.huaweicloud.com/repository/npm/openai/-/openai-6.39.1.tgz 0ms (cache hit)
+513 http cache once@https://repo.huaweicloud.com/repository/npm/once/-/once-1.4.0.tgz 0ms (cache hit)
+514 http cache on-finished@https://repo.huaweicloud.com/repository/npm/on-finished/-/on-finished-2.4.1.tgz 0ms (cache hit)
+515 http cache object-inspect@https://repo.huaweicloud.com/repository/npm/object-inspect/-/object-inspect-1.13.4.tgz 0ms (cache hit)
+516 http cache object-assign@https://repo.huaweicloud.com/repository/npm/object-assign/-/object-assign-4.1.1.tgz 0ms (cache hit)
+517 http cache nth-check@https://repo.huaweicloud.com/repository/npm/nth-check/-/nth-check-2.1.1.tgz 0ms (cache hit)
+518 http cache node-gyp-build@https://repo.huaweicloud.com/repository/npm/node-gyp-build/-/node-gyp-build-4.8.4.tgz 0ms (cache hit)
+519 http cache node-fetch@https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-3.3.2.tgz 0ms (cache hit)
+520 http cache node-edge-tts@https://repo.huaweicloud.com/repository/npm/node-edge-tts/-/node-edge-tts-1.2.10.tgz 0ms (cache hit)
+521 http cache node-domexception@https://repo.huaweicloud.com/repository/npm/@nolyfill/domexception/-/domexception-1.0.28.tgz 0ms (cache hit)
+522 http cache node-addon-api@https://repo.huaweicloud.com/repository/npm/node-addon-api/-/node-addon-api-8.8.0.tgz 0ms (cache hit)
+523 http cache negotiator@https://repo.huaweicloud.com/repository/npm/negotiator/-/negotiator-1.0.0.tgz 0ms (cache hit)
+524 http cache ms@https://repo.huaweicloud.com/repository/npm/ms/-/ms-2.1.3.tgz 0ms (cache hit)
+525 http cache minizlib@https://repo.huaweicloud.com/repository/npm/minizlib/-/minizlib-3.1.0.tgz 0ms (cache hit)
+526 http cache minipass@https://repo.huaweicloud.com/repository/npm/minipass/-/minipass-7.1.3.tgz 1ms (cache hit)
+527 http cache minimist@https://repo.huaweicloud.com/repository/npm/minimist/-/minimist-1.2.8.tgz 0ms (cache hit)
+528 http cache minimatch@https://repo.huaweicloud.com/repository/npm/minimatch/-/minimatch-10.2.5.tgz 0ms (cache hit)
+529 http cache minimalistic-assert@https://repo.huaweicloud.com/repository/npm/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz 0ms (cache hit)
+530 http cache mime-types@https://repo.huaweicloud.com/repository/npm/mime-types/-/mime-types-3.0.2.tgz 0ms (cache hit)
+531 http cache mime-db@https://repo.huaweicloud.com/repository/npm/mime-db/-/mime-db-1.54.0.tgz 0ms (cache hit)
+532 http cache merge-descriptors@https://repo.huaweicloud.com/repository/npm/merge-descriptors/-/merge-descriptors-2.0.0.tgz 0ms (cache hit)
+533 http cache media-typer@https://repo.huaweicloud.com/repository/npm/media-typer/-/media-typer-1.1.0.tgz 0ms (cache hit)
+534 http cache math-intrinsics@https://repo.huaweicloud.com/repository/npm/math-intrinsics/-/math-intrinsics-1.1.0.tgz 0ms (cache hit)
+535 http cache marked@https://repo.huaweicloud.com/repository/npm/marked/-/marked-15.0.12.tgz 0ms (cache hit)
+536 http cache lru-cache@https://repo.huaweicloud.com/repository/npm/lru-cache/-/lru-cache-11.5.1.tgz 0ms (cache hit)
+537 http cache long@https://repo.huaweicloud.com/repository/npm/long/-/long-5.3.2.tgz 0ms (cache hit)
+538 http cache locate-path@https://repo.huaweicloud.com/repository/npm/locate-path/-/locate-path-5.0.0.tgz 0ms (cache hit)
+539 http cache linkedom@https://repo.huaweicloud.com/repository/npm/linkedom/-/linkedom-0.18.12.tgz 0ms (cache hit)
+540 http cache lie@https://repo.huaweicloud.com/repository/npm/lie/-/lie-3.3.0.tgz 0ms (cache hit)
+541 http cache kysely@https://repo.huaweicloud.com/repository/npm/kysely/-/kysely-0.29.2.tgz 0ms (cache hit)
+542 http cache jws@https://repo.huaweicloud.com/repository/npm/jws/-/jws-4.0.1.tgz 0ms (cache hit)
+543 http cache jwa@https://repo.huaweicloud.com/repository/npm/jwa/-/jwa-2.0.1.tgz 0ms (cache hit)
+544 http cache jszip@https://repo.huaweicloud.com/repository/npm/jszip/-/jszip-3.10.1.tgz 0ms (cache hit)
+545 http cache json5@https://repo.huaweicloud.com/repository/npm/json5/-/json5-2.2.3.tgz 0ms (cache hit)
+546 http cache json-schema-typed@https://repo.huaweicloud.com/repository/npm/json-schema-typed/-/json-schema-typed-8.0.2.tgz 0ms (cache hit)
+547 http cache json-schema-traverse@https://repo.huaweicloud.com/repository/npm/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz 0ms (cache hit)
+548 http cache json-schema-to-ts@https://repo.huaweicloud.com/repository/npm/json-schema-to-ts/-/json-schema-to-ts-3.1.1.tgz 0ms (cache hit)
+549 http cache json-bigint@https://repo.huaweicloud.com/repository/npm/json-bigint/-/json-bigint-1.0.0.tgz 0ms (cache hit)
+550 http cache jose@https://repo.huaweicloud.com/repository/npm/jose/-/jose-6.2.3.tgz 0ms (cache hit)
+551 http cache jiti@https://repo.huaweicloud.com/repository/npm/jiti/-/jiti-2.7.0.tgz 0ms (cache hit)
+552 http cache isexe@https://repo.huaweicloud.com/repository/npm/isexe/-/isexe-2.0.0.tgz 0ms (cache hit)
+553 http cache isarray@https://repo.huaweicloud.com/repository/npm/isarray/-/isarray-1.0.0.tgz 0ms (cache hit)
+554 http cache is-promise@https://repo.huaweicloud.com/repository/npm/is-promise/-/is-promise-4.0.0.tgz 0ms (cache hit)
+555 http cache is-fullwidth-code-point@https://repo.huaweicloud.com/repository/npm/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz 0ms (cache hit)
+556 http cache ipaddr.js@https://repo.huaweicloud.com/repository/npm/ipaddr.js/-/ipaddr.js-1.9.1.tgz 0ms (cache hit)
+557 http cache ip-address@https://repo.huaweicloud.com/repository/npm/ip-address/-/ip-address-10.2.0.tgz 0ms (cache hit)
+558 http cache inherits@https://repo.huaweicloud.com/repository/npm/inherits/-/inherits-2.0.4.tgz 0ms (cache hit)
+559 http cache immediate@https://repo.huaweicloud.com/repository/npm/immediate/-/immediate-3.0.6.tgz 0ms (cache hit)
+560 http cache ignore@https://repo.huaweicloud.com/repository/npm/ignore/-/ignore-7.0.5.tgz 0ms (cache hit)
+561 http cache ieee754@https://repo.huaweicloud.com/repository/npm/ieee754/-/ieee754-1.2.1.tgz 0ms (cache hit)
+562 http cache iconv-lite@https://repo.huaweicloud.com/repository/npm/iconv-lite/-/iconv-lite-0.7.2.tgz 0ms (cache hit)
+563 http cache https-proxy-agent@https://repo.huaweicloud.com/repository/npm/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz 0ms (cache hit)
+564 http cache http-errors@https://repo.huaweicloud.com/repository/npm/http-errors/-/http-errors-2.0.1.tgz 0ms (cache hit)
+565 http cache http_ece@https://repo.huaweicloud.com/repository/npm/http_ece/-/http_ece-1.2.0.tgz 1ms (cache hit)
+566 http cache htmlparser2@https://repo.huaweicloud.com/repository/npm/htmlparser2/-/htmlparser2-10.1.0.tgz 0ms (cache hit)
+567 http cache entities@https://repo.huaweicloud.com/repository/npm/entities/-/entities-7.0.1.tgz 0ms (cache hit)
+568 http cache html-escaper@https://repo.huaweicloud.com/repository/npm/html-escaper/-/html-escaper-3.0.3.tgz 0ms (cache hit)
+569 http cache hosted-git-info@https://repo.huaweicloud.com/repository/npm/hosted-git-info/-/hosted-git-info-10.1.1.tgz 0ms (cache hit)
+570 http cache hono@https://repo.huaweicloud.com/repository/npm/hono/-/hono-4.12.21.tgz 0ms (cache hit)
+571 http cache highlight.js@https://repo.huaweicloud.com/repository/npm/highlight.js/-/highlight.js-11.11.1.tgz 0ms (cache hit)
+572 http cache hasown@https://repo.huaweicloud.com/repository/npm/hasown/-/hasown-2.0.4.tgz 0ms (cache hit)
+573 http cache has-symbols@https://repo.huaweicloud.com/repository/npm/has-symbols/-/has-symbols-1.1.0.tgz 0ms (cache hit)
+574 http cache grammy@https://repo.huaweicloud.com/repository/npm/grammy/-/grammy-1.43.0.tgz 0ms (cache hit)
+575 http cache node-fetch@https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-2.7.0.tgz 0ms (cache hit)
+576 http cache graceful-fs@https://repo.huaweicloud.com/repository/npm/graceful-fs/-/graceful-fs-4.2.11.tgz 0ms (cache hit)
+577 http cache gopd@https://repo.huaweicloud.com/repository/npm/gopd/-/gopd-1.2.0.tgz 0ms (cache hit)
+578 http cache google-logging-utils@https://repo.huaweicloud.com/repository/npm/google-logging-utils/-/google-logging-utils-1.1.3.tgz 0ms (cache hit)
+579 http cache google-auth-library@https://repo.huaweicloud.com/repository/npm/google-auth-library/-/google-auth-library-10.7.0.tgz 0ms (cache hit)
+580 http cache glob@https://repo.huaweicloud.com/repository/npm/glob/-/glob-13.0.6.tgz 0ms (cache hit)
+581 http cache get-proto@https://repo.huaweicloud.com/repository/npm/get-proto/-/get-proto-1.0.1.tgz 0ms (cache hit)
+582 http cache get-intrinsic@https://repo.huaweicloud.com/repository/npm/get-intrinsic/-/get-intrinsic-1.3.0.tgz 0ms (cache hit)
+583 http cache get-east-asian-width@https://repo.huaweicloud.com/repository/npm/get-east-asian-width/-/get-east-asian-width-1.6.0.tgz 0ms (cache hit)
+584 http cache get-caller-file@https://repo.huaweicloud.com/repository/npm/get-caller-file/-/get-caller-file-2.0.5.tgz 0ms (cache hit)
+585 http cache gcp-metadata@https://repo.huaweicloud.com/repository/npm/gcp-metadata/-/gcp-metadata-8.1.2.tgz 0ms (cache hit)
+586 http cache gaxios@https://repo.huaweicloud.com/repository/npm/gaxios/-/gaxios-7.1.5.tgz 0ms (cache hit)
+587 http cache function-bind@https://repo.huaweicloud.com/repository/npm/function-bind/-/function-bind-1.1.2.tgz 0ms (cache hit)
+588 http cache fresh@https://repo.huaweicloud.com/repository/npm/fresh/-/fresh-2.0.0.tgz 0ms (cache hit)
+589 http cache forwarded@https://repo.huaweicloud.com/repository/npm/forwarded/-/forwarded-0.2.0.tgz 0ms (cache hit)
+590 http cache formdata-polyfill@https://repo.huaweicloud.com/repository/npm/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz 0ms (cache hit)
+591 http cache find-up@https://repo.huaweicloud.com/repository/npm/find-up/-/find-up-4.1.0.tgz 0ms (cache hit)
+592 http cache finalhandler@https://repo.huaweicloud.com/repository/npm/finalhandler/-/finalhandler-2.1.1.tgz 0ms (cache hit)
+593 http cache file-type@https://repo.huaweicloud.com/repository/npm/file-type/-/file-type-22.0.1.tgz 0ms (cache hit)
+594 http cache fetch-blob@https://repo.huaweicloud.com/repository/npm/fetch-blob/-/fetch-blob-3.2.0.tgz 0ms (cache hit)
+595 http cache fast-wrap-ansi@https://repo.huaweicloud.com/repository/npm/fast-wrap-ansi/-/fast-wrap-ansi-0.2.2.tgz 0ms (cache hit)
+596 http cache fast-uri@https://repo.huaweicloud.com/repository/npm/fast-uri/-/fast-uri-3.1.2.tgz 0ms (cache hit)
+597 http cache fast-string-width@https://repo.huaweicloud.com/repository/npm/fast-string-width/-/fast-string-width-3.0.2.tgz 0ms (cache hit)
+598 http cache fast-string-truncated-width@https://repo.huaweicloud.com/repository/npm/fast-string-truncated-width/-/fast-string-truncated-width-3.0.3.tgz 0ms (cache hit)
+599 http cache fast-sha256@https://repo.huaweicloud.com/repository/npm/fast-sha256/-/fast-sha256-1.3.0.tgz 0ms (cache hit)
+600 http cache fast-deep-equal@https://repo.huaweicloud.com/repository/npm/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz 0ms (cache hit)
+601 http cache extend@https://repo.huaweicloud.com/repository/npm/extend/-/extend-3.0.2.tgz 0ms (cache hit)
+602 http cache express-rate-limit@https://repo.huaweicloud.com/repository/npm/express-rate-limit/-/express-rate-limit-8.5.2.tgz 0ms (cache hit)
+603 http cache express@https://repo.huaweicloud.com/repository/npm/express/-/express-5.2.1.tgz 0ms (cache hit)
+604 http cache eventsource-parser@https://repo.huaweicloud.com/repository/npm/eventsource-parser/-/eventsource-parser-3.1.0.tgz 0ms (cache hit)
+605 http cache eventsource@https://repo.huaweicloud.com/repository/npm/eventsource/-/eventsource-3.0.7.tgz 0ms (cache hit)
+606 http cache event-target-shim@https://repo.huaweicloud.com/repository/npm/event-target-shim/-/event-target-shim-5.0.1.tgz 0ms (cache hit)
+607 http cache etag@https://repo.huaweicloud.com/repository/npm/etag/-/etag-1.8.1.tgz 0ms (cache hit)
+608 http cache escape-html@https://repo.huaweicloud.com/repository/npm/escape-html/-/escape-html-1.0.3.tgz 0ms (cache hit)
+609 http cache escalade@https://repo.huaweicloud.com/repository/npm/escalade/-/escalade-3.2.0.tgz 0ms (cache hit)
+610 http cache es-object-atoms@https://repo.huaweicloud.com/repository/npm/es-object-atoms/-/es-object-atoms-1.1.2.tgz 0ms (cache hit)
+611 http cache es-errors@https://repo.huaweicloud.com/repository/npm/es-errors/-/es-errors-1.3.0.tgz 0ms (cache hit)
+612 http cache es-define-property@https://repo.huaweicloud.com/repository/npm/es-define-property/-/es-define-property-1.0.1.tgz 0ms (cache hit)
+613 http cache entities@https://repo.huaweicloud.com/repository/npm/entities/-/entities-4.5.0.tgz 0ms (cache hit)
+614 http cache encodeurl@https://repo.huaweicloud.com/repository/npm/encodeurl/-/encodeurl-2.0.0.tgz 0ms (cache hit)
+615 http cache emoji-regex@https://repo.huaweicloud.com/repository/npm/emoji-regex/-/emoji-regex-8.0.0.tgz 0ms (cache hit)
+616 http cache ee-first@https://repo.huaweicloud.com/repository/npm/ee-first/-/ee-first-1.1.1.tgz 0ms (cache hit)
+617 http cache ecdsa-sig-formatter@https://repo.huaweicloud.com/repository/npm/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz 0ms (cache hit)
+618 http cache dunder-proto@https://repo.huaweicloud.com/repository/npm/dunder-proto/-/dunder-proto-1.0.1.tgz 0ms (cache hit)
+619 http cache dotenv@https://repo.huaweicloud.com/repository/npm/dotenv/-/dotenv-17.4.2.tgz 0ms (cache hit)
+620 http cache domutils@https://repo.huaweicloud.com/repository/npm/domutils/-/domutils-3.2.2.tgz 0ms (cache hit)
+621 http cache domhandler@https://repo.huaweicloud.com/repository/npm/domhandler/-/domhandler-5.0.3.tgz 0ms (cache hit)
+622 http cache domelementtype@https://repo.huaweicloud.com/repository/npm/domelementtype/-/domelementtype-2.3.0.tgz 0ms (cache hit)
+623 http cache dom-serializer@https://repo.huaweicloud.com/repository/npm/dom-serializer/-/dom-serializer-2.0.0.tgz 0ms (cache hit)
+624 http cache dijkstrajs@https://repo.huaweicloud.com/repository/npm/dijkstrajs/-/dijkstrajs-1.0.3.tgz 0ms (cache hit)
+625 http cache diff@https://repo.huaweicloud.com/repository/npm/diff/-/diff-9.0.0.tgz 0ms (cache hit)
+626 http cache depd@https://repo.huaweicloud.com/repository/npm/depd/-/depd-2.0.0.tgz 0ms (cache hit)
+627 http cache decamelize@https://repo.huaweicloud.com/repository/npm/decamelize/-/decamelize-1.2.0.tgz 0ms (cache hit)
+628 http cache debug@https://repo.huaweicloud.com/repository/npm/debug/-/debug-4.4.3.tgz 0ms (cache hit)
+629 http cache data-uri-to-buffer@https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz 0ms (cache hit)
+630 http cache cssom@https://repo.huaweicloud.com/repository/npm/cssom/-/cssom-0.5.0.tgz 0ms (cache hit)
+631 http cache css-what@https://repo.huaweicloud.com/repository/npm/css-what/-/css-what-6.2.2.tgz 0ms (cache hit)
+632 http cache css-select@https://repo.huaweicloud.com/repository/npm/css-select/-/css-select-5.2.2.tgz 0ms (cache hit)
+633 http cache cross-spawn@https://repo.huaweicloud.com/repository/npm/cross-spawn/-/cross-spawn-7.0.6.tgz 0ms (cache hit)
+634 http cache croner@https://repo.huaweicloud.com/repository/npm/croner/-/croner-10.0.1.tgz 0ms (cache hit)
+635 http cache cors@https://repo.huaweicloud.com/repository/npm/cors/-/cors-2.8.6.tgz 0ms (cache hit)
+636 http cache core-util-is@https://repo.huaweicloud.com/repository/npm/core-util-is/-/core-util-is-1.0.3.tgz 0ms (cache hit)
+637 http cache cookie-signature@https://repo.huaweicloud.com/repository/npm/cookie-signature/-/cookie-signature-1.2.2.tgz 0ms (cache hit)
+638 http cache cookie@https://repo.huaweicloud.com/repository/npm/cookie/-/cookie-0.7.2.tgz 0ms (cache hit)
+639 http cache content-type@https://repo.huaweicloud.com/repository/npm/content-type/-/content-type-1.0.5.tgz 0ms (cache hit)
+640 http cache content-disposition@https://repo.huaweicloud.com/repository/npm/content-disposition/-/content-disposition-1.1.0.tgz 0ms (cache hit)
+641 http cache commander@https://repo.huaweicloud.com/repository/npm/commander/-/commander-14.0.3.tgz 1ms (cache hit)
+642 http cache color-name@https://repo.huaweicloud.com/repository/npm/color-name/-/color-name-1.1.4.tgz 0ms (cache hit)
+643 http cache color-convert@https://repo.huaweicloud.com/repository/npm/color-convert/-/color-convert-2.0.1.tgz 0ms (cache hit)
+644 http cache cliui@https://repo.huaweicloud.com/repository/npm/cliui/-/cliui-8.0.1.tgz 0ms (cache hit)
+645 http cache clawpdf@https://repo.huaweicloud.com/repository/npm/clawpdf/-/clawpdf-0.3.0.tgz 0ms (cache hit)
+646 http cache chownr@https://repo.huaweicloud.com/repository/npm/chownr/-/chownr-3.0.0.tgz 0ms (cache hit)
+647 http cache chokidar@https://repo.huaweicloud.com/repository/npm/chokidar/-/chokidar-5.0.0.tgz 0ms (cache hit)
+648 http cache chalk@https://repo.huaweicloud.com/repository/npm/chalk/-/chalk-5.6.2.tgz 0ms (cache hit)
+649 http cache camelcase@https://repo.huaweicloud.com/repository/npm/camelcase/-/camelcase-5.3.1.tgz 0ms (cache hit)
+650 http cache call-bound@https://repo.huaweicloud.com/repository/npm/call-bound/-/call-bound-1.0.4.tgz 0ms (cache hit)
+651 http cache call-bind-apply-helpers@https://repo.huaweicloud.com/repository/npm/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz 0ms (cache hit)
+652 http cache bytes@https://repo.huaweicloud.com/repository/npm/bytes/-/bytes-3.1.2.tgz 0ms (cache hit)
+653 http cache buffer-from@https://repo.huaweicloud.com/repository/npm/buffer-from/-/buffer-from-1.1.2.tgz 0ms (cache hit)
+654 http cache buffer-equal-constant-time@https://repo.huaweicloud.com/repository/npm/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz 0ms (cache hit)
+655 http cache brace-expansion@https://repo.huaweicloud.com/repository/npm/brace-expansion/-/brace-expansion-5.0.6.tgz 0ms (cache hit)
+656 http cache bottleneck@https://repo.huaweicloud.com/repository/npm/bottleneck/-/bottleneck-2.19.5.tgz 0ms (cache hit)
+657 http cache boolbase@https://repo.huaweicloud.com/repository/npm/boolbase/-/boolbase-1.0.0.tgz 1ms (cache hit)
+658 http cache body-parser@https://repo.huaweicloud.com/repository/npm/body-parser/-/body-parser-2.2.2.tgz 0ms (cache hit)
+659 http cache bn.js@https://repo.huaweicloud.com/repository/npm/bn.js/-/bn.js-4.12.3.tgz 0ms (cache hit)
+660 http cache bignumber.js@https://repo.huaweicloud.com/repository/npm/bignumber.js/-/bignumber.js-9.3.1.tgz 0ms (cache hit)
+661 http cache base64-js@https://repo.huaweicloud.com/repository/npm/base64-js/-/base64-js-1.5.1.tgz 0ms (cache hit)
+662 http cache balanced-match@https://repo.huaweicloud.com/repository/npm/balanced-match/-/balanced-match-4.0.4.tgz 0ms (cache hit)
+663 http cache asn1.js@https://repo.huaweicloud.com/repository/npm/asn1.js/-/asn1.js-5.4.1.tgz 0ms (cache hit)
+664 http cache ansi-styles@https://repo.huaweicloud.com/repository/npm/ansi-styles/-/ansi-styles-4.3.0.tgz 0ms (cache hit)
+665 http cache ansi-regex@https://repo.huaweicloud.com/repository/npm/ansi-regex/-/ansi-regex-5.0.1.tgz 0ms (cache hit)
+666 http cache ajv-formats@https://repo.huaweicloud.com/repository/npm/ajv-formats/-/ajv-formats-3.0.1.tgz 0ms (cache hit)
+667 http cache ajv@https://repo.huaweicloud.com/repository/npm/ajv/-/ajv-8.20.0.tgz 0ms (cache hit)
+668 http cache agent-base@https://repo.huaweicloud.com/repository/npm/agent-base/-/agent-base-7.1.4.tgz 0ms (cache hit)
+669 http cache accepts@https://repo.huaweicloud.com/repository/npm/accepts/-/accepts-2.0.0.tgz 0ms (cache hit)
+670 http cache abort-controller@https://repo.huaweicloud.com/repository/npm/abort-controller/-/abort-controller-3.0.0.tgz 0ms (cache hit)
+671 http cache @types/retry@https://repo.huaweicloud.com/repository/npm/@types/retry/-/retry-0.12.5.tgz 0ms (cache hit)
+672 http cache @tokenizer/token@https://repo.huaweicloud.com/repository/npm/@tokenizer/token/-/token-0.3.0.tgz 0ms (cache hit)
+673 http cache @tokenizer/inflate@https://repo.huaweicloud.com/repository/npm/@tokenizer/inflate/-/inflate-0.4.1.tgz 0ms (cache hit)
+674 http cache @stablelib/base64@https://repo.huaweicloud.com/repository/npm/@stablelib/base64/-/base64-1.0.1.tgz 1ms (cache hit)
+675 http cache @silvia-odwyer/photon-node@https://repo.huaweicloud.com/repository/npm/@silvia-odwyer/photon-node/-/photon-node-0.3.4.tgz 0ms (cache hit)
+676 http cache @openclaw/proxyline@https://repo.huaweicloud.com/repository/npm/@openclaw/proxyline/-/proxyline-0.3.3.tgz 0ms (cache hit)
+677 http cache @openclaw/fs-safe@https://repo.huaweicloud.com/repository/npm/@openclaw/fs-safe/-/fs-safe-0.3.0.tgz 0ms (cache hit)
+678 http cache @mozilla/readability@https://repo.huaweicloud.com/repository/npm/@mozilla/readability/-/readability-0.6.0.tgz 0ms (cache hit)
+679 http cache @modelcontextprotocol/sdk@https://repo.huaweicloud.com/repository/npm/@modelcontextprotocol/sdk/-/sdk-1.29.0.tgz 0ms (cache hit)
+680 http cache @mistralai/mistralai@https://repo.huaweicloud.com/repository/npm/@mistralai/mistralai/-/mistralai-2.2.5.tgz 0ms (cache hit)
+681 http cache @lydell/node-pty-win32-x64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-win32-x64/-/node-pty-win32-x64-1.2.0-beta.12.tgz 0ms (cache hit)
+682 http cache @lydell/node-pty-win32-arm64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-win32-arm64/-/node-pty-win32-arm64-1.2.0-beta.12.tgz 0ms (cache hit)
+683 http cache @lydell/node-pty-linux-x64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-linux-x64/-/node-pty-linux-x64-1.2.0-beta.12.tgz 0ms (cache hit)
+684 http cache @lydell/node-pty-linux-arm64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-linux-arm64/-/node-pty-linux-arm64-1.2.0-beta.12.tgz 0ms (cache hit)
+685 http cache @lydell/node-pty-darwin-x64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-darwin-x64/-/node-pty-darwin-x64-1.2.0-beta.12.tgz 0ms (cache hit)
+686 http cache @lydell/node-pty-darwin-arm64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-darwin-arm64/-/node-pty-darwin-arm64-1.2.0-beta.12.tgz 0ms (cache hit)
+687 http cache @lydell/node-pty@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty/-/node-pty-1.2.0-beta.12.tgz 0ms (cache hit)
+688 http cache @isaacs/fs-minipass@https://repo.huaweicloud.com/repository/npm/@isaacs/fs-minipass/-/fs-minipass-4.0.1.tgz 0ms (cache hit)
+689 http cache @hono/node-server@https://repo.huaweicloud.com/repository/npm/@hono/node-server/-/node-server-1.19.14.tgz 0ms (cache hit)
+690 http cache @homebridge/ciao@https://repo.huaweicloud.com/repository/npm/@homebridge/ciao/-/ciao-1.3.9.tgz 0ms (cache hit)
+691 http cache @grammyjs/types@https://repo.huaweicloud.com/repository/npm/@grammyjs/types/-/types-3.27.3.tgz 0ms (cache hit)
+692 http cache @grammyjs/transformer-throttler@https://repo.huaweicloud.com/repository/npm/@grammyjs/transformer-throttler/-/transformer-throttler-1.2.1.tgz 0ms (cache hit)
+693 http cache @grammyjs/runner@https://repo.huaweicloud.com/repository/npm/@grammyjs/runner/-/runner-2.0.3.tgz 0ms (cache hit)
+694 http cache @google/genai@https://repo.huaweicloud.com/repository/npm/@google/genai/-/genai-2.7.0.tgz 0ms (cache hit)
+695 http cache @earendil-works/pi-tui@https://repo.huaweicloud.com/repository/npm/@earendil-works/pi-tui/-/pi-tui-0.78.0.tgz 0ms (cache hit)
+696 http cache @clack/prompts@https://repo.huaweicloud.com/repository/npm/@clack/prompts/-/prompts-1.4.0.tgz 0ms (cache hit)
+697 http cache @clack/core@https://repo.huaweicloud.com/repository/npm/@clack/core/-/core-1.3.1.tgz 0ms (cache hit)
+698 http cache @borewit/text-codec@https://repo.huaweicloud.com/repository/npm/@borewit/text-codec/-/text-codec-0.2.2.tgz 0ms (cache hit)
+699 http cache @babel/runtime@https://repo.huaweicloud.com/repository/npm/@babel/runtime/-/runtime-7.29.7.tgz 0ms (cache hit)
+700 http cache @anthropic-ai/sdk@https://repo.huaweicloud.com/repository/npm/@anthropic-ai/sdk/-/sdk-0.100.1.tgz 1ms (cache hit)
+701 http cache @agentclientprotocol/sdk@https://repo.huaweicloud.com/repository/npm/@agentclientprotocol/sdk/-/sdk-0.22.1.tgz 0ms (cache hit)
+702 silly tarball no local data for split2@https://repo.huaweicloud.com/repository/npm/split2/-/split2-4.2.0.tgz. Extracting by manifest.
+703 silly tarball no local data for thread-stream@https://repo.huaweicloud.com/repository/npm/thread-stream/-/thread-stream-4.2.0.tgz. Extracting by manifest.
+704 silly tarball no local data for sonic-boom@https://repo.huaweicloud.com/repository/npm/sonic-boom/-/sonic-boom-4.2.1.tgz. Extracting by manifest.
+705 silly tarball no local data for safe-stable-stringify@https://repo.huaweicloud.com/repository/npm/safe-stable-stringify/-/safe-stable-stringify-2.5.0.tgz. Extracting by manifest.
+706 silly tarball no local data for real-require@https://repo.huaweicloud.com/repository/npm/real-require/-/real-require-0.2.0.tgz. Extracting by manifest.
+707 silly tarball no local data for quick-format-unescaped@https://repo.huaweicloud.com/repository/npm/quick-format-unescaped/-/quick-format-unescaped-4.0.4.tgz. Extracting by manifest.
+708 silly tarball no local data for process-warning@https://repo.huaweicloud.com/repository/npm/process-warning/-/process-warning-5.0.0.tgz. Extracting by manifest.
+709 silly tarball no local data for pino-std-serializers@https://repo.huaweicloud.com/repository/npm/pino-std-serializers/-/pino-std-serializers-7.1.0.tgz. Extracting by manifest.
+710 silly tarball no local data for pino-abstract-transport@https://repo.huaweicloud.com/repository/npm/pino-abstract-transport/-/pino-abstract-transport-3.0.0.tgz. Extracting by manifest.
+711 silly tarball no local data for on-exit-leak-free@https://repo.huaweicloud.com/repository/npm/on-exit-leak-free/-/on-exit-leak-free-2.1.2.tgz. Extracting by manifest.
+712 silly tarball no local data for atomic-sleep@https://repo.huaweicloud.com/repository/npm/atomic-sleep/-/atomic-sleep-1.0.0.tgz. Extracting by manifest.
+713 silly tarball no local data for @pinojs/redact@https://repo.huaweicloud.com/repository/npm/@pinojs/redact/-/redact-0.4.0.tgz. Extracting by manifest.
+714 silly tarball no local data for web-streams-polyfill@https://repo.huaweicloud.com/repository/npm/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz. Extracting by manifest.
+715 silly tarball no local data for node-domexception@https://repo.huaweicloud.com/repository/npm/node-domexception/-/node-domexception-1.0.0.tgz. Extracting by manifest.
+716 silly tarball no local data for formdata-polyfill@https://repo.huaweicloud.com/repository/npm/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz. Extracting by manifest.
+717 silly tarball no local data for fetch-blob@https://repo.huaweicloud.com/repository/npm/fetch-blob/-/fetch-blob-3.2.0.tgz. Extracting by manifest.
+718 silly tarball no local data for data-uri-to-buffer@https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz. Extracting by manifest.
+719 silly tarball no local data for ws@https://repo.huaweicloud.com/repository/npm/ws/-/ws-8.21.0.tgz. Extracting by manifest.
+720 silly tarball no local data for uuid@https://repo.huaweicloud.com/repository/npm/uuid/-/uuid-9.0.1.tgz. Extracting by manifest.
+721 silly tarball no local data for typescript@https://repo.huaweicloud.com/repository/npm/typescript/-/typescript-5.9.3.tgz. Extracting by manifest.
+722 silly tarball no local data for pino@https://repo.huaweicloud.com/repository/npm/pino/-/pino-10.3.1.tgz. Extracting by manifest.
+723 silly tarball no local data for node-fetch@https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-3.3.2.tgz. Extracting by manifest.
+724 silly tarball no local data for real-require@https://repo.huaweicloud.com/repository/npm/real-require/-/real-require-1.0.0.tgz. Extracting by manifest.
+725 silly tarball no local data for zod-to-json-schema@https://repo.huaweicloud.com/repository/npm/zod-to-json-schema/-/zod-to-json-schema-3.25.2.tgz. Extracting by manifest.
+726 silly tarball no local data for zod@https://repo.huaweicloud.com/repository/npm/zod/-/zod-4.4.3.tgz. Extracting by manifest.
+727 silly tarball no local data for yargs-parser@https://repo.huaweicloud.com/repository/npm/yargs-parser/-/yargs-parser-21.1.1.tgz. Extracting by manifest.
+728 silly tarball no local data for yargs@https://repo.huaweicloud.com/repository/npm/yargs/-/yargs-17.7.2.tgz. Extracting by manifest.
+729 silly tarball no local data for yaml@https://repo.huaweicloud.com/repository/npm/yaml/-/yaml-2.9.0.tgz. Extracting by manifest.
+730 silly tarball no local data for yallist@https://repo.huaweicloud.com/repository/npm/yallist/-/yallist-5.0.0.tgz. Extracting by manifest.
+731 silly tarball no local data for y18n@https://repo.huaweicloud.com/repository/npm/y18n/-/y18n-5.0.8.tgz. Extracting by manifest.
+732 silly tarball no local data for ws@https://repo.huaweicloud.com/repository/npm/ws/-/ws-8.21.0.tgz. Extracting by manifest.
+733 silly tarball no local data for wrappy@https://repo.huaweicloud.com/repository/npm/wrappy/-/wrappy-1.0.2.tgz. Extracting by manifest.
+734 silly tarball no local data for wrap-ansi@https://repo.huaweicloud.com/repository/npm/wrap-ansi/-/wrap-ansi-7.0.0.tgz. Extracting by manifest.
+735 silly tarball no local data for which-module@https://repo.huaweicloud.com/repository/npm/which-module/-/which-module-2.0.1.tgz. Extracting by manifest.
+736 silly tarball no local data for which@https://repo.huaweicloud.com/repository/npm/which/-/which-2.0.2.tgz. Extracting by manifest.
+737 silly tarball no local data for whatwg-url@https://repo.huaweicloud.com/repository/npm/whatwg-url/-/whatwg-url-5.0.0.tgz. Extracting by manifest.
+738 silly tarball no local data for webidl-conversions@https://repo.huaweicloud.com/repository/npm/webidl-conversions/-/webidl-conversions-3.0.1.tgz. Extracting by manifest.
+739 silly tarball no local data for web-tree-sitter@https://repo.huaweicloud.com/repository/npm/web-tree-sitter/-/web-tree-sitter-0.26.9.tgz. Extracting by manifest.
+740 silly tarball no local data for web-streams-polyfill@https://repo.huaweicloud.com/repository/npm/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz. Extracting by manifest.
+741 silly tarball no local data for web-push@https://repo.huaweicloud.com/repository/npm/web-push/-/web-push-3.6.7.tgz. Extracting by manifest.
+742 silly tarball no local data for vary@https://repo.huaweicloud.com/repository/npm/vary/-/vary-1.1.2.tgz. Extracting by manifest.
+743 silly tarball no local data for util-deprecate@https://repo.huaweicloud.com/repository/npm/util-deprecate/-/util-deprecate-1.0.2.tgz. Extracting by manifest.
+744 silly tarball no local data for unpipe@https://repo.huaweicloud.com/repository/npm/unpipe/-/unpipe-1.0.0.tgz. Extracting by manifest.
+745 silly tarball no local data for undici@https://repo.huaweicloud.com/repository/npm/undici/-/undici-8.3.0.tgz. Extracting by manifest.
+746 silly tarball no local data for uint8array-extras@https://repo.huaweicloud.com/repository/npm/uint8array-extras/-/uint8array-extras-1.5.0.tgz. Extracting by manifest.
+747 silly tarball no local data for uhyphen@https://repo.huaweicloud.com/repository/npm/uhyphen/-/uhyphen-0.2.0.tgz. Extracting by manifest.
+748 silly tarball no local data for typescript@https://repo.huaweicloud.com/repository/npm/typescript/-/typescript-6.0.3.tgz. Extracting by manifest.
+749 silly tarball no local data for typebox@https://repo.huaweicloud.com/repository/npm/typebox/-/typebox-1.1.39.tgz. Extracting by manifest.
+750 silly tarball no local data for type-is@https://repo.huaweicloud.com/repository/npm/type-is/-/type-is-2.1.0.tgz. Extracting by manifest.
+751 silly tarball no local data for content-type@https://repo.huaweicloud.com/repository/npm/content-type/-/content-type-2.0.0.tgz. Extracting by manifest.
+752 silly tarball no local data for tslog@https://repo.huaweicloud.com/repository/npm/tslog/-/tslog-4.10.2.tgz. Extracting by manifest.
+753 silly tarball no local data for tslib@https://repo.huaweicloud.com/repository/npm/tslib/-/tslib-2.8.1.tgz. Extracting by manifest.
+754 silly tarball no local data for ts-algebra@https://repo.huaweicloud.com/repository/npm/ts-algebra/-/ts-algebra-2.0.0.tgz. Extracting by manifest.
+755 silly tarball no local data for tree-sitter-bash@https://repo.huaweicloud.com/repository/npm/tree-sitter-bash/-/tree-sitter-bash-0.25.1.tgz. Extracting by manifest.
+756 silly tarball no local data for tr46@https://repo.huaweicloud.com/repository/npm/tr46/-/tr46-0.0.3.tgz. Extracting by manifest.
+757 silly tarball no local data for token-types@https://repo.huaweicloud.com/repository/npm/token-types/-/token-types-6.1.2.tgz. Extracting by manifest.
+758 silly tarball no local data for toidentifier@https://repo.huaweicloud.com/repository/npm/toidentifier/-/toidentifier-1.0.1.tgz. Extracting by manifest.
+759 silly tarball no local data for tar@https://repo.huaweicloud.com/repository/npm/tar/-/tar-7.5.15.tgz. Extracting by manifest.
+760 silly tarball no local data for strtok3@https://repo.huaweicloud.com/repository/npm/strtok3/-/strtok3-10.3.5.tgz. Extracting by manifest.
+761 silly tarball no local data for strip-ansi@https://repo.huaweicloud.com/repository/npm/strip-ansi/-/strip-ansi-6.0.1.tgz. Extracting by manifest.
+762 silly tarball no local data for string-width@https://repo.huaweicloud.com/repository/npm/string-width/-/string-width-4.2.3.tgz. Extracting by manifest.
+763 silly tarball no local data for string_decoder@https://repo.huaweicloud.com/repository/npm/string_decoder/-/string_decoder-1.1.1.tgz. Extracting by manifest.
+764 silly tarball no local data for safe-buffer@https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.1.2.tgz. Extracting by manifest.
+765 silly tarball no local data for statuses@https://repo.huaweicloud.com/repository/npm/statuses/-/statuses-2.0.2.tgz. Extracting by manifest.
+766 silly tarball no local data for standardwebhooks@https://repo.huaweicloud.com/repository/npm/standardwebhooks/-/standardwebhooks-1.0.0.tgz. Extracting by manifest.
+767 silly tarball no local data for sqlite-vec-windows-x64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-windows-x64/-/sqlite-vec-windows-x64-0.1.9.tgz. Extracting by manifest.
+768 silly tarball no local data for sqlite-vec-linux-x64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-linux-x64/-/sqlite-vec-linux-x64-0.1.9.tgz. Extracting by manifest.
+769 silly tarball no local data for sqlite-vec-linux-arm64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-linux-arm64/-/sqlite-vec-linux-arm64-0.1.9.tgz. Extracting by manifest.
+770 silly tarball no local data for sqlite-vec-darwin-x64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-darwin-x64/-/sqlite-vec-darwin-x64-0.1.9.tgz. Extracting by manifest.
+771 silly tarball no local data for sqlite-vec-darwin-arm64@https://repo.huaweicloud.com/repository/npm/sqlite-vec-darwin-arm64/-/sqlite-vec-darwin-arm64-0.1.9.tgz. Extracting by manifest.
+772 silly tarball no local data for sqlite-vec@https://repo.huaweicloud.com/repository/npm/sqlite-vec/-/sqlite-vec-0.1.9.tgz. Extracting by manifest.
+773 silly tarball no local data for source-map-support@https://repo.huaweicloud.com/repository/npm/source-map-support/-/source-map-support-0.5.21.tgz. Extracting by manifest.
+774 silly tarball no local data for source-map@https://repo.huaweicloud.com/repository/npm/source-map/-/source-map-0.6.1.tgz. Extracting by manifest.
+775 silly tarball no local data for sisteransi@https://repo.huaweicloud.com/repository/npm/sisteransi/-/sisteransi-1.0.5.tgz. Extracting by manifest.
+776 silly tarball no local data for signal-exit@https://repo.huaweicloud.com/repository/npm/signal-exit/-/signal-exit-3.0.7.tgz. Extracting by manifest.
+777 silly tarball no local data for side-channel-weakmap@https://repo.huaweicloud.com/repository/npm/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz. Extracting by manifest.
+778 silly tarball no local data for side-channel-map@https://repo.huaweicloud.com/repository/npm/side-channel-map/-/side-channel-map-1.0.1.tgz. Extracting by manifest.
+779 silly tarball no local data for side-channel-list@https://repo.huaweicloud.com/repository/npm/side-channel-list/-/side-channel-list-1.0.1.tgz. Extracting by manifest.
+780 silly tarball no local data for side-channel@https://repo.huaweicloud.com/repository/npm/side-channel/-/side-channel-1.1.0.tgz. Extracting by manifest.
+781 silly tarball no local data for shebang-regex@https://repo.huaweicloud.com/repository/npm/shebang-regex/-/shebang-regex-3.0.0.tgz. Extracting by manifest.
+782 silly tarball no local data for shebang-command@https://repo.huaweicloud.com/repository/npm/shebang-command/-/shebang-command-2.0.0.tgz. Extracting by manifest.
+783 silly tarball no local data for setprototypeof@https://repo.huaweicloud.com/repository/npm/setprototypeof/-/setprototypeof-1.2.0.tgz. Extracting by manifest.
+784 silly tarball no local data for setimmediate@https://repo.huaweicloud.com/repository/npm/setimmediate/-/setimmediate-1.0.5.tgz. Extracting by manifest.
+785 silly tarball no local data for set-blocking@https://repo.huaweicloud.com/repository/npm/set-blocking/-/set-blocking-2.0.0.tgz. Extracting by manifest.
+786 silly tarball no local data for serve-static@https://repo.huaweicloud.com/repository/npm/serve-static/-/serve-static-2.2.1.tgz. Extracting by manifest.
+787 silly tarball no local data for send@https://repo.huaweicloud.com/repository/npm/send/-/send-1.2.1.tgz. Extracting by manifest.
+788 silly tarball no local data for safer-buffer@https://repo.huaweicloud.com/repository/npm/safer-buffer/-/safer-buffer-2.1.2.tgz. Extracting by manifest.
+789 silly tarball no local data for safe-buffer@https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.2.1.tgz. Extracting by manifest.
+790 silly tarball no local data for router@https://repo.huaweicloud.com/repository/npm/router/-/router-2.2.0.tgz. Extracting by manifest.
+791 silly tarball no local data for retry@https://repo.huaweicloud.com/repository/npm/retry/-/retry-0.13.1.tgz. Extracting by manifest.
+792 silly tarball no local data for require-main-filename@https://repo.huaweicloud.com/repository/npm/require-main-filename/-/require-main-filename-2.0.0.tgz. Extracting by manifest.
+793 silly tarball no local data for require-from-string@https://repo.huaweicloud.com/repository/npm/require-from-string/-/require-from-string-2.0.2.tgz. Extracting by manifest.
+794 silly tarball no local data for require-directory@https://repo.huaweicloud.com/repository/npm/require-directory/-/require-directory-2.1.1.tgz. Extracting by manifest.
+795 silly tarball no local data for readdirp@https://repo.huaweicloud.com/repository/npm/readdirp/-/readdirp-5.0.0.tgz. Extracting by manifest.
+796 silly tarball no local data for readable-stream@https://repo.huaweicloud.com/repository/npm/readable-stream/-/readable-stream-2.3.8.tgz. Extracting by manifest.
+797 silly tarball no local data for safe-buffer@https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.1.2.tgz. Extracting by manifest.
+798 silly tarball no local data for raw-body@https://repo.huaweicloud.com/repository/npm/raw-body/-/raw-body-3.0.2.tgz. Extracting by manifest.
+799 silly tarball no local data for rastermill@https://repo.huaweicloud.com/repository/npm/rastermill/-/rastermill-0.3.1.tgz. Extracting by manifest.
+800 silly tarball no local data for range-parser@https://repo.huaweicloud.com/repository/npm/range-parser/-/range-parser-1.2.1.tgz. Extracting by manifest.
+801 silly tarball no local data for quickjs-wasi@https://repo.huaweicloud.com/repository/npm/quickjs-wasi/-/quickjs-wasi-3.0.0.tgz. Extracting by manifest.
+802 silly tarball no local data for qs@https://repo.huaweicloud.com/repository/npm/qs/-/qs-6.15.2.tgz. Extracting by manifest.
+803 silly tarball no local data for qrcode@https://repo.huaweicloud.com/repository/npm/qrcode/-/qrcode-1.5.4.tgz. Extracting by manifest.
+804 silly tarball no local data for yargs-parser@https://repo.huaweicloud.com/repository/npm/yargs-parser/-/yargs-parser-18.1.3.tgz. Extracting by manifest.
+805 silly tarball no local data for yargs@https://repo.huaweicloud.com/repository/npm/yargs/-/yargs-15.4.1.tgz. Extracting by manifest.
+806 silly tarball no local data for y18n@https://repo.huaweicloud.com/repository/npm/y18n/-/y18n-4.0.3.tgz. Extracting by manifest.
+807 silly tarball no local data for wrap-ansi@https://repo.huaweicloud.com/repository/npm/wrap-ansi/-/wrap-ansi-6.2.0.tgz. Extracting by manifest.
+808 silly tarball no local data for cliui@https://repo.huaweicloud.com/repository/npm/cliui/-/cliui-6.0.0.tgz. Extracting by manifest.
+809 silly tarball no local data for proxy-addr@https://repo.huaweicloud.com/repository/npm/proxy-addr/-/proxy-addr-2.0.7.tgz. Extracting by manifest.
+810 silly tarball no local data for protobufjs@https://repo.huaweicloud.com/repository/npm/protobufjs/-/protobufjs-8.4.0.tgz. Extracting by manifest.
+811 silly tarball no local data for proper-lockfile@https://repo.huaweicloud.com/repository/npm/proper-lockfile/-/proper-lockfile-4.1.2.tgz. Extracting by manifest.
+812 silly tarball no local data for retry@https://repo.huaweicloud.com/repository/npm/retry/-/retry-0.12.0.tgz. Extracting by manifest.
+813 silly tarball no local data for process-nextick-args@https://repo.huaweicloud.com/repository/npm/process-nextick-args/-/process-nextick-args-2.0.1.tgz. Extracting by manifest.
+814 silly tarball no local data for pngjs@https://repo.huaweicloud.com/repository/npm/pngjs/-/pngjs-5.0.0.tgz. Extracting by manifest.
+815 silly tarball no local data for playwright-core@https://repo.huaweicloud.com/repository/npm/playwright-core/-/playwright-core-1.60.0.tgz. Extracting by manifest.
+816 silly tarball no local data for pkce-challenge@https://repo.huaweicloud.com/repository/npm/pkce-challenge/-/pkce-challenge-5.0.1.tgz. Extracting by manifest.
+817 silly tarball no local data for path-to-regexp@https://repo.huaweicloud.com/repository/npm/path-to-regexp/-/path-to-regexp-8.4.0.tgz. Extracting by manifest.
+818 silly tarball no local data for path-scurry@https://repo.huaweicloud.com/repository/npm/path-scurry/-/path-scurry-2.0.2.tgz. Extracting by manifest.
+819 silly tarball no local data for path-key@https://repo.huaweicloud.com/repository/npm/path-key/-/path-key-3.1.1.tgz. Extracting by manifest.
+820 silly tarball no local data for path-exists@https://repo.huaweicloud.com/repository/npm/path-exists/-/path-exists-4.0.0.tgz. Extracting by manifest.
+821 silly tarball no local data for partial-json@https://repo.huaweicloud.com/repository/npm/partial-json/-/partial-json-0.1.7.tgz. Extracting by manifest.
+822 silly tarball no local data for parseurl@https://repo.huaweicloud.com/repository/npm/parseurl/-/parseurl-1.3.3.tgz. Extracting by manifest.
+823 silly tarball no local data for pako@https://repo.huaweicloud.com/repository/npm/pako/-/pako-1.0.11.tgz. Extracting by manifest.
+824 silly tarball no local data for p-try@https://repo.huaweicloud.com/repository/npm/p-try/-/p-try-2.2.0.tgz. Extracting by manifest.
+825 silly tarball no local data for p-retry@https://repo.huaweicloud.com/repository/npm/p-retry/-/p-retry-4.6.2.tgz. Extracting by manifest.
+826 silly tarball no local data for p-locate@https://repo.huaweicloud.com/repository/npm/p-locate/-/p-locate-4.1.0.tgz. Extracting by manifest.
+827 silly tarball no local data for p-limit@https://repo.huaweicloud.com/repository/npm/p-limit/-/p-limit-2.3.0.tgz. Extracting by manifest.
+828 silly tarball no local data for openai@https://repo.huaweicloud.com/repository/npm/openai/-/openai-6.39.1.tgz. Extracting by manifest.
+829 silly tarball no local data for once@https://repo.huaweicloud.com/repository/npm/once/-/once-1.4.0.tgz. Extracting by manifest.
+830 silly tarball no local data for on-finished@https://repo.huaweicloud.com/repository/npm/on-finished/-/on-finished-2.4.1.tgz. Extracting by manifest.
+831 silly tarball no local data for object-inspect@https://repo.huaweicloud.com/repository/npm/object-inspect/-/object-inspect-1.13.4.tgz. Extracting by manifest.
+832 silly tarball no local data for object-assign@https://repo.huaweicloud.com/repository/npm/object-assign/-/object-assign-4.1.1.tgz. Extracting by manifest.
+833 silly tarball no local data for nth-check@https://repo.huaweicloud.com/repository/npm/nth-check/-/nth-check-2.1.1.tgz. Extracting by manifest.
+834 silly tarball no local data for node-gyp-build@https://repo.huaweicloud.com/repository/npm/node-gyp-build/-/node-gyp-build-4.8.4.tgz. Extracting by manifest.
+835 silly tarball no local data for node-fetch@https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-3.3.2.tgz. Extracting by manifest.
+836 silly tarball no local data for node-edge-tts@https://repo.huaweicloud.com/repository/npm/node-edge-tts/-/node-edge-tts-1.2.10.tgz. Extracting by manifest.
+837 silly tarball no local data for node-domexception@https://repo.huaweicloud.com/repository/npm/@nolyfill/domexception/-/domexception-1.0.28.tgz. Extracting by manifest.
+838 silly tarball no local data for node-addon-api@https://repo.huaweicloud.com/repository/npm/node-addon-api/-/node-addon-api-8.8.0.tgz. Extracting by manifest.
+839 silly tarball no local data for negotiator@https://repo.huaweicloud.com/repository/npm/negotiator/-/negotiator-1.0.0.tgz. Extracting by manifest.
+840 silly tarball no local data for ms@https://repo.huaweicloud.com/repository/npm/ms/-/ms-2.1.3.tgz. Extracting by manifest.
+841 silly tarball no local data for minizlib@https://repo.huaweicloud.com/repository/npm/minizlib/-/minizlib-3.1.0.tgz. Extracting by manifest.
+842 silly tarball no local data for minipass@https://repo.huaweicloud.com/repository/npm/minipass/-/minipass-7.1.3.tgz. Extracting by manifest.
+843 silly tarball no local data for minimist@https://repo.huaweicloud.com/repository/npm/minimist/-/minimist-1.2.8.tgz. Extracting by manifest.
+844 silly tarball no local data for minimatch@https://repo.huaweicloud.com/repository/npm/minimatch/-/minimatch-10.2.5.tgz. Extracting by manifest.
+845 silly tarball no local data for minimalistic-assert@https://repo.huaweicloud.com/repository/npm/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz. Extracting by manifest.
+846 silly tarball no local data for mime-types@https://repo.huaweicloud.com/repository/npm/mime-types/-/mime-types-3.0.2.tgz. Extracting by manifest.
+847 silly tarball no local data for mime-db@https://repo.huaweicloud.com/repository/npm/mime-db/-/mime-db-1.54.0.tgz. Extracting by manifest.
+848 silly tarball no local data for merge-descriptors@https://repo.huaweicloud.com/repository/npm/merge-descriptors/-/merge-descriptors-2.0.0.tgz. Extracting by manifest.
+849 silly tarball no local data for media-typer@https://repo.huaweicloud.com/repository/npm/media-typer/-/media-typer-1.1.0.tgz. Extracting by manifest.
+850 silly tarball no local data for math-intrinsics@https://repo.huaweicloud.com/repository/npm/math-intrinsics/-/math-intrinsics-1.1.0.tgz. Extracting by manifest.
+851 silly tarball no local data for marked@https://repo.huaweicloud.com/repository/npm/marked/-/marked-15.0.12.tgz. Extracting by manifest.
+852 silly tarball no local data for lru-cache@https://repo.huaweicloud.com/repository/npm/lru-cache/-/lru-cache-11.5.1.tgz. Extracting by manifest.
+853 silly tarball no local data for long@https://repo.huaweicloud.com/repository/npm/long/-/long-5.3.2.tgz. Extracting by manifest.
+854 silly tarball no local data for locate-path@https://repo.huaweicloud.com/repository/npm/locate-path/-/locate-path-5.0.0.tgz. Extracting by manifest.
+855 silly tarball no local data for linkedom@https://repo.huaweicloud.com/repository/npm/linkedom/-/linkedom-0.18.12.tgz. Extracting by manifest.
+856 silly tarball no local data for lie@https://repo.huaweicloud.com/repository/npm/lie/-/lie-3.3.0.tgz. Extracting by manifest.
+857 silly tarball no local data for kysely@https://repo.huaweicloud.com/repository/npm/kysely/-/kysely-0.29.2.tgz. Extracting by manifest.
+858 silly tarball no local data for jws@https://repo.huaweicloud.com/repository/npm/jws/-/jws-4.0.1.tgz. Extracting by manifest.
+859 silly tarball no local data for jwa@https://repo.huaweicloud.com/repository/npm/jwa/-/jwa-2.0.1.tgz. Extracting by manifest.
+860 silly tarball no local data for jszip@https://repo.huaweicloud.com/repository/npm/jszip/-/jszip-3.10.1.tgz. Extracting by manifest.
+861 silly tarball no local data for json5@https://repo.huaweicloud.com/repository/npm/json5/-/json5-2.2.3.tgz. Extracting by manifest.
+862 silly tarball no local data for json-schema-typed@https://repo.huaweicloud.com/repository/npm/json-schema-typed/-/json-schema-typed-8.0.2.tgz. Extracting by manifest.
+863 silly tarball no local data for json-schema-traverse@https://repo.huaweicloud.com/repository/npm/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz. Extracting by manifest.
+864 silly tarball no local data for json-schema-to-ts@https://repo.huaweicloud.com/repository/npm/json-schema-to-ts/-/json-schema-to-ts-3.1.1.tgz. Extracting by manifest.
+865 silly tarball no local data for json-bigint@https://repo.huaweicloud.com/repository/npm/json-bigint/-/json-bigint-1.0.0.tgz. Extracting by manifest.
+866 silly tarball no local data for jose@https://repo.huaweicloud.com/repository/npm/jose/-/jose-6.2.3.tgz. Extracting by manifest.
+867 silly tarball no local data for jiti@https://repo.huaweicloud.com/repository/npm/jiti/-/jiti-2.7.0.tgz. Extracting by manifest.
+868 silly tarball no local data for isexe@https://repo.huaweicloud.com/repository/npm/isexe/-/isexe-2.0.0.tgz. Extracting by manifest.
+869 silly tarball no local data for isarray@https://repo.huaweicloud.com/repository/npm/isarray/-/isarray-1.0.0.tgz. Extracting by manifest.
+870 silly tarball no local data for is-promise@https://repo.huaweicloud.com/repository/npm/is-promise/-/is-promise-4.0.0.tgz. Extracting by manifest.
+871 silly tarball no local data for is-fullwidth-code-point@https://repo.huaweicloud.com/repository/npm/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz. Extracting by manifest.
+872 silly tarball no local data for ipaddr.js@https://repo.huaweicloud.com/repository/npm/ipaddr.js/-/ipaddr.js-1.9.1.tgz. Extracting by manifest.
+873 silly tarball no local data for ip-address@https://repo.huaweicloud.com/repository/npm/ip-address/-/ip-address-10.2.0.tgz. Extracting by manifest.
+874 silly tarball no local data for inherits@https://repo.huaweicloud.com/repository/npm/inherits/-/inherits-2.0.4.tgz. Extracting by manifest.
+875 silly tarball no local data for immediate@https://repo.huaweicloud.com/repository/npm/immediate/-/immediate-3.0.6.tgz. Extracting by manifest.
+876 silly tarball no local data for ignore@https://repo.huaweicloud.com/repository/npm/ignore/-/ignore-7.0.5.tgz. Extracting by manifest.
+877 silly tarball no local data for ieee754@https://repo.huaweicloud.com/repository/npm/ieee754/-/ieee754-1.2.1.tgz. Extracting by manifest.
+878 silly tarball no local data for iconv-lite@https://repo.huaweicloud.com/repository/npm/iconv-lite/-/iconv-lite-0.7.2.tgz. Extracting by manifest.
+879 silly tarball no local data for https-proxy-agent@https://repo.huaweicloud.com/repository/npm/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz. Extracting by manifest.
+880 silly tarball no local data for http-errors@https://repo.huaweicloud.com/repository/npm/http-errors/-/http-errors-2.0.1.tgz. Extracting by manifest.
+881 silly tarball no local data for http_ece@https://repo.huaweicloud.com/repository/npm/http_ece/-/http_ece-1.2.0.tgz. Extracting by manifest.
+882 silly tarball no local data for htmlparser2@https://repo.huaweicloud.com/repository/npm/htmlparser2/-/htmlparser2-10.1.0.tgz. Extracting by manifest.
+883 silly tarball no local data for entities@https://repo.huaweicloud.com/repository/npm/entities/-/entities-7.0.1.tgz. Extracting by manifest.
+884 silly tarball no local data for html-escaper@https://repo.huaweicloud.com/repository/npm/html-escaper/-/html-escaper-3.0.3.tgz. Extracting by manifest.
+885 silly tarball no local data for hosted-git-info@https://repo.huaweicloud.com/repository/npm/hosted-git-info/-/hosted-git-info-10.1.1.tgz. Extracting by manifest.
+886 silly tarball no local data for hono@https://repo.huaweicloud.com/repository/npm/hono/-/hono-4.12.21.tgz. Extracting by manifest.
+887 silly tarball no local data for highlight.js@https://repo.huaweicloud.com/repository/npm/highlight.js/-/highlight.js-11.11.1.tgz. Extracting by manifest.
+888 silly tarball no local data for hasown@https://repo.huaweicloud.com/repository/npm/hasown/-/hasown-2.0.4.tgz. Extracting by manifest.
+889 silly tarball no local data for has-symbols@https://repo.huaweicloud.com/repository/npm/has-symbols/-/has-symbols-1.1.0.tgz. Extracting by manifest.
+890 silly tarball no local data for grammy@https://repo.huaweicloud.com/repository/npm/grammy/-/grammy-1.43.0.tgz. Extracting by manifest.
+891 silly tarball no local data for node-fetch@https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-2.7.0.tgz. Extracting by manifest.
+892 silly tarball no local data for graceful-fs@https://repo.huaweicloud.com/repository/npm/graceful-fs/-/graceful-fs-4.2.11.tgz. Extracting by manifest.
+893 silly tarball no local data for gopd@https://repo.huaweicloud.com/repository/npm/gopd/-/gopd-1.2.0.tgz. Extracting by manifest.
+894 silly tarball no local data for google-logging-utils@https://repo.huaweicloud.com/repository/npm/google-logging-utils/-/google-logging-utils-1.1.3.tgz. Extracting by manifest.
+895 silly tarball no local data for google-auth-library@https://repo.huaweicloud.com/repository/npm/google-auth-library/-/google-auth-library-10.7.0.tgz. Extracting by manifest.
+896 silly tarball no local data for glob@https://repo.huaweicloud.com/repository/npm/glob/-/glob-13.0.6.tgz. Extracting by manifest.
+897 silly tarball no local data for get-proto@https://repo.huaweicloud.com/repository/npm/get-proto/-/get-proto-1.0.1.tgz. Extracting by manifest.
+898 silly tarball no local data for get-intrinsic@https://repo.huaweicloud.com/repository/npm/get-intrinsic/-/get-intrinsic-1.3.0.tgz. Extracting by manifest.
+899 silly tarball no local data for get-east-asian-width@https://repo.huaweicloud.com/repository/npm/get-east-asian-width/-/get-east-asian-width-1.6.0.tgz. Extracting by manifest.
+900 silly tarball no local data for get-caller-file@https://repo.huaweicloud.com/repository/npm/get-caller-file/-/get-caller-file-2.0.5.tgz. Extracting by manifest.
+901 silly tarball no local data for gcp-metadata@https://repo.huaweicloud.com/repository/npm/gcp-metadata/-/gcp-metadata-8.1.2.tgz. Extracting by manifest.
+902 silly tarball no local data for gaxios@https://repo.huaweicloud.com/repository/npm/gaxios/-/gaxios-7.1.5.tgz. Extracting by manifest.
+903 silly tarball no local data for function-bind@https://repo.huaweicloud.com/repository/npm/function-bind/-/function-bind-1.1.2.tgz. Extracting by manifest.
+904 silly tarball no local data for fresh@https://repo.huaweicloud.com/repository/npm/fresh/-/fresh-2.0.0.tgz. Extracting by manifest.
+905 silly tarball no local data for forwarded@https://repo.huaweicloud.com/repository/npm/forwarded/-/forwarded-0.2.0.tgz. Extracting by manifest.
+906 silly tarball no local data for formdata-polyfill@https://repo.huaweicloud.com/repository/npm/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz. Extracting by manifest.
+907 silly tarball no local data for find-up@https://repo.huaweicloud.com/repository/npm/find-up/-/find-up-4.1.0.tgz. Extracting by manifest.
+908 silly tarball no local data for finalhandler@https://repo.huaweicloud.com/repository/npm/finalhandler/-/finalhandler-2.1.1.tgz. Extracting by manifest.
+909 silly tarball no local data for file-type@https://repo.huaweicloud.com/repository/npm/file-type/-/file-type-22.0.1.tgz. Extracting by manifest.
+910 silly tarball no local data for fetch-blob@https://repo.huaweicloud.com/repository/npm/fetch-blob/-/fetch-blob-3.2.0.tgz. Extracting by manifest.
+911 silly tarball no local data for fast-wrap-ansi@https://repo.huaweicloud.com/repository/npm/fast-wrap-ansi/-/fast-wrap-ansi-0.2.2.tgz. Extracting by manifest.
+912 silly tarball no local data for fast-uri@https://repo.huaweicloud.com/repository/npm/fast-uri/-/fast-uri-3.1.2.tgz. Extracting by manifest.
+913 silly tarball no local data for fast-string-width@https://repo.huaweicloud.com/repository/npm/fast-string-width/-/fast-string-width-3.0.2.tgz. Extracting by manifest.
+914 silly tarball no local data for fast-string-truncated-width@https://repo.huaweicloud.com/repository/npm/fast-string-truncated-width/-/fast-string-truncated-width-3.0.3.tgz. Extracting by manifest.
+915 silly tarball no local data for fast-sha256@https://repo.huaweicloud.com/repository/npm/fast-sha256/-/fast-sha256-1.3.0.tgz. Extracting by manifest.
+916 silly tarball no local data for fast-deep-equal@https://repo.huaweicloud.com/repository/npm/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz. Extracting by manifest.
+917 silly tarball no local data for extend@https://repo.huaweicloud.com/repository/npm/extend/-/extend-3.0.2.tgz. Extracting by manifest.
+918 silly tarball no local data for express-rate-limit@https://repo.huaweicloud.com/repository/npm/express-rate-limit/-/express-rate-limit-8.5.2.tgz. Extracting by manifest.
+919 silly tarball no local data for express@https://repo.huaweicloud.com/repository/npm/express/-/express-5.2.1.tgz. Extracting by manifest.
+920 silly tarball no local data for eventsource-parser@https://repo.huaweicloud.com/repository/npm/eventsource-parser/-/eventsource-parser-3.1.0.tgz. Extracting by manifest.
+921 silly tarball no local data for eventsource@https://repo.huaweicloud.com/repository/npm/eventsource/-/eventsource-3.0.7.tgz. Extracting by manifest.
+922 silly tarball no local data for event-target-shim@https://repo.huaweicloud.com/repository/npm/event-target-shim/-/event-target-shim-5.0.1.tgz. Extracting by manifest.
+923 silly tarball no local data for etag@https://repo.huaweicloud.com/repository/npm/etag/-/etag-1.8.1.tgz. Extracting by manifest.
+924 silly tarball no local data for escape-html@https://repo.huaweicloud.com/repository/npm/escape-html/-/escape-html-1.0.3.tgz. Extracting by manifest.
+925 silly tarball no local data for escalade@https://repo.huaweicloud.com/repository/npm/escalade/-/escalade-3.2.0.tgz. Extracting by manifest.
+926 silly tarball no local data for es-object-atoms@https://repo.huaweicloud.com/repository/npm/es-object-atoms/-/es-object-atoms-1.1.2.tgz. Extracting by manifest.
+927 silly tarball no local data for es-errors@https://repo.huaweicloud.com/repository/npm/es-errors/-/es-errors-1.3.0.tgz. Extracting by manifest.
+928 silly tarball no local data for es-define-property@https://repo.huaweicloud.com/repository/npm/es-define-property/-/es-define-property-1.0.1.tgz. Extracting by manifest.
+929 silly tarball no local data for entities@https://repo.huaweicloud.com/repository/npm/entities/-/entities-4.5.0.tgz. Extracting by manifest.
+930 silly tarball no local data for encodeurl@https://repo.huaweicloud.com/repository/npm/encodeurl/-/encodeurl-2.0.0.tgz. Extracting by manifest.
+931 silly tarball no local data for emoji-regex@https://repo.huaweicloud.com/repository/npm/emoji-regex/-/emoji-regex-8.0.0.tgz. Extracting by manifest.
+932 silly tarball no local data for ee-first@https://repo.huaweicloud.com/repository/npm/ee-first/-/ee-first-1.1.1.tgz. Extracting by manifest.
+933 silly tarball no local data for ecdsa-sig-formatter@https://repo.huaweicloud.com/repository/npm/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz. Extracting by manifest.
+934 silly tarball no local data for dunder-proto@https://repo.huaweicloud.com/repository/npm/dunder-proto/-/dunder-proto-1.0.1.tgz. Extracting by manifest.
+935 silly tarball no local data for dotenv@https://repo.huaweicloud.com/repository/npm/dotenv/-/dotenv-17.4.2.tgz. Extracting by manifest.
+936 silly tarball no local data for domutils@https://repo.huaweicloud.com/repository/npm/domutils/-/domutils-3.2.2.tgz. Extracting by manifest.
+937 silly tarball no local data for domhandler@https://repo.huaweicloud.com/repository/npm/domhandler/-/domhandler-5.0.3.tgz. Extracting by manifest.
+938 silly tarball no local data for domelementtype@https://repo.huaweicloud.com/repository/npm/domelementtype/-/domelementtype-2.3.0.tgz. Extracting by manifest.
+939 silly tarball no local data for dom-serializer@https://repo.huaweicloud.com/repository/npm/dom-serializer/-/dom-serializer-2.0.0.tgz. Extracting by manifest.
+940 silly tarball no local data for dijkstrajs@https://repo.huaweicloud.com/repository/npm/dijkstrajs/-/dijkstrajs-1.0.3.tgz. Extracting by manifest.
+941 silly tarball no local data for diff@https://repo.huaweicloud.com/repository/npm/diff/-/diff-9.0.0.tgz. Extracting by manifest.
+942 silly tarball no local data for depd@https://repo.huaweicloud.com/repository/npm/depd/-/depd-2.0.0.tgz. Extracting by manifest.
+943 silly tarball no local data for decamelize@https://repo.huaweicloud.com/repository/npm/decamelize/-/decamelize-1.2.0.tgz. Extracting by manifest.
+944 silly tarball no local data for debug@https://repo.huaweicloud.com/repository/npm/debug/-/debug-4.4.3.tgz. Extracting by manifest.
+945 silly tarball no local data for data-uri-to-buffer@https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz. Extracting by manifest.
+946 silly tarball no local data for cssom@https://repo.huaweicloud.com/repository/npm/cssom/-/cssom-0.5.0.tgz. Extracting by manifest.
+947 silly tarball no local data for css-what@https://repo.huaweicloud.com/repository/npm/css-what/-/css-what-6.2.2.tgz. Extracting by manifest.
+948 silly tarball no local data for css-select@https://repo.huaweicloud.com/repository/npm/css-select/-/css-select-5.2.2.tgz. Extracting by manifest.
+949 silly tarball no local data for cross-spawn@https://repo.huaweicloud.com/repository/npm/cross-spawn/-/cross-spawn-7.0.6.tgz. Extracting by manifest.
+950 silly tarball no local data for croner@https://repo.huaweicloud.com/repository/npm/croner/-/croner-10.0.1.tgz. Extracting by manifest.
+951 silly tarball no local data for cors@https://repo.huaweicloud.com/repository/npm/cors/-/cors-2.8.6.tgz. Extracting by manifest.
+952 silly tarball no local data for core-util-is@https://repo.huaweicloud.com/repository/npm/core-util-is/-/core-util-is-1.0.3.tgz. Extracting by manifest.
+953 silly tarball no local data for cookie-signature@https://repo.huaweicloud.com/repository/npm/cookie-signature/-/cookie-signature-1.2.2.tgz. Extracting by manifest.
+954 silly tarball no local data for cookie@https://repo.huaweicloud.com/repository/npm/cookie/-/cookie-0.7.2.tgz. Extracting by manifest.
+955 silly tarball no local data for content-type@https://repo.huaweicloud.com/repository/npm/content-type/-/content-type-1.0.5.tgz. Extracting by manifest.
+956 silly tarball no local data for content-disposition@https://repo.huaweicloud.com/repository/npm/content-disposition/-/content-disposition-1.1.0.tgz. Extracting by manifest.
+957 silly tarball no local data for commander@https://repo.huaweicloud.com/repository/npm/commander/-/commander-14.0.3.tgz. Extracting by manifest.
+958 silly tarball no local data for color-name@https://repo.huaweicloud.com/repository/npm/color-name/-/color-name-1.1.4.tgz. Extracting by manifest.
+959 silly tarball no local data for color-convert@https://repo.huaweicloud.com/repository/npm/color-convert/-/color-convert-2.0.1.tgz. Extracting by manifest.
+960 silly tarball no local data for cliui@https://repo.huaweicloud.com/repository/npm/cliui/-/cliui-8.0.1.tgz. Extracting by manifest.
+961 silly tarball no local data for clawpdf@https://repo.huaweicloud.com/repository/npm/clawpdf/-/clawpdf-0.3.0.tgz. Extracting by manifest.
+962 silly tarball no local data for chownr@https://repo.huaweicloud.com/repository/npm/chownr/-/chownr-3.0.0.tgz. Extracting by manifest.
+963 silly tarball no local data for chokidar@https://repo.huaweicloud.com/repository/npm/chokidar/-/chokidar-5.0.0.tgz. Extracting by manifest.
+964 silly tarball no local data for chalk@https://repo.huaweicloud.com/repository/npm/chalk/-/chalk-5.6.2.tgz. Extracting by manifest.
+965 silly tarball no local data for camelcase@https://repo.huaweicloud.com/repository/npm/camelcase/-/camelcase-5.3.1.tgz. Extracting by manifest.
+966 silly tarball no local data for call-bound@https://repo.huaweicloud.com/repository/npm/call-bound/-/call-bound-1.0.4.tgz. Extracting by manifest.
+967 silly tarball no local data for call-bind-apply-helpers@https://repo.huaweicloud.com/repository/npm/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz. Extracting by manifest.
+968 silly tarball no local data for bytes@https://repo.huaweicloud.com/repository/npm/bytes/-/bytes-3.1.2.tgz. Extracting by manifest.
+969 silly tarball no local data for buffer-from@https://repo.huaweicloud.com/repository/npm/buffer-from/-/buffer-from-1.1.2.tgz. Extracting by manifest.
+970 silly tarball no local data for buffer-equal-constant-time@https://repo.huaweicloud.com/repository/npm/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz. Extracting by manifest.
+971 silly tarball no local data for brace-expansion@https://repo.huaweicloud.com/repository/npm/brace-expansion/-/brace-expansion-5.0.6.tgz. Extracting by manifest.
+972 silly tarball no local data for bottleneck@https://repo.huaweicloud.com/repository/npm/bottleneck/-/bottleneck-2.19.5.tgz. Extracting by manifest.
+973 silly tarball no local data for boolbase@https://repo.huaweicloud.com/repository/npm/boolbase/-/boolbase-1.0.0.tgz. Extracting by manifest.
+974 silly tarball no local data for body-parser@https://repo.huaweicloud.com/repository/npm/body-parser/-/body-parser-2.2.2.tgz. Extracting by manifest.
+975 silly tarball no local data for bn.js@https://repo.huaweicloud.com/repository/npm/bn.js/-/bn.js-4.12.3.tgz. Extracting by manifest.
+976 silly tarball no local data for bignumber.js@https://repo.huaweicloud.com/repository/npm/bignumber.js/-/bignumber.js-9.3.1.tgz. Extracting by manifest.
+977 silly tarball no local data for base64-js@https://repo.huaweicloud.com/repository/npm/base64-js/-/base64-js-1.5.1.tgz. Extracting by manifest.
+978 silly tarball no local data for balanced-match@https://repo.huaweicloud.com/repository/npm/balanced-match/-/balanced-match-4.0.4.tgz. Extracting by manifest.
+979 silly tarball no local data for asn1.js@https://repo.huaweicloud.com/repository/npm/asn1.js/-/asn1.js-5.4.1.tgz. Extracting by manifest.
+980 silly tarball no local data for ansi-styles@https://repo.huaweicloud.com/repository/npm/ansi-styles/-/ansi-styles-4.3.0.tgz. Extracting by manifest.
+981 silly tarball no local data for ansi-regex@https://repo.huaweicloud.com/repository/npm/ansi-regex/-/ansi-regex-5.0.1.tgz. Extracting by manifest.
+982 silly tarball no local data for ajv-formats@https://repo.huaweicloud.com/repository/npm/ajv-formats/-/ajv-formats-3.0.1.tgz. Extracting by manifest.
+983 silly tarball no local data for ajv@https://repo.huaweicloud.com/repository/npm/ajv/-/ajv-8.20.0.tgz. Extracting by manifest.
+984 silly tarball no local data for agent-base@https://repo.huaweicloud.com/repository/npm/agent-base/-/agent-base-7.1.4.tgz. Extracting by manifest.
+985 silly tarball no local data for accepts@https://repo.huaweicloud.com/repository/npm/accepts/-/accepts-2.0.0.tgz. Extracting by manifest.
+986 silly tarball no local data for abort-controller@https://repo.huaweicloud.com/repository/npm/abort-controller/-/abort-controller-3.0.0.tgz. Extracting by manifest.
+987 silly tarball no local data for @types/retry@https://repo.huaweicloud.com/repository/npm/@types/retry/-/retry-0.12.5.tgz. Extracting by manifest.
+988 silly tarball no local data for @tokenizer/token@https://repo.huaweicloud.com/repository/npm/@tokenizer/token/-/token-0.3.0.tgz. Extracting by manifest.
+989 silly tarball no local data for @tokenizer/inflate@https://repo.huaweicloud.com/repository/npm/@tokenizer/inflate/-/inflate-0.4.1.tgz. Extracting by manifest.
+990 silly tarball no local data for @stablelib/base64@https://repo.huaweicloud.com/repository/npm/@stablelib/base64/-/base64-1.0.1.tgz. Extracting by manifest.
+991 silly tarball no local data for @silvia-odwyer/photon-node@https://repo.huaweicloud.com/repository/npm/@silvia-odwyer/photon-node/-/photon-node-0.3.4.tgz. Extracting by manifest.
+992 silly tarball no local data for @openclaw/proxyline@https://repo.huaweicloud.com/repository/npm/@openclaw/proxyline/-/proxyline-0.3.3.tgz. Extracting by manifest.
+993 silly tarball no local data for @openclaw/fs-safe@https://repo.huaweicloud.com/repository/npm/@openclaw/fs-safe/-/fs-safe-0.3.0.tgz. Extracting by manifest.
+994 silly tarball no local data for @mozilla/readability@https://repo.huaweicloud.com/repository/npm/@mozilla/readability/-/readability-0.6.0.tgz. Extracting by manifest.
+995 silly tarball no local data for @modelcontextprotocol/sdk@https://repo.huaweicloud.com/repository/npm/@modelcontextprotocol/sdk/-/sdk-1.29.0.tgz. Extracting by manifest.
+996 silly tarball no local data for @mistralai/mistralai@https://repo.huaweicloud.com/repository/npm/@mistralai/mistralai/-/mistralai-2.2.5.tgz. Extracting by manifest.
+997 silly tarball no local data for @lydell/node-pty-win32-x64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-win32-x64/-/node-pty-win32-x64-1.2.0-beta.12.tgz. Extracting by manifest.
+998 silly tarball no local data for @lydell/node-pty-win32-arm64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-win32-arm64/-/node-pty-win32-arm64-1.2.0-beta.12.tgz. Extracting by manifest.
+999 silly tarball no local data for @lydell/node-pty-linux-x64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-linux-x64/-/node-pty-linux-x64-1.2.0-beta.12.tgz. Extracting by manifest.
+1000 silly tarball no local data for @lydell/node-pty-linux-arm64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-linux-arm64/-/node-pty-linux-arm64-1.2.0-beta.12.tgz. Extracting by manifest.
+1001 silly tarball no local data for @lydell/node-pty-darwin-x64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-darwin-x64/-/node-pty-darwin-x64-1.2.0-beta.12.tgz. Extracting by manifest.
+1002 silly tarball no local data for @lydell/node-pty-darwin-arm64@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-darwin-arm64/-/node-pty-darwin-arm64-1.2.0-beta.12.tgz. Extracting by manifest.
+1003 silly tarball no local data for @lydell/node-pty@https://repo.huaweicloud.com/repository/npm/@lydell/node-pty/-/node-pty-1.2.0-beta.12.tgz. Extracting by manifest.
+1004 silly tarball no local data for @isaacs/fs-minipass@https://repo.huaweicloud.com/repository/npm/@isaacs/fs-minipass/-/fs-minipass-4.0.1.tgz. Extracting by manifest.
+1005 silly tarball no local data for @hono/node-server@https://repo.huaweicloud.com/repository/npm/@hono/node-server/-/node-server-1.19.14.tgz. Extracting by manifest.
+1006 silly tarball no local data for @homebridge/ciao@https://repo.huaweicloud.com/repository/npm/@homebridge/ciao/-/ciao-1.3.9.tgz. Extracting by manifest.
+1007 silly tarball no local data for @grammyjs/types@https://repo.huaweicloud.com/repository/npm/@grammyjs/types/-/types-3.27.3.tgz. Extracting by manifest.
+1008 silly tarball no local data for @grammyjs/transformer-throttler@https://repo.huaweicloud.com/repository/npm/@grammyjs/transformer-throttler/-/transformer-throttler-1.2.1.tgz. Extracting by manifest.
+1009 silly tarball no local data for @grammyjs/runner@https://repo.huaweicloud.com/repository/npm/@grammyjs/runner/-/runner-2.0.3.tgz. Extracting by manifest.
+1010 silly tarball no local data for @google/genai@https://repo.huaweicloud.com/repository/npm/@google/genai/-/genai-2.7.0.tgz. Extracting by manifest.
+1011 silly tarball no local data for @earendil-works/pi-tui@https://repo.huaweicloud.com/repository/npm/@earendil-works/pi-tui/-/pi-tui-0.78.0.tgz. Extracting by manifest.
+1012 silly tarball no local data for @clack/prompts@https://repo.huaweicloud.com/repository/npm/@clack/prompts/-/prompts-1.4.0.tgz. Extracting by manifest.
+1013 silly tarball no local data for @clack/core@https://repo.huaweicloud.com/repository/npm/@clack/core/-/core-1.3.1.tgz. Extracting by manifest.
+1014 silly tarball no local data for @borewit/text-codec@https://repo.huaweicloud.com/repository/npm/@borewit/text-codec/-/text-codec-0.2.2.tgz. Extracting by manifest.
+1015 silly tarball no local data for @babel/runtime@https://repo.huaweicloud.com/repository/npm/@babel/runtime/-/runtime-7.29.7.tgz. Extracting by manifest.
+1016 silly tarball no local data for @anthropic-ai/sdk@https://repo.huaweicloud.com/repository/npm/@anthropic-ai/sdk/-/sdk-0.100.1.tgz. Extracting by manifest.
+1017 silly tarball no local data for @agentclientprotocol/sdk@https://repo.huaweicloud.com/repository/npm/@agentclientprotocol/sdk/-/sdk-0.22.1.tgz. Extracting by manifest.
+1018 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/split2/-/split2-4.2.0.tgz 2505ms (cache miss)
+1019 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/process-warning/-/process-warning-5.0.0.tgz 2503ms (cache miss)
+1020 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fetch-blob/-/fetch-blob-3.2.0.tgz 2559ms (cache miss)
+1021 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/real-require/-/real-require-1.0.0.tgz 2559ms (cache miss)
+1022 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/safe-stable-stringify/-/safe-stable-stringify-2.5.0.tgz 2767ms (cache miss)
+1023 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/quick-format-unescaped/-/quick-format-unescaped-4.0.4.tgz 2767ms (cache miss)
+1024 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-domexception/-/node-domexception-1.0.0.tgz 2890ms (cache miss)
+1025 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/on-exit-leak-free/-/on-exit-leak-free-2.1.2.tgz 2896ms (cache miss)
+1026 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/web-push/-/web-push-3.6.7.tgz 2826ms (cache miss)
+1027 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz 2962ms (cache miss)
+1028 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/real-require/-/real-require-0.2.0.tgz 3029ms (cache miss)
+1029 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pino-std-serializers/-/pino-std-serializers-7.1.0.tgz 3027ms (cache miss)
+1030 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pino-abstract-transport/-/pino-abstract-transport-3.0.0.tgz 3027ms (cache miss)
+1031 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/wrap-ansi/-/wrap-ansi-7.0.0.tgz 2964ms (cache miss)
+1032 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/whatwg-url/-/whatwg-url-5.0.0.tgz 2962ms (cache miss)
+1033 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/atomic-sleep/-/atomic-sleep-1.0.0.tgz 3151ms (cache miss)
+1034 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz 3152ms (cache miss)
+1035 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/vary/-/vary-1.1.2.tgz 3084ms (cache miss)
+1036 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/util-deprecate/-/util-deprecate-1.0.2.tgz 3084ms (cache miss)
+1037 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/unpipe/-/unpipe-1.0.0.tgz 3085ms (cache miss)
+1038 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/yallist/-/yallist-5.0.0.tgz 3193ms (cache miss)
+1039 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/y18n/-/y18n-5.0.8.tgz 3192ms (cache miss)
+1040 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/wrappy/-/wrappy-1.0.2.tgz 3191ms (cache miss)
+1041 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/which-module/-/which-module-2.0.1.tgz 3191ms (cache miss)
+1042 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/which/-/which-2.0.2.tgz 3191ms (cache miss)
+1043 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/type-is/-/type-is-2.1.0.tgz 3185ms (cache miss)
+1044 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/content-type/-/content-type-2.0.0.tgz 3185ms (cache miss)
+1045 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/token-types/-/token-types-6.1.2.tgz 3183ms (cache miss)
+1046 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/uint8array-extras/-/uint8array-extras-1.5.0.tgz 3292ms (cache miss)
+1047 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/uhyphen/-/uhyphen-0.2.0.tgz 3293ms (cache miss)
+1048 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/webidl-conversions/-/webidl-conversions-3.0.1.tgz 3297ms (cache miss)
+1049 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/strip-ansi/-/strip-ansi-6.0.1.tgz 3287ms (cache miss)
+1050 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/string-width/-/string-width-4.2.3.tgz 3287ms (cache miss)
+1051 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/source-map-support/-/source-map-support-0.5.21.tgz 3377ms (cache miss)
+1052 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/shebang-regex/-/shebang-regex-3.0.0.tgz 3375ms (cache miss)
+1053 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/shebang-command/-/shebang-command-2.0.0.tgz 3374ms (cache miss)
+1054 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/strtok3/-/strtok3-10.3.5.tgz 3486ms (cache miss)
+1055 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.1.2.tgz 3485ms (cache miss)
+1056 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/toidentifier/-/toidentifier-1.0.1.tgz 3488ms (cache miss)
+1057 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sqlite-vec/-/sqlite-vec-0.1.9.tgz 3482ms (cache miss)
+1058 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/side-channel-weakmap/-/side-channel-weakmap-1.0.2.tgz 3479ms (cache miss)
+1059 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/safer-buffer/-/safer-buffer-2.1.2.tgz 3475ms (cache miss)
+1060 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.2.1.tgz 3475ms (cache miss)
+1061 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/string_decoder/-/string_decoder-1.1.1.tgz 3609ms (cache miss)
+1062 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/standardwebhooks/-/standardwebhooks-1.0.0.tgz 3608ms (cache miss)
+1063 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/statuses/-/statuses-2.0.2.tgz 3609ms (cache miss)
+1064 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sqlite-vec-darwin-x64/-/sqlite-vec-darwin-x64-0.1.9.tgz 3607ms (cache miss)
+1065 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sqlite-vec-linux-arm64/-/sqlite-vec-linux-arm64-0.1.9.tgz 3608ms (cache miss)
+1066 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/signal-exit/-/signal-exit-3.0.7.tgz 3604ms (cache miss)
+1067 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/setprototypeof/-/setprototypeof-1.2.0.tgz 3604ms (cache miss)
+1068 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/setimmediate/-/setimmediate-1.0.5.tgz 3603ms (cache miss)
+1069 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/serve-static/-/serve-static-2.2.1.tgz 3603ms (cache miss)
+1070 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/raw-body/-/raw-body-3.0.2.tgz 3598ms (cache miss)
+1071 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/readdirp/-/readdirp-5.0.0.tgz 3600ms (cache miss)
+1072 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/safe-buffer/-/safe-buffer-5.1.2.tgz 3783ms (cache miss)
+1073 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sqlite-vec-linux-x64/-/sqlite-vec-linux-x64-0.1.9.tgz 3799ms (cache miss)
+1074 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/side-channel-map/-/side-channel-map-1.0.1.tgz 3795ms (cache miss)
+1075 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sisteransi/-/sisteransi-1.0.5.tgz 3796ms (cache miss)
+1076 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/retry/-/retry-0.13.1.tgz 3790ms (cache miss)
+1077 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/require-main-filename/-/require-main-filename-2.0.0.tgz 3789ms (cache miss)
+1078 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/require-directory/-/require-directory-2.1.1.tgz 3789ms (cache miss)
+1079 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/send/-/send-1.2.1.tgz 3794ms (cache miss)
+1080 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/proper-lockfile/-/proper-lockfile-4.1.2.tgz 3784ms (cache miss)
+1081 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/side-channel/-/side-channel-1.1.0.tgz 3969ms (cache miss)
+1082 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/side-channel-list/-/side-channel-list-1.0.1.tgz 3970ms (cache miss)
+1083 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sqlite-vec-darwin-arm64/-/sqlite-vec-darwin-arm64-0.1.9.tgz 4380ms (cache miss)
+1084 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/set-blocking/-/set-blocking-2.0.0.tgz 4375ms (cache miss)
+1085 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/router/-/router-2.2.0.tgz 4371ms (cache miss)
+1086 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/yargs-parser/-/yargs-parser-18.1.3.tgz 4365ms (cache miss)
+1087 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/retry/-/retry-0.12.0.tgz 4363ms (cache miss)
+1088 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pkce-challenge/-/pkce-challenge-5.0.1.tgz 4362ms (cache miss)
+1089 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/cliui/-/cliui-6.0.0.tgz 4368ms (cache miss)
+1090 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/nth-check/-/nth-check-2.1.1.tgz 4290ms (cache miss)
+1091 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-edge-tts/-/node-edge-tts-1.2.10.tgz 4289ms (cache miss)
+1092 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/require-from-string/-/require-from-string-2.0.2.tgz 4477ms (cache miss)
+1093 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/range-parser/-/range-parser-1.2.1.tgz 4475ms (cache miss)
+1094 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/y18n/-/y18n-4.0.3.tgz 4473ms (cache miss)
+1095 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/wrap-ansi/-/wrap-ansi-6.2.0.tgz 4473ms (cache miss)
+1096 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/partial-json/-/partial-json-0.1.7.tgz 4418ms (cache miss)
+1097 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/p-try/-/p-try-2.2.0.tgz 4400ms (cache miss)
+1098 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/p-retry/-/p-retry-4.6.2.tgz 4399ms (cache miss)
+1099 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/p-limit/-/p-limit-2.3.0.tgz 4398ms (cache miss)
+1100 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/path-key/-/path-key-3.1.1.tgz 4420ms (cache miss)
+1101 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/media-typer/-/media-typer-1.1.0.tgz 4390ms (cache miss)
+1102 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/proxy-addr/-/proxy-addr-2.0.7.tgz 4572ms (cache miss)
+1103 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/process-nextick-args/-/process-nextick-args-2.0.1.tgz 4571ms (cache miss)
+1104 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/p-locate/-/p-locate-4.1.0.tgz 4499ms (cache miss)
+1105 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/on-finished/-/on-finished-2.4.1.tgz 4498ms (cache miss)
+1106 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/object-assign/-/object-assign-4.1.1.tgz 4497ms (cache miss)
+1107 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-gyp-build/-/node-gyp-build-4.8.4.tgz 4496ms (cache miss)
+1108 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@nolyfill/domexception/-/domexception-1.0.28.tgz 4496ms (cache miss)
+1109 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/once/-/once-1.4.0.tgz 4500ms (cache miss)
+1110 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/locate-path/-/locate-path-5.0.0.tgz 4490ms (cache miss)
+1111 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/lie/-/lie-3.3.0.tgz 4489ms (cache miss)
+1112 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/jws/-/jws-4.0.1.tgz 4488ms (cache miss)
+1113 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/parseurl/-/parseurl-1.3.3.tgz 4601ms (cache miss)
+1114 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/path-exists/-/path-exists-4.0.0.tgz 4602ms (cache miss)
+1115 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz 4574ms (cache miss)
+1116 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/mime-types/-/mime-types-3.0.2.tgz 4574ms (cache miss)
+1117 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/negotiator/-/negotiator-1.0.0.tgz 4577ms (cache miss)
+1118 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz 4568ms (cache miss)
+1119 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/json-bigint/-/json-bigint-1.0.0.tgz 4567ms (cache miss)
+1120 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/tslib/-/tslib-2.8.1.tgz 4716ms (cache miss)
+1121 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/path-to-regexp/-/path-to-regexp-8.4.0.tgz 4688ms (cache miss)
+1122 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/math-intrinsics/-/math-intrinsics-1.1.0.tgz 4605ms (cache miss)
+1123 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/jwa/-/jwa-2.0.1.tgz 4602ms (cache miss)
+1124 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/inherits/-/inherits-2.0.4.tgz 4597ms (cache miss)
+1125 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/immediate/-/immediate-3.0.6.tgz 4596ms (cache miss)
+1126 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ieee754/-/ieee754-1.2.1.tgz 4596ms (cache miss)
+1127 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/hosted-git-info/-/hosted-git-info-10.1.1.tgz 4543ms (cache miss)
+1128 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/merge-descriptors/-/merge-descriptors-2.0.0.tgz 4683ms (cache miss)
+1129 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ms/-/ms-2.1.3.tgz 4688ms (cache miss)
+1130 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/isexe/-/isexe-2.0.0.tgz 4676ms (cache miss)
+1131 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/isarray/-/isarray-1.0.0.tgz 4675ms (cache miss)
+1132 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/is-promise/-/is-promise-4.0.0.tgz 4675ms (cache miss)
+1133 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz 4675ms (cache miss)
+1134 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ignore/-/ignore-7.0.5.tgz 4673ms (cache miss)
+1135 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/gopd/-/gopd-1.2.0.tgz 4619ms (cache miss)
+1136 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/http-errors/-/http-errors-2.0.1.tgz 4698ms (cache miss)
+1137 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/http_ece/-/http_ece-1.2.0.tgz 4697ms (cache miss)
+1138 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/html-escaper/-/html-escaper-3.0.3.tgz 4697ms (cache miss)
+1139 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fresh/-/fresh-2.0.0.tgz 4690ms (cache miss)
+1140 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/forwarded/-/forwarded-0.2.0.tgz 4689ms (cache miss)
+1141 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz 4690ms (cache miss)
+1142 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/find-up/-/find-up-4.1.0.tgz 4691ms (cache miss)
+1143 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fetch-blob/-/fetch-blob-3.2.0.tgz 4690ms (cache miss)
+1144 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fast-wrap-ansi/-/fast-wrap-ansi-0.2.2.tgz 4690ms (cache miss)
+1145 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ipaddr.js/-/ipaddr.js-1.9.1.tgz 4779ms (cache miss)
+1146 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/has-symbols/-/has-symbols-1.1.0.tgz 4721ms (cache miss)
+1147 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/get-proto/-/get-proto-1.0.1.tgz 4716ms (cache miss)
+1148 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/get-east-asian-width/-/get-east-asian-width-1.6.0.tgz 4716ms (cache miss)
+1149 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/get-caller-file/-/get-caller-file-2.0.5.tgz 4715ms (cache miss)
+1150 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fast-sha256/-/fast-sha256-1.3.0.tgz 4710ms (cache miss)
+1151 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz 4709ms (cache miss)
+1152 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/escape-html/-/escape-html-1.0.3.tgz 4706ms (cache miss)
+1153 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz 4797ms (cache miss)
+1154 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/function-bind/-/function-bind-1.1.2.tgz 4734ms (cache miss)
+1155 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/finalhandler/-/finalhandler-2.1.1.tgz 4732ms (cache miss)
+1156 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fast-string-width/-/fast-string-width-3.0.2.tgz 4731ms (cache miss)
+1157 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/es-errors/-/es-errors-1.3.0.tgz 4775ms (cache miss)
+1158 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/rastermill/-/rastermill-0.3.1.tgz 4971ms (cache miss)
+1159 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/mime-db/-/mime-db-1.54.0.tgz 4882ms (cache miss)
+1160 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/hasown/-/hasown-2.0.4.tgz 4814ms (cache miss)
+1161 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/graceful-fs/-/graceful-fs-4.2.11.tgz 4813ms (cache miss)
+1162 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/get-intrinsic/-/get-intrinsic-1.3.0.tgz 4806ms (cache miss)
+1163 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/etag/-/etag-1.8.1.tgz 4795ms (cache miss)
+1164 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/escalade/-/escalade-3.2.0.tgz 4794ms (cache miss)
+1165 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/dom-serializer/-/dom-serializer-2.0.0.tgz 4789ms (cache miss)
+1166 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/dunder-proto/-/dunder-proto-1.0.1.tgz 4799ms (cache miss)
+1167 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sqlite-vec-windows-x64/-/sqlite-vec-windows-x64-0.1.9.tgz 5076ms (cache miss)
+1168 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/es-define-property/-/es-define-property-1.0.1.tgz 4880ms (cache miss)
+1169 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/encodeurl/-/encodeurl-2.0.0.tgz 4880ms (cache miss)
+1170 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/emoji-regex/-/emoji-regex-8.0.0.tgz 4879ms (cache miss)
+1171 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ee-first/-/ee-first-1.1.1.tgz 4878ms (cache miss)
+1172 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/es-object-atoms/-/es-object-atoms-1.1.2.tgz 4883ms (cache miss)
+1173 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/core-util-is/-/core-util-is-1.0.3.tgz 4869ms (cache miss)
+1174 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/cookie-signature/-/cookie-signature-1.2.2.tgz 4869ms (cache miss)
+1175 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/content-type/-/content-type-1.0.5.tgz 4868ms (cache miss)
+1176 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/content-disposition/-/content-disposition-1.1.0.tgz 4868ms (cache miss)
+1177 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/debug/-/debug-4.4.3.tgz 4875ms (cache miss)
+1178 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz 4874ms (cache miss)
+1179 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/tr46/-/tr46-0.0.3.tgz 5098ms (cache miss)
+1180 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/extend/-/extend-3.0.2.tgz 4903ms (cache miss)
+1181 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/dijkstrajs/-/dijkstrajs-1.0.3.tgz 4891ms (cache miss)
+1182 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/depd/-/depd-2.0.0.tgz 4890ms (cache miss)
+1183 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/decamelize/-/decamelize-1.2.0.tgz 4889ms (cache miss)
+1184 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/domelementtype/-/domelementtype-2.3.0.tgz 4893ms (cache miss)
+1185 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fast-string-truncated-width/-/fast-string-truncated-width-3.0.3.tgz 4907ms (cache miss)
+1186 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/color-convert/-/color-convert-2.0.1.tgz 4882ms (cache miss)
+1187 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/cliui/-/cliui-8.0.1.tgz 4882ms (cache miss)
+1188 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/chownr/-/chownr-3.0.0.tgz 4881ms (cache miss)
+1189 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/chalk/-/chalk-5.6.2.tgz 4881ms (cache miss)
+1190 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/bytes/-/bytes-3.1.2.tgz 4879ms (cache miss)
+1191 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/buffer-from/-/buffer-from-1.1.2.tgz 4879ms (cache miss)
+1192 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz 4912ms (cache miss)
+1193 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/cross-spawn/-/cross-spawn-7.0.6.tgz 4905ms (cache miss)
+1194 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/cors/-/cors-2.8.6.tgz 4904ms (cache miss)
+1195 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/cssom/-/cssom-0.5.0.tgz 4907ms (cache miss)
+1196 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/css-what/-/css-what-6.2.2.tgz 4906ms (cache miss)
+1197 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/chokidar/-/chokidar-5.0.0.tgz 4899ms (cache miss)
+1198 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/base64-js/-/base64-js-1.5.1.tgz 4841ms (cache miss)
+1199 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/balanced-match/-/balanced-match-4.0.4.tgz 4842ms (cache miss)
+1200 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/brace-expansion/-/brace-expansion-5.0.6.tgz 4896ms (cache miss)
+1201 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz 4898ms (cache miss)
+1202 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/domhandler/-/domhandler-5.0.3.tgz 4974ms (cache miss)
+1203 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/camelcase/-/camelcase-5.3.1.tgz 4961ms (cache miss)
+1204 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/call-bound/-/call-bound-1.0.4.tgz 4961ms (cache miss)
+1205 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz 4960ms (cache miss)
+1206 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/color-name/-/color-name-1.1.4.tgz 4965ms (cache miss)
+1207 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@types/retry/-/retry-0.12.5.tgz 4901ms (cache miss)
+1208 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@tokenizer/token/-/token-0.3.0.tgz 4900ms (cache miss)
+1209 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@stablelib/base64/-/base64-1.0.1.tgz 4900ms (cache miss)
+1210 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ansi-regex/-/ansi-regex-5.0.1.tgz 4906ms (cache miss)
+1211 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/json-schema-typed/-/json-schema-typed-8.0.2.tgz 5080ms (cache miss)
+1212 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/cookie/-/cookie-0.7.2.tgz 4980ms (cache miss)
+1213 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/boolbase/-/boolbase-1.0.0.tgz 4922ms (cache miss)
+1214 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/body-parser/-/body-parser-2.2.2.tgz 4922ms (cache miss)
+1215 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/asn1.js/-/asn1.js-5.4.1.tgz 4919ms (cache miss)
+1216 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ansi-styles/-/ansi-styles-4.3.0.tgz 4919ms (cache miss)
+1217 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-2.7.0.tgz 5029ms (cache miss)
+1218 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/agent-base/-/agent-base-7.1.4.tgz 4929ms (cache miss)
+1219 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@tokenizer/inflate/-/inflate-0.4.1.tgz 4928ms (cache miss)
+1220 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@grammyjs/transformer-throttler/-/transformer-throttler-1.2.1.tgz 4920ms (cache miss)
+1221 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@isaacs/fs-minipass/-/fs-minipass-4.0.1.tgz 4922ms (cache miss)
+1222 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/bn.js/-/bn.js-4.12.3.tgz 4999ms (cache miss)
+1223 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/yargs-parser/-/yargs-parser-21.1.1.tgz 5298ms (cache miss)
+1224 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/long/-/long-5.3.2.tgz 5174ms (cache miss)
+1225 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/accepts/-/accepts-2.0.0.tgz 5006ms (cache miss)
+1226 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@borewit/text-codec/-/text-codec-0.2.2.tgz 4992ms (cache miss)
+1227 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@lydell/node-pty/-/node-pty-1.2.0-beta.12.tgz 4999ms (cache miss)
+1228 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/express/-/express-5.2.1.tgz 5123ms (cache miss)
+1229 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@pinojs/redact/-/redact-0.4.0.tgz 5466ms (cache miss)
+1230 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/express-rate-limit/-/express-rate-limit-8.5.2.tgz 5202ms (cache miss)
+1231 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@mozilla/readability/-/readability-0.6.0.tgz 5112ms (cache miss)
+1232 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@clack/core/-/core-1.3.1.tgz 5103ms (cache miss)
+1233 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/gcp-metadata/-/gcp-metadata-8.1.2.tgz 5294ms (cache miss)
+1234 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/croner/-/croner-10.0.1.tgz 5268ms (cache miss)
+1235 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/dotenv/-/dotenv-17.4.2.tgz 5283ms (cache miss)
+1236 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/abort-controller/-/abort-controller-3.0.0.tgz 5222ms (cache miss)
+1237 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@clack/prompts/-/prompts-1.4.0.tgz 5218ms (cache miss)
+1238 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/event-target-shim/-/event-target-shim-5.0.1.tgz 5322ms (cache miss)
+1239 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/bignumber.js/-/bignumber.js-9.3.1.tgz 5300ms (cache miss)
+1240 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ws/-/ws-8.21.0.tgz 5602ms (cache miss)
+1241 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ws/-/ws-8.21.0.tgz 5604ms (cache miss)
+1242 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-linux-x64/-/node-pty-linux-x64-1.2.0-beta.12.tgz 5311ms (cache miss)
+1243 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-linux-arm64/-/node-pty-linux-arm64-1.2.0-beta.12.tgz 5312ms (cache miss)
+1244 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/sonic-boom/-/sonic-boom-4.2.1.tgz 5698ms (cache miss)
+1245 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/eventsource/-/eventsource-3.0.7.tgz 5417ms (cache miss)
+1246 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-darwin-x64/-/node-pty-darwin-x64-1.2.0-beta.12.tgz 5331ms (cache miss)
+1247 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/commander/-/commander-14.0.3.tgz 5460ms (cache miss)
+1248 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ajv-formats/-/ajv-formats-3.0.1.tgz 5399ms (cache miss)
+1249 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/file-type/-/file-type-22.0.1.tgz 5495ms (cache miss)
+1250 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-addon-api/-/node-addon-api-8.8.0.tgz 5608ms (cache miss)
+1251 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-3.3.2.tgz 5800ms (cache miss)
+1252 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-darwin-arm64/-/node-pty-darwin-arm64-1.2.0-beta.12.tgz 5493ms (cache miss)
+1253 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/readable-stream/-/readable-stream-2.3.8.tgz 5808ms (cache miss)
+1254 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/minimist/-/minimist-1.2.8.tgz 5771ms (cache miss)
+1255 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/qs/-/qs-6.15.2.tgz 5876ms (cache miss)
+1256 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/node-fetch/-/node-fetch-3.3.2.tgz 5818ms (cache miss)
+1257 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@grammyjs/types/-/types-3.27.3.tgz 5628ms (cache miss)
+1258 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/google-logging-utils/-/google-logging-utils-1.1.3.tgz 5796ms (cache miss)
+1259 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/eventsource-parser/-/eventsource-parser-3.1.0.tgz 5781ms (cache miss)
+1260 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/json5/-/json5-2.2.3.tgz 5868ms (cache miss)
+1261 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/minipass/-/minipass-7.1.3.tgz 5909ms (cache miss)
+1262 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/path-scurry/-/path-scurry-2.0.2.tgz 6099ms (cache miss)
+1263 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/object-inspect/-/object-inspect-1.13.4.tgz 6076ms (cache miss)
+1264 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@grammyjs/runner/-/runner-2.0.3.tgz 5899ms (cache miss)
+1265 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/marked/-/marked-15.0.12.tgz 6115ms (cache miss)
+1266 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/minizlib/-/minizlib-3.1.0.tgz 6201ms (cache miss)
+1267 warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+1268 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/source-map/-/source-map-0.6.1.tgz 6315ms (cache miss)
+1269 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/fast-uri/-/fast-uri-3.1.2.tgz 6209ms (cache miss)
+1270 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/iconv-lite/-/iconv-lite-0.7.2.tgz 6397ms (cache miss)
+1271 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ip-address/-/ip-address-10.2.0.tgz 6463ms (cache miss)
+1272 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pako/-/pako-1.0.11.tgz 6692ms (cache miss)
+1273 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/jiti/-/jiti-2.7.0.tgz 6787ms (cache miss)
+1274 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@openclaw/proxyline/-/proxyline-0.3.3.tgz 6708ms (cache miss)
+1275 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/thread-stream/-/thread-stream-4.2.0.tgz 7084ms (cache miss)
+1276 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/qrcode/-/qrcode-1.5.4.tgz 7064ms (cache miss)
+1277 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@silvia-odwyer/photon-node/-/photon-node-0.3.4.tgz 6816ms (cache miss)
+1278 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/tslog/-/tslog-4.10.2.tgz 7189ms (cache miss)
+1279 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/htmlparser2/-/htmlparser2-10.1.0.tgz 7204ms (cache miss)
+1280 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@hono/node-server/-/node-server-1.19.14.tgz 7090ms (cache miss)
+1281 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@agentclientprotocol/sdk/-/sdk-0.22.1.tgz 7108ms (cache miss)
+1282 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/jszip/-/jszip-3.10.1.tgz 7299ms (cache miss)
+1283 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/yargs/-/yargs-17.7.2.tgz 7527ms (cache miss)
+1284 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/yargs/-/yargs-15.4.1.tgz 7577ms (cache miss)
+1285 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/grammy/-/grammy-1.43.0.tgz 7547ms (cache miss)
+1286 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/domutils/-/domutils-3.2.2.tgz 7587ms (cache miss)
+1287 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/quickjs-wasi/-/quickjs-wasi-3.0.0.tgz 7790ms (cache miss)
+1288 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/minimatch/-/minimatch-10.2.5.tgz 7711ms (cache miss)
+1289 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pngjs/-/pngjs-5.0.0.tgz 7900ms (cache miss)
+1290 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/uuid/-/uuid-9.0.1.tgz 8018ms (cache miss)
+1291 warn deprecated uuid@9.0.1: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+1292 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/web-tree-sitter/-/web-tree-sitter-0.26.9.tgz 8331ms (cache miss)
+1293 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/entities/-/entities-4.5.0.tgz 8175ms (cache miss)
+1294 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/bottleneck/-/bottleneck-2.19.5.tgz 8180ms (cache miss)
+1295 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/glob/-/glob-13.0.6.tgz 8605ms (cache miss)
+1296 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/clawpdf/-/clawpdf-0.3.0.tgz 8872ms (cache miss)
+1297 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ts-algebra/-/ts-algebra-2.0.0.tgz 9313ms (cache miss)
+1298 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/gaxios/-/gaxios-7.1.5.tgz 9195ms (cache miss)
+1299 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@earendil-works/pi-tui/-/pi-tui-0.78.0.tgz 9219ms (cache miss)
+1300 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/css-select/-/css-select-5.2.2.tgz 9373ms (cache miss)
+1301 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/entities/-/entities-7.0.1.tgz 9494ms (cache miss)
+1302 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/jose/-/jose-6.2.3.tgz 9561ms (cache miss)
+1303 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/protobufjs/-/protobufjs-8.4.0.tgz 9674ms (cache miss)
+1304 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/diff/-/diff-9.0.0.tgz 9623ms (cache miss)
+1305 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/google-auth-library/-/google-auth-library-10.7.0.tgz 9700ms (cache miss)
+1306 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz 10068ms (cache miss)
+1307 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz 9999ms (cache miss)
+1308 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@homebridge/ciao/-/ciao-1.3.9.tgz 9718ms (cache miss)
+1309 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/lru-cache/-/lru-cache-11.5.1.tgz 9910ms (cache miss)
+1310 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/zod-to-json-schema/-/zod-to-json-schema-3.25.2.tgz 10209ms (cache miss)
+1311 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/pino/-/pino-10.3.1.tgz 10500ms (cache miss)
+1312 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-win32-arm64/-/node-pty-win32-arm64-1.2.0-beta.12.tgz 10298ms (cache miss)
+1313 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@lydell/node-pty-win32-x64/-/node-pty-win32-x64-1.2.0-beta.12.tgz 10392ms (cache miss)
+1314 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@openclaw/fs-safe/-/fs-safe-0.3.0.tgz 10512ms (cache miss)
+1315 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@babel/runtime/-/runtime-7.29.7.tgz 10625ms (cache miss)
+1316 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@google/genai/-/genai-2.7.0.tgz 11021ms (cache miss)
+1317 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/undici/-/undici-8.3.0.tgz 11525ms (cache miss)
+1318 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/tree-sitter-bash/-/tree-sitter-bash-0.25.1.tgz 11812ms (cache miss)
+1319 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/yaml/-/yaml-2.9.0.tgz 11841ms (cache miss)
+1320 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/tar/-/tar-7.5.15.tgz 11883ms (cache miss)
+1321 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/playwright-core/-/playwright-core-1.60.0.tgz 11970ms (cache miss)
+1322 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/json-schema-to-ts/-/json-schema-to-ts-3.1.1.tgz 12399ms (cache miss)
+1323 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/typescript/-/typescript-5.9.3.tgz 12642ms (cache miss)
+1324 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/typescript/-/typescript-6.0.3.tgz 12729ms (cache miss)
+1325 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/linkedom/-/linkedom-0.18.12.tgz 13274ms (cache miss)
+1326 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/ajv/-/ajv-8.20.0.tgz 13321ms (cache miss)
+1327 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/kysely/-/kysely-0.29.2.tgz 13666ms (cache miss)
+1328 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/hono/-/hono-4.12.21.tgz 14132ms (cache miss)
+1329 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/zod/-/zod-4.4.3.tgz 14608ms (cache miss)
+1330 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@modelcontextprotocol/sdk/-/sdk-1.29.0.tgz 14901ms (cache miss)
+1331 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@anthropic-ai/sdk/-/sdk-0.100.1.tgz 15102ms (cache miss)
+1332 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/highlight.js/-/highlight.js-11.11.1.tgz 15609ms (cache miss)
+1333 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/typebox/-/typebox-1.1.39.tgz 16537ms (cache miss)
+1334 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/openai/-/openai-6.39.1.tgz 17092ms (cache miss)
+1335 http fetch GET 200 https://repo.huaweicloud.com/repository/npm/@mistralai/mistralai/-/mistralai-2.2.5.tgz 18313ms (cache miss)
+1336 silly ADD node_modules/split2
+1337 silly ADD node_modules/thread-stream
+1338 silly ADD node_modules/thread-stream/node_modules/real-require
+1339 silly ADD node_modules/sonic-boom
+1340 silly ADD node_modules/safe-stable-stringify
+1341 silly ADD node_modules/real-require
+1342 silly ADD node_modules/quick-format-unescaped
+1343 silly ADD node_modules/process-warning
+1344 silly ADD node_modules/pino-std-serializers
+1345 silly ADD node_modules/pino-abstract-transport
+1346 silly ADD node_modules/on-exit-leak-free
+1347 silly ADD node_modules/atomic-sleep
+1348 silly ADD node_modules/@pinojs/redact
+1349 silly ADD node_modules/web-streams-polyfill
+1350 silly ADD node_modules/node-domexception
+1351 silly ADD node_modules/formdata-polyfill
+1352 silly ADD node_modules/fetch-blob
+1353 silly ADD node_modules/data-uri-to-buffer
+1354 silly ADD node_modules/ws
+1355 silly ADD node_modules/uuid
+1356 silly ADD node_modules/typescript
+1357 silly ADD node_modules/pino
+1358 silly ADD node_modules/openclaw
+1359 silly ADD node_modules/openclaw/node_modules/zod-to-json-schema
+1360 silly ADD node_modules/openclaw/node_modules/zod
+1361 silly ADD node_modules/openclaw/node_modules/yargs-parser
+1362 silly ADD node_modules/openclaw/node_modules/yargs
+1363 silly ADD node_modules/openclaw/node_modules/yaml
+1364 silly ADD node_modules/openclaw/node_modules/yallist
+1365 silly ADD node_modules/openclaw/node_modules/y18n
+1366 silly ADD node_modules/openclaw/node_modules/ws
+1367 silly ADD node_modules/openclaw/node_modules/wrappy
+1368 silly ADD node_modules/openclaw/node_modules/wrap-ansi
+1369 silly ADD node_modules/openclaw/node_modules/which-module
+1370 silly ADD node_modules/openclaw/node_modules/which
+1371 silly ADD node_modules/openclaw/node_modules/whatwg-url
+1372 silly ADD node_modules/openclaw/node_modules/webidl-conversions
+1373 silly ADD node_modules/openclaw/node_modules/web-tree-sitter
+1374 silly ADD node_modules/openclaw/node_modules/web-streams-polyfill
+1375 silly ADD node_modules/openclaw/node_modules/web-push
+1376 silly ADD node_modules/openclaw/node_modules/vary
+1377 silly ADD node_modules/openclaw/node_modules/util-deprecate
+1378 silly ADD node_modules/openclaw/node_modules/unpipe
+1379 silly ADD node_modules/openclaw/node_modules/undici
+1380 silly ADD node_modules/openclaw/node_modules/uint8array-extras
+1381 silly ADD node_modules/openclaw/node_modules/uhyphen
+1382 silly ADD node_modules/openclaw/node_modules/typescript
+1383 silly ADD node_modules/openclaw/node_modules/typebox
+1384 silly ADD node_modules/openclaw/node_modules/type-is
+1385 silly ADD node_modules/openclaw/node_modules/type-is/node_modules/content-type
+1386 silly ADD node_modules/openclaw/node_modules/tslog
+1387 silly ADD node_modules/openclaw/node_modules/tslib
+1388 silly ADD node_modules/openclaw/node_modules/ts-algebra
+1389 silly ADD node_modules/openclaw/node_modules/tree-sitter-bash
+1390 silly ADD node_modules/openclaw/node_modules/tr46
+1391 silly ADD node_modules/openclaw/node_modules/token-types
+1392 silly ADD node_modules/openclaw/node_modules/toidentifier
+1393 silly ADD node_modules/openclaw/node_modules/tar
+1394 silly ADD node_modules/openclaw/node_modules/strtok3
+1395 silly ADD node_modules/openclaw/node_modules/strip-ansi
+1396 silly ADD node_modules/openclaw/node_modules/string-width
+1397 silly ADD node_modules/openclaw/node_modules/string_decoder
+1398 silly ADD node_modules/openclaw/node_modules/string_decoder/node_modules/safe-buffer
+1399 silly ADD node_modules/openclaw/node_modules/statuses
+1400 silly ADD node_modules/openclaw/node_modules/standardwebhooks
+1401 silly ADD node_modules/openclaw/node_modules/sqlite-vec-windows-x64
+1402 silly ADD node_modules/openclaw/node_modules/sqlite-vec-linux-x64
+1403 silly ADD node_modules/openclaw/node_modules/sqlite-vec-linux-arm64
+1404 silly ADD node_modules/openclaw/node_modules/sqlite-vec-darwin-x64
+1405 silly ADD node_modules/openclaw/node_modules/sqlite-vec-darwin-arm64
+1406 silly ADD node_modules/openclaw/node_modules/sqlite-vec
+1407 silly ADD node_modules/openclaw/node_modules/source-map-support
+1408 silly ADD node_modules/openclaw/node_modules/source-map
+1409 silly ADD node_modules/openclaw/node_modules/sisteransi
+1410 silly ADD node_modules/openclaw/node_modules/signal-exit
+1411 silly ADD node_modules/openclaw/node_modules/side-channel-weakmap
+1412 silly ADD node_modules/openclaw/node_modules/side-channel-map
+1413 silly ADD node_modules/openclaw/node_modules/side-channel-list
+1414 silly ADD node_modules/openclaw/node_modules/side-channel
+1415 silly ADD node_modules/openclaw/node_modules/shebang-regex
+1416 silly ADD node_modules/openclaw/node_modules/shebang-command
+1417 silly ADD node_modules/openclaw/node_modules/setprototypeof
+1418 silly ADD node_modules/openclaw/node_modules/setimmediate
+1419 silly ADD node_modules/openclaw/node_modules/set-blocking
+1420 silly ADD node_modules/openclaw/node_modules/serve-static
+1421 silly ADD node_modules/openclaw/node_modules/send
+1422 silly ADD node_modules/openclaw/node_modules/safer-buffer
+1423 silly ADD node_modules/openclaw/node_modules/safe-buffer
+1424 silly ADD node_modules/openclaw/node_modules/router
+1425 silly ADD node_modules/openclaw/node_modules/retry
+1426 silly ADD node_modules/openclaw/node_modules/require-main-filename
+1427 silly ADD node_modules/openclaw/node_modules/require-from-string
+1428 silly ADD node_modules/openclaw/node_modules/require-directory
+1429 silly ADD node_modules/openclaw/node_modules/readdirp
+1430 silly ADD node_modules/openclaw/node_modules/readable-stream
+1431 silly ADD node_modules/openclaw/node_modules/readable-stream/node_modules/safe-buffer
+1432 silly ADD node_modules/openclaw/node_modules/raw-body
+1433 silly ADD node_modules/openclaw/node_modules/rastermill
+1434 silly ADD node_modules/openclaw/node_modules/range-parser
+1435 silly ADD node_modules/openclaw/node_modules/quickjs-wasi
+1436 silly ADD node_modules/openclaw/node_modules/qs
+1437 silly ADD node_modules/openclaw/node_modules/qrcode
+1438 silly ADD node_modules/openclaw/node_modules/qrcode/node_modules/yargs-parser
+1439 silly ADD node_modules/openclaw/node_modules/qrcode/node_modules/yargs
+1440 silly ADD node_modules/openclaw/node_modules/qrcode/node_modules/y18n
+1441 silly ADD node_modules/openclaw/node_modules/qrcode/node_modules/wrap-ansi
+1442 silly ADD node_modules/openclaw/node_modules/qrcode/node_modules/cliui
+1443 silly ADD node_modules/openclaw/node_modules/proxy-addr
+1444 silly ADD node_modules/openclaw/node_modules/protobufjs
+1445 silly ADD node_modules/openclaw/node_modules/proper-lockfile
+1446 silly ADD node_modules/openclaw/node_modules/proper-lockfile/node_modules/retry
+1447 silly ADD node_modules/openclaw/node_modules/process-nextick-args
+1448 silly ADD node_modules/openclaw/node_modules/pngjs
+1449 silly ADD node_modules/openclaw/node_modules/playwright-core
+1450 silly ADD node_modules/openclaw/node_modules/pkce-challenge
+1451 silly ADD node_modules/openclaw/node_modules/path-to-regexp
+1452 silly ADD node_modules/openclaw/node_modules/path-scurry
+1453 silly ADD node_modules/openclaw/node_modules/path-key
+1454 silly ADD node_modules/openclaw/node_modules/path-exists
+1455 silly ADD node_modules/openclaw/node_modules/partial-json
+1456 silly ADD node_modules/openclaw/node_modules/parseurl
+1457 silly ADD node_modules/openclaw/node_modules/pako
+1458 silly ADD node_modules/openclaw/node_modules/p-try
+1459 silly ADD node_modules/openclaw/node_modules/p-retry
+1460 silly ADD node_modules/openclaw/node_modules/p-locate
+1461 silly ADD node_modules/openclaw/node_modules/p-limit
+1462 silly ADD node_modules/openclaw/node_modules/openai
+1463 silly ADD node_modules/openclaw/node_modules/once
+1464 silly ADD node_modules/openclaw/node_modules/on-finished
+1465 silly ADD node_modules/openclaw/node_modules/object-inspect
+1466 silly ADD node_modules/openclaw/node_modules/object-assign
+1467 silly ADD node_modules/openclaw/node_modules/nth-check
+1468 silly ADD node_modules/openclaw/node_modules/node-gyp-build
+1469 silly ADD node_modules/openclaw/node_modules/node-fetch
+1470 silly ADD node_modules/openclaw/node_modules/node-edge-tts
+1471 silly ADD node_modules/openclaw/node_modules/node-domexception
+1472 silly ADD node_modules/openclaw/node_modules/node-addon-api
+1473 silly ADD node_modules/openclaw/node_modules/negotiator
+1474 silly ADD node_modules/openclaw/node_modules/ms
+1475 silly ADD node_modules/openclaw/node_modules/minizlib
+1476 silly ADD node_modules/openclaw/node_modules/minipass
+1477 silly ADD node_modules/openclaw/node_modules/minimist
+1478 silly ADD node_modules/openclaw/node_modules/minimatch
+1479 silly ADD node_modules/openclaw/node_modules/minimalistic-assert
+1480 silly ADD node_modules/openclaw/node_modules/mime-types
+1481 silly ADD node_modules/openclaw/node_modules/mime-db
+1482 silly ADD node_modules/openclaw/node_modules/merge-descriptors
+1483 silly ADD node_modules/openclaw/node_modules/media-typer
+1484 silly ADD node_modules/openclaw/node_modules/math-intrinsics
+1485 silly ADD node_modules/openclaw/node_modules/marked
+1486 silly ADD node_modules/openclaw/node_modules/lru-cache
+1487 silly ADD node_modules/openclaw/node_modules/long
+1488 silly ADD node_modules/openclaw/node_modules/locate-path
+1489 silly ADD node_modules/openclaw/node_modules/linkedom
+1490 silly ADD node_modules/openclaw/node_modules/lie
+1491 silly ADD node_modules/openclaw/node_modules/kysely
+1492 silly ADD node_modules/openclaw/node_modules/jws
+1493 silly ADD node_modules/openclaw/node_modules/jwa
+1494 silly ADD node_modules/openclaw/node_modules/jszip
+1495 silly ADD node_modules/openclaw/node_modules/json5
+1496 silly ADD node_modules/openclaw/node_modules/json-schema-typed
+1497 silly ADD node_modules/openclaw/node_modules/json-schema-traverse
+1498 silly ADD node_modules/openclaw/node_modules/json-schema-to-ts
+1499 silly ADD node_modules/openclaw/node_modules/json-bigint
+1500 silly ADD node_modules/openclaw/node_modules/jose
+1501 silly ADD node_modules/openclaw/node_modules/jiti
+1502 silly ADD node_modules/openclaw/node_modules/isexe
+1503 silly ADD node_modules/openclaw/node_modules/isarray
+1504 silly ADD node_modules/openclaw/node_modules/is-promise
+1505 silly ADD node_modules/openclaw/node_modules/is-fullwidth-code-point
+1506 silly ADD node_modules/openclaw/node_modules/ipaddr.js
+1507 silly ADD node_modules/openclaw/node_modules/ip-address
+1508 silly ADD node_modules/openclaw/node_modules/inherits
+1509 silly ADD node_modules/openclaw/node_modules/immediate
+1510 silly ADD node_modules/openclaw/node_modules/ignore
+1511 silly ADD node_modules/openclaw/node_modules/ieee754
+1512 silly ADD node_modules/openclaw/node_modules/iconv-lite
+1513 silly ADD node_modules/openclaw/node_modules/https-proxy-agent
+1514 silly ADD node_modules/openclaw/node_modules/http-errors
+1515 silly ADD node_modules/openclaw/node_modules/http_ece
+1516 silly ADD node_modules/openclaw/node_modules/htmlparser2
+1517 silly ADD node_modules/openclaw/node_modules/htmlparser2/node_modules/entities
+1518 silly ADD node_modules/openclaw/node_modules/html-escaper
+1519 silly ADD node_modules/openclaw/node_modules/hosted-git-info
+1520 silly ADD node_modules/openclaw/node_modules/hono
+1521 silly ADD node_modules/openclaw/node_modules/highlight.js
+1522 silly ADD node_modules/openclaw/node_modules/hasown
+1523 silly ADD node_modules/openclaw/node_modules/has-symbols
+1524 silly ADD node_modules/openclaw/node_modules/grammy
+1525 silly ADD node_modules/openclaw/node_modules/grammy/node_modules/node-fetch
+1526 silly ADD node_modules/openclaw/node_modules/graceful-fs
+1527 silly ADD node_modules/openclaw/node_modules/gopd
+1528 silly ADD node_modules/openclaw/node_modules/google-logging-utils
+1529 silly ADD node_modules/openclaw/node_modules/google-auth-library
+1530 silly ADD node_modules/openclaw/node_modules/glob
+1531 silly ADD node_modules/openclaw/node_modules/get-proto
+1532 silly ADD node_modules/openclaw/node_modules/get-intrinsic
+1533 silly ADD node_modules/openclaw/node_modules/get-east-asian-width
+1534 silly ADD node_modules/openclaw/node_modules/get-caller-file
+1535 silly ADD node_modules/openclaw/node_modules/gcp-metadata
+1536 silly ADD node_modules/openclaw/node_modules/gaxios
+1537 silly ADD node_modules/openclaw/node_modules/function-bind
+1538 silly ADD node_modules/openclaw/node_modules/fresh
+1539 silly ADD node_modules/openclaw/node_modules/forwarded
+1540 silly ADD node_modules/openclaw/node_modules/formdata-polyfill
+1541 silly ADD node_modules/openclaw/node_modules/find-up
+1542 silly ADD node_modules/openclaw/node_modules/finalhandler
+1543 silly ADD node_modules/openclaw/node_modules/file-type
+1544 silly ADD node_modules/openclaw/node_modules/fetch-blob
+1545 silly ADD node_modules/openclaw/node_modules/fast-wrap-ansi
+1546 silly ADD node_modules/openclaw/node_modules/fast-uri
+1547 silly ADD node_modules/openclaw/node_modules/fast-string-width
+1548 silly ADD node_modules/openclaw/node_modules/fast-string-truncated-width
+1549 silly ADD node_modules/openclaw/node_modules/fast-sha256
+1550 silly ADD node_modules/openclaw/node_modules/fast-deep-equal
+1551 silly ADD node_modules/openclaw/node_modules/extend
+1552 silly ADD node_modules/openclaw/node_modules/express-rate-limit
+1553 silly ADD node_modules/openclaw/node_modules/express
+1554 silly ADD node_modules/openclaw/node_modules/eventsource-parser
+1555 silly ADD node_modules/openclaw/node_modules/eventsource
+1556 silly ADD node_modules/openclaw/node_modules/event-target-shim
+1557 silly ADD node_modules/openclaw/node_modules/etag
+1558 silly ADD node_modules/openclaw/node_modules/escape-html
+1559 silly ADD node_modules/openclaw/node_modules/escalade
+1560 silly ADD node_modules/openclaw/node_modules/es-object-atoms
+1561 silly ADD node_modules/openclaw/node_modules/es-errors
+1562 silly ADD node_modules/openclaw/node_modules/es-define-property
+1563 silly ADD node_modules/openclaw/node_modules/entities
+1564 silly ADD node_modules/openclaw/node_modules/encodeurl
+1565 silly ADD node_modules/openclaw/node_modules/emoji-regex
+1566 silly ADD node_modules/openclaw/node_modules/ee-first
+1567 silly ADD node_modules/openclaw/node_modules/ecdsa-sig-formatter
+1568 silly ADD node_modules/openclaw/node_modules/dunder-proto
+1569 silly ADD node_modules/openclaw/node_modules/dotenv
+1570 silly ADD node_modules/openclaw/node_modules/domutils
+1571 silly ADD node_modules/openclaw/node_modules/domhandler
+1572 silly ADD node_modules/openclaw/node_modules/domelementtype
+1573 silly ADD node_modules/openclaw/node_modules/dom-serializer
+1574 silly ADD node_modules/openclaw/node_modules/dijkstrajs
+1575 silly ADD node_modules/openclaw/node_modules/diff
+1576 silly ADD node_modules/openclaw/node_modules/depd
+1577 silly ADD node_modules/openclaw/node_modules/decamelize
+1578 silly ADD node_modules/openclaw/node_modules/debug
+1579 silly ADD node_modules/openclaw/node_modules/data-uri-to-buffer
+1580 silly ADD node_modules/openclaw/node_modules/cssom
+1581 silly ADD node_modules/openclaw/node_modules/css-what
+1582 silly ADD node_modules/openclaw/node_modules/css-select
+1583 silly ADD node_modules/openclaw/node_modules/cross-spawn
+1584 silly ADD node_modules/openclaw/node_modules/croner
+1585 silly ADD node_modules/openclaw/node_modules/cors
+1586 silly ADD node_modules/openclaw/node_modules/core-util-is
+1587 silly ADD node_modules/openclaw/node_modules/cookie-signature
+1588 silly ADD node_modules/openclaw/node_modules/cookie
+1589 silly ADD node_modules/openclaw/node_modules/content-type
+1590 silly ADD node_modules/openclaw/node_modules/content-disposition
+1591 silly ADD node_modules/openclaw/node_modules/commander
+1592 silly ADD node_modules/openclaw/node_modules/color-name
+1593 silly ADD node_modules/openclaw/node_modules/color-convert
+1594 silly ADD node_modules/openclaw/node_modules/cliui
+1595 silly ADD node_modules/openclaw/node_modules/clawpdf
+1596 silly ADD node_modules/openclaw/node_modules/chownr
+1597 silly ADD node_modules/openclaw/node_modules/chokidar
+1598 silly ADD node_modules/openclaw/node_modules/chalk
+1599 silly ADD node_modules/openclaw/node_modules/camelcase
+1600 silly ADD node_modules/openclaw/node_modules/call-bound
+1601 silly ADD node_modules/openclaw/node_modules/call-bind-apply-helpers
+1602 silly ADD node_modules/openclaw/node_modules/bytes
+1603 silly ADD node_modules/openclaw/node_modules/buffer-from
+1604 silly ADD node_modules/openclaw/node_modules/buffer-equal-constant-time
+1605 silly ADD node_modules/openclaw/node_modules/brace-expansion
+1606 silly ADD node_modules/openclaw/node_modules/bottleneck
+1607 silly ADD node_modules/openclaw/node_modules/boolbase
+1608 silly ADD node_modules/openclaw/node_modules/body-parser
+1609 silly ADD node_modules/openclaw/node_modules/bn.js
+1610 silly ADD node_modules/openclaw/node_modules/bignumber.js
+1611 silly ADD node_modules/openclaw/node_modules/base64-js
+1612 silly ADD node_modules/openclaw/node_modules/balanced-match
+1613 silly ADD node_modules/openclaw/node_modules/asn1.js
+1614 silly ADD node_modules/openclaw/node_modules/ansi-styles
+1615 silly ADD node_modules/openclaw/node_modules/ansi-regex
+1616 silly ADD node_modules/openclaw/node_modules/ajv-formats
+1617 silly ADD node_modules/openclaw/node_modules/ajv
+1618 silly ADD node_modules/openclaw/node_modules/agent-base
+1619 silly ADD node_modules/openclaw/node_modules/accepts
+1620 silly ADD node_modules/openclaw/node_modules/abort-controller
+1621 silly ADD node_modules/openclaw/node_modules/@types/retry
+1622 silly ADD node_modules/openclaw/node_modules/@tokenizer/token
+1623 silly ADD node_modules/openclaw/node_modules/@tokenizer/inflate
+1624 silly ADD node_modules/openclaw/node_modules/@stablelib/base64
+1625 silly ADD node_modules/openclaw/node_modules/@silvia-odwyer/photon-node
+1626 silly ADD node_modules/openclaw/node_modules/@openclaw/proxyline
+1627 silly ADD node_modules/openclaw/node_modules/@openclaw/fs-safe
+1628 silly ADD node_modules/openclaw/node_modules/@mozilla/readability
+1629 silly ADD node_modules/openclaw/node_modules/@modelcontextprotocol/sdk
+1630 silly ADD node_modules/openclaw/node_modules/@mistralai/mistralai
+1631 silly ADD node_modules/openclaw/node_modules/@lydell/node-pty-win32-x64
+1632 silly ADD node_modules/openclaw/node_modules/@lydell/node-pty-win32-arm64
+1633 silly ADD node_modules/openclaw/node_modules/@lydell/node-pty-linux-x64
+1634 silly ADD node_modules/openclaw/node_modules/@lydell/node-pty-linux-arm64
+1635 silly ADD node_modules/openclaw/node_modules/@lydell/node-pty-darwin-x64
+1636 silly ADD node_modules/openclaw/node_modules/@lydell/node-pty-darwin-arm64
+1637 silly ADD node_modules/openclaw/node_modules/@lydell/node-pty
+1638 silly ADD node_modules/openclaw/node_modules/@isaacs/fs-minipass
+1639 silly ADD node_modules/openclaw/node_modules/@hono/node-server
+1640 silly ADD node_modules/openclaw/node_modules/@homebridge/ciao
+1641 silly ADD node_modules/openclaw/node_modules/@grammyjs/types
+1642 silly ADD node_modules/openclaw/node_modules/@grammyjs/transformer-throttler
+1643 silly ADD node_modules/openclaw/node_modules/@grammyjs/runner
+1644 silly ADD node_modules/openclaw/node_modules/@google/genai
+1645 silly ADD node_modules/openclaw/node_modules/@earendil-works/pi-tui
+1646 silly ADD node_modules/openclaw/node_modules/@clack/prompts
+1647 silly ADD node_modules/openclaw/node_modules/@clack/core
+1648 silly ADD node_modules/openclaw/node_modules/@borewit/text-codec
+1649 silly ADD node_modules/openclaw/node_modules/@babel/runtime
+1650 silly ADD node_modules/openclaw/node_modules/@anthropic-ai/sdk
+1651 silly ADD node_modules/openclaw/node_modules/@agentclientprotocol/sdk
+1652 silly ADD node_modules/node-fetch
+1653 verbose cwd /home/sandbox/.openclaw/extensions/.openclaw-install-stage-4skCUN
+1654 verbose os Linux 5.10.0-182.0.0.95.r3353_274.hce2.aarch64
+1655 verbose node v24.15.0
+1656 verbose npm  v11.12.1
+1657 verbose exit 0
+1658 info ok

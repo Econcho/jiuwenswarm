@@ -1,0 +1,25 @@
+{
+  "description": "Command approval rules",
+  "rules": [
+    {
+      "pattern": "rm\\s+-rf\\s+/boot(?:$|[\\s/])",
+      "severity": "critical"
+    },
+    {
+      "pattern": "rm\\s+-rf\\s+/sys(?:$|[\\s/])",
+      "severity": "critical"
+    },
+    {
+      "pattern": "rm\\s+-rf\\s+/proc(?:$|[\\s/])",
+      "severity": "critical"
+    },
+    {
+      "pattern": "rm\\s+-rf\\s+/dev(?:$|[\\s/])",
+      "severity": "critical"
+    },
+    {
+      "pattern": "chmod.*777",
+      "severity": "warning"
+    }
+  ]
+}

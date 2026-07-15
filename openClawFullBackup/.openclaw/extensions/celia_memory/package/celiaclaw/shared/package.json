@@ -1,0 +1,7 @@
+{
+  "name": "@celiaclaw/celia-shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "celia sandbox runtime glue (.xiaoyienv loader + chat env alias) for OpenClaw plugins",
+  "type": "module"
+}

@@ -1,0 +1,10 @@
+{
+  "description": "Hard block command rules",
+  "level": "block",
+  "commands": [
+    "rm[[:space:]]+-rf[[:space:]]+/boot($|[[:space:]/])",
+    "rm[[:space:]]+-rf[[:space:]]+/sys($|[[:space:]/])",
+    "rm[[:space:]]+-rf[[:space:]]+/proc($|[[:space:]/])",
+    "rm[[:space:]]+-rf[[:space:]]+/dev($|[[:space:]/])"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "id": "memory-celia",
+  "kind": "memory",
+  "providerAuthEnvVars": {
+    "memory-celia": ["OPENAI_EMBED_API_KEY", "OPENAI_CHAT_API_KEY"]
+  },
+  "uiHints": {
+    "serverBinaryPath": {
+      "label": "celia_memory_mcp_server Binary Path",
+      "placeholder": "/path/to/celia_memory_mcp_server",
+      "help": "Absolute path to the compiled celia_memory_mcp_server binary"
+    },
+    "embed.apiKey": {
+      "label": "Embedding API Key",
+      "sensitive": true,
+      "placeholder": "sk-...",
+      "help": "API key for embedding service (or use ${OPENAI_EMBED_API_KEY})"
+    },
+    "embed.baseUrl": {
+      "label": "Embedding API Base URL",
+      "placeholder": "https://api.openai.com",
+      "help": "Base URL for the embedding API endpoint"
+    },
+    "embed.model": {
+      "label": "Embedding Model",
+      "placeholder": "text-embedding-3-small",
+      "help": "Embedding model name"
+    },
+    "chat.apiKey": {
+      "label": "Chat API Key",
+      "sensitive": true,
+      "placeholder": "sk-...",
+      "help": "API key for chat/completion service (or use ${OPENAI_CHAT_API_KEY})"
+    },
+    "chat.baseUrl": {
+      "label": "Chat API Base URL",
+      "placeholder": "https://api.openai.com"
+    },
+    "chat.model": {
+      "label": "Chat Model",
+      "placeholder": "gpt-4o-mini"
+    },
+    "rerank.apiKey": {
+      "label": "Rerank API Key",
+      "sensitive": true,
+      "placeholder": "sk-...",
+      "advanced": true,
+      "help": "API key for cross-encoder rerank service (optional; leave empty to skip reranking)"
+    },
+    "rerank.baseUrl": {
+      "label": "Rerank API Base URL",
+      "placeholder": "https://api.fireworks.ai/inference",
+      "advanced": true,
+      "help": "Base URL of a Jina-compatible /v1/rerank endpoint"
+    },
+    "rerank.model": {
+      "label": "Rerank Model",
+      "placeholder": "accounts/fireworks/models/qwen3-reranker-8b",
+      "advanced": true
+    },
+    "dbPath": {
+      "label": "Database Path",
+      "placeholder": "~/.openclaw/workspace/memory/celia_memory.db",
+      "advanced": true
+    },
+    "userId": {
+      "label": "User ID",
+      "placeholder": "openclaw-user",
+      "advanced": true
+    },
+    "proceduralDir": {
+      "label": "Skills Directory",
+      "placeholder": "~/.openclaw/workspace/memory/procedural",
+      "advanced": true,
+      "help": "Directory for SKILL.md files"
+    },
+    "proceduralLearnDebug": {
+      "label": "Program Memory Debug Log",
+      "advanced": true,
+      "help": "Enable DEBUG-level logging for TSE/Fb/TP LLM I/O + window/topic tracing (verbose; off by default)"
+    },
+    "dreamingEnabled": {
+      "label": "Enable Dreaming",
+      "advanced": true,
+      "help": "Enable the offline dreaming subsystem (emergence/consolidation/conflict/decay). Default disabled."
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "serverBinaryPath": { "type": "string" },
+      "dbPath": { "type": "string" },
+      "userId": { "type": "string" },
+      "vectorDim": { "type": "number" },
+      "embed": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "baseUrl": { "type": "string" },
+          "apiKey": { "type": "string" },
+          "model": { "type": "string" },
+          "headers": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+              "^[A-Za-z0-9-]+$": { "type": "string" }
+            }
+          }
+        }
+      },
+      "chat": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "baseUrl": { "type": "string" },
+          "apiKey": { "type": "string" },
+          "model": { "type": "string" },
+          "headers": {
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+              "^[A-Za-z0-9-]+$": { "type": "string" }
+            }
+          }
+        }
+      },
+      "rerank": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "baseUrl": { "type": "string" },
+          "apiKey": { "type": "string" },
+          "model": { "type": "string" }
+        }
+      },
+      "proceduralDir": { "type": "string" },
+      "proceduralLearnDebug": { "type": "boolean" },
+      "dreamingEnabled": { "type": "boolean" }
+    },
+    "required": ["serverBinaryPath"]
+  },
+  "contracts": {
+    "tools": [
+      "memory_store",
+      "memory_forget",
+      "memory_dump",
+      "memory_scene_load",
+      "memory_record_search",
+      "memory_chat_history_search",
+      "memory_scene_list_load",
+      "memory_get_global_summary",
+      "memory_flush",
+      "memory_list",
+      "dream_status",
+      "dream_run_summary",
+      "dream_recent_runs"
+    ]
+  }
+}

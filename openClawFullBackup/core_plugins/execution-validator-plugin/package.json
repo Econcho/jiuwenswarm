@@ -1,0 +1,17 @@
+{
+  "name": "execution-validator-plugin",
+  "version": "0.1.0",
+  "description": "OpenClaw plugin for dangerous command validation with native tool approvals.",
+  "type": "module",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "openclaw.plugin.json",
+    "config"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+schema_version = 1
+
+name           = "mem-list"
+kind           = "runtime"
+ship_in        = ["openclaw", "celiaclaw"]
+entry          = "bash mem-list.sh"
+version        = "1.0.0"
+
+description_zh = "通过 stdio 直接调 `celia_memory_mcp_server`，列出当前库里的四层语义化记忆条目（全局概览 / 场景记忆 / 原子事实，可按用户过滤）。"
+description_en = "Talks to `celia_memory_mcp_server` over stdio to list four semantic memory layers from the current database (global overview / scene memory / atomic facts, filterable by user)."
+
+exclude_paths = []

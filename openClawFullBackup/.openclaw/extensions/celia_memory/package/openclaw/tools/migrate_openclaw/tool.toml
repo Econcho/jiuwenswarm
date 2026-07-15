@@ -1,0 +1,13 @@
+schema_version = 1
+
+name           = "migrate_openclaw"
+kind           = "runtime"
+ship_in        = ["openclaw", "celiaclaw"]
+entry          = "python3 -m migrate_openclaw.migrate"
+version        = "1.0.0"
+
+description_zh = "把 OpenClaw 历史长期记忆（USER.md / Memory.md）通过 MCP 接口迁移到 Celia。"
+description_en = "Migrate OpenClaw legacy long-term memory (USER.md / Memory.md) into Celia via the MCP interface."
+
+# Paths excluded when this tool is staged into a release tarball.
+exclude_paths = ["tests/", "__pycache__/", "*.pyc", ".pytest_cache/"]

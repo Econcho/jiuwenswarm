@@ -1,0 +1,47 @@
+{
+  "id": "execution-validator-plugin",
+  "name": "Execution Validator Plugin",
+  "description": "Validates dangerous exec-like commands and requests native approvals when they match safety rules.",
+  "entry": "index.js",
+  "activation":{
+    "onCapabilities":["hook"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enabledTools": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "execTools": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "commandParamNames": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "validatorRoot": {
+        "type": "string"
+      },
+      "confirmTtlMs": {
+        "type": "number"
+      },
+      "logAllowedCalls": {
+        "type": "boolean"
+      }
+    }
+  },
+  "uiHints": {
+    "validatorRoot": {
+      "label": "Validator root"
+    }
+  }
+}

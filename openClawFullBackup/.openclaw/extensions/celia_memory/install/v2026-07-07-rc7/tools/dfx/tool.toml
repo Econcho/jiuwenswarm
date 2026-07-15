@@ -1,0 +1,12 @@
+schema_version = 1
+
+name           = "dfx"
+kind           = "runtime"
+ship_in        = ["openclaw", "celiaclaw"]
+entry          = "python3 parse_token_logs.py"
+version        = "1.0.0"
+
+description_zh = "解析 Celia Memory 引擎日志中的 [DFX] 事件，关联 LLM_CALL 与 TOOL/TASK 上下文，输出 SQLite 分析表（前台/后台 LLM 调用 + 轮次汇总）。"
+description_en = "Parse [DFX] events from Celia Memory engine logs, correlate LLM_CALL with TOOL/TASK context, and emit SQLite analysis tables (foreground/background LLM calls + round summaries)."
+
+exclude_paths = ["__pycache__/", "*.pyc"]
