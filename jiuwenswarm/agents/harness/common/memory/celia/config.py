@@ -382,6 +382,35 @@ def build_celia_config(
         dream_value = "off"
     elif dream_value != "inherit":
         dream_value = "inherit"
+
+    resolved_embed = _endpoint(
+        embed_section,
+        fallback=embed_fallback,
+        env_prefix="EMBED",
+        uid_env="CELIA_EMBED_UID",
+    )
+    resolved_chat = _endpoint(
+        chat_section,
+        fallback=chat_fallback,
+        env_prefix="CHAT",
+        uid_env="CELIA_CHAT_UID",
+    )
+    resolved_rerank = _endpoint(rerank_section, env_prefix="RERANK")
+    missing_model_fields: list[str] = []
+    for prefix, endpoint in (("CHAT", resolved_chat), ("EMBED", resolved_embed)):
+        if not endpoint.base_url:
+            missing_model_fields.append(f"OPENAI_{prefix}_BASE_URL")
+        if not endpoint.api_key:
+            missing_model_fields.append(f"OPENAI_{prefix}_API_KEY")
+        if not endpoint.model:
+            missing_model_fields.append(f"OPENAI_{prefix}_MODEL")
+    if missing_model_fields:
+        logger.warning(
+            "[CeliaMemoryConfig] chat/embed endpoint incomplete; missing=%s; "
+            "memory_store remains available, but extraction or vector retrieval may be disabled",
+            ", ".join(missing_model_fields),
+        )
+
     return CeliaConfig(
         server_binary_path=_first(
             section.get("server_binary_path"),
@@ -400,14 +429,9 @@ def build_celia_config(
         user_id=_first(ext_cfg.get("user_id"), os.getenv("MEMORY_USER_ID"), "openclaw-user"),
         scope_id=_first(ext_cfg.get("scope_id"), "user"),
         vector_dim=_integer(_first(section.get("vector_dim"), os.getenv("CELIA_VECTOR_DIM"))),
-        embed=_endpoint(embed_section, fallback=embed_fallback, env_prefix="EMBED", uid_env="CELIA_EMBED_UID"),
-        chat=_endpoint(
-            chat_section,
-            fallback=chat_fallback,
-            env_prefix="CHAT",
-            uid_env="CELIA_CHAT_UID",
-        ),
-        rerank=_endpoint(rerank_section, env_prefix="RERANK"),
+        embed=resolved_embed,
+        chat=resolved_chat,
+        rerank=resolved_rerank,
         dedup_policy=_mapping(section.get("dedup_policy")),
         workspace_dir=str(resolved_workspace.absolute()),
         procedural_dir=_first(section.get("procedural_dir"), os.getenv("CELIA_PROCEDURAL_DIR")),

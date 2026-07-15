@@ -89,7 +89,7 @@ class CeliaMemoryRail(DeepAgentRail):
             self._initialized = True
             self._register_provider_tools(agent)
         except Exception:
-            logger.warning("[CeliaMemoryRail] prewarm failed", exc_info=True)
+            logger.warning("[CeliaMemoryRail] prewarm failed; provider diagnostics contain the cause")
 
     def uninit(self, agent) -> None:
         if self._prewarm_task and not self._prewarm_task.done():
@@ -151,7 +151,9 @@ class CeliaMemoryRail(DeepAgentRail):
                 )
                 self._initialized = True
             except Exception:
-                logger.warning("[CeliaMemoryRail] provider initialize failed", exc_info=True)
+                logger.warning(
+                    "[CeliaMemoryRail] provider initialize failed; provider diagnostics contain the cause"
+                )
         if self._initialized and self._agent is not None:
             self._register_provider_tools(self._agent)
 
@@ -191,7 +193,7 @@ class CeliaMemoryRail(DeepAgentRail):
             elif not raw_context:
                 await self._clear_attachment(ctx)
         except Exception:
-            logger.warning("[CeliaMemoryRail] prefetch failed", exc_info=True)
+            logger.warning("[CeliaMemoryRail] prefetch failed; provider diagnostics contain the cause")
             await self._clear_attachment(ctx)
 
     async def after_model_call(self, ctx) -> None:
@@ -245,7 +247,12 @@ class CeliaMemoryRail(DeepAgentRail):
         self._events.append({"role": "tool", "name": str(name), "content": "tool failed", "success": False})
 
     async def after_invoke(self, ctx) -> None:
-        if not self._initialized or self._is_background_run(ctx):
+        if self._is_background_run(ctx):
+            return
+        if not self._initialized:
+            logger.warning(
+                "[CeliaMemoryRail] turn sync skipped: provider is not initialized"
+            )
             return
         if time.monotonic() < self._sync_breaker_until:
             return
@@ -275,7 +282,7 @@ class CeliaMemoryRail(DeepAgentRail):
                 self._sync_failures += 1
                 if self._sync_failures >= self._SYNC_FAILURE_THRESHOLD:
                     self._sync_breaker_until = time.monotonic() + self._SYNC_BREAKER_COOLDOWN
-                logger.warning("[CeliaMemoryRail] sync_turn failed", exc_info=True)
+                logger.warning("[CeliaMemoryRail] sync_turn failed; provider diagnostics contain the cause")
 
         self._sync_task = asyncio.create_task(_sync(), name="celia-memory-sync")
         try:
@@ -300,7 +307,9 @@ class CeliaMemoryRail(DeepAgentRail):
                 fixed_load_tokens=self._fixed_load_tokens,
             )
         except Exception:
-            logger.warning("[CeliaMemoryRail] round usage report failed", exc_info=True)
+            logger.warning(
+                "[CeliaMemoryRail] round usage report failed; provider diagnostics contain the cause"
+            )
 
     def _register_provider_tools(self, agent) -> None:
         manager = getattr(agent, "ability_manager", None)

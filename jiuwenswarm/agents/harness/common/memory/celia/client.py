@@ -6,6 +6,7 @@ import asyncio
 import json
 import logging
 import os
+import re
 import signal
 import time
 from collections.abc import Awaitable, Callable
@@ -31,6 +32,23 @@ def _decode_text(value: str) -> object:
         except json.JSONDecodeError:
             break
     return decoded
+
+
+def _redact_diagnostic(value: str) -> str:
+    """Redact common credential forms before writing subprocess diagnostics."""
+    return re.sub(
+        r"(?i)(api[_-]?key|authorization|token|secret|password)(\s*[:=]\s*)"
+        r"(?:bearer\s+)?(?:\"[^\"]*\"|'[^']*'|\S+)",
+        r"\1\2<redacted>",
+        value[:4000],
+    )
+
+
+def _request_session_id(params: dict[str, Any]) -> str:
+    arguments = params.get("arguments") if isinstance(params, dict) else None
+    if isinstance(arguments, dict):
+        return str(arguments.get("sessionId") or arguments.get("session_id") or "")[:200]
+    return ""
 
 
 class CeliaMcpClient:
@@ -168,6 +186,14 @@ class CeliaMcpClient:
             timeout=timeout,
         )
         if isinstance(result, dict) and result.get("isError"):
+            session_id = augmented.get("sessionId") or augmented.get("session_id") or ""
+            logger.warning(
+                "[CeliaMcpClient] MCP tool returned isError: method=tools/call "
+                "tool=%s sessionId=%s db=%s",
+                name,
+                str(session_id)[:200],
+                self.config.normalized_db_path,
+            )
             raise CeliaMcpError(f"Celia tool failed: {name}")
         if not isinstance(result, dict):
             return result
@@ -227,12 +253,30 @@ class CeliaMcpClient:
             return await asyncio.wait_for(asyncio.shield(future), timeout=timeout)
         except asyncio.TimeoutError as exc:
             self._pending.pop(request_id, None)
+            logger.warning(
+                "[CeliaMcpClient] MCP request timed out: method=%s request_id=%s "
+                "sessionId=%s db=%s",
+                method,
+                request_id,
+                _request_session_id(params),
+                self.config.normalized_db_path,
+            )
             raise CeliaMcpTimeout(f"Celia MCP request timed out: {method}") from exc
         except asyncio.CancelledError:
             self._pending.pop(request_id, None)
             raise
-        except Exception:
+        except Exception as exc:
             self._pending.pop(request_id, None)
+            logger.warning(
+                "[CeliaMcpClient] MCP request failed: method=%s request_id=%s "
+                "exception=%s message=%s sessionId=%s db=%s",
+                method,
+                request_id,
+                type(exc).__name__,
+                _redact_diagnostic(str(exc)),
+                _request_session_id(params),
+                self.config.normalized_db_path,
+            )
             raise
 
     async def _write(self, payload: dict[str, Any], generation: int) -> None:
@@ -269,6 +313,11 @@ class CeliaMcpClient:
                 if future is None or future.done():
                     continue
                 if payload.get("error"):
+                    logger.warning(
+                        "[CeliaMcpClient] MCP JSON-RPC error: request_id=%s db=%s",
+                        request_id,
+                        self.config.normalized_db_path,
+                    )
                     future.set_exception(CeliaMcpError(f"Celia MCP error for id={request_id}"))
                 else:
                     future.set_result(payload.get("result"))
@@ -289,15 +338,11 @@ class CeliaMcpClient:
                 if not line:
                     break
                 text = line.decode("utf-8", errors="replace").strip()
-                # Keep diagnostics useful while redacting common credential forms.
-                import re
-
-                text = re.sub(
-                    r"(?i)(api[_-]?key|authorization|token|secret|password)(\s*[:=]\s*)\S+",
-                    r"\1\2<redacted>",
-                    text,
+                logger.warning(
+                    "[CeliaMcpClient][stderr][%s] %s",
+                    generation,
+                    _redact_diagnostic(text),
                 )
-                logger.warning("[CeliaMcpClient][stderr][%s] %s", generation, text[:4000])
         except asyncio.CancelledError:
             return
 
@@ -311,6 +356,12 @@ class CeliaMcpClient:
         returncode = await process.wait()
         self._process = None
         self._ready.clear()
+        logger.error(
+            "[CeliaMcpClient] Celia MCP process exited: code=%s binary=%s db=%s",
+            returncode,
+            self.config.normalized_binary_path,
+            self.config.normalized_db_path,
+        )
         self._reject_pending(CeliaUnavailable(f"Celia MCP exited with code {returncode}"))
         for callback in list(self._restart_callbacks):
             try:

@@ -15,9 +15,16 @@ from jiuwenswarm.agents.harness.common.memory.celia.config import (
     CeliaConfig,
     CeliaEndpointConfig,
 )
-from jiuwenswarm.agents.harness.common.memory.celia.provider import CeliaMemoryProvider
+from jiuwenswarm.agents.harness.common.memory.celia.provider import (
+    CeliaMemoryProvider,
+    _error_payload,
+    _redact_diagnostic,
+)
 from jiuwenswarm.agents.harness.common.memory.celia.runtime_state import read_memory_state
-from jiuwenswarm.agents.harness.common.memory.celia.runtime_store import CeliaRuntimeStore
+from jiuwenswarm.agents.harness.common.memory.celia.runtime_store import (
+    CeliaRuntimeStore,
+    get_runtime_store,
+)
 from jiuwenswarm.agents.harness.common.memory.celia.sanitizer import clean_turn_events
 from jiuwenswarm.agents.harness.common.memory.celia.session import CeliaSessionManager
 from jiuwenswarm.agents.harness.common.memory.external_memory_config import get_external_memory_config
@@ -136,6 +143,11 @@ class _FakeSessions:
         return f"tools-{user_id}"
 
 
+class _FailingSessions:
+    async def ensure_tool_session(self, user_id):
+        raise RuntimeError("memory_open failed")
+
+
 @pytest.mark.asyncio
 async def test_session_manager_deduplicates_concurrent_memory_open():
     client = _FakeClient()
@@ -184,6 +196,42 @@ async def test_provider_maps_l2_and_urgent_memory_add(tmp_path):
 
 
 @pytest.mark.asyncio
+async def test_memory_store_is_local_and_does_not_require_mcp_session(tmp_path):
+    get_runtime_store().clear_all()
+    runtime = tmp_path / ".xiaoyiruntime"
+    runtime.write_text("MEMORYSTATE=false\n", encoding="utf-8")
+    provider = CeliaMemoryProvider(
+        replace(_config(), runtime_state_path=str(runtime)),
+        user_id="alice", scope_id="user", session_id="conversation-a",
+    )
+    provider._lease = SimpleNamespace(sessions=_FailingSessions())
+    result = json.loads(
+        await provider.handle_tool_call(
+            "memory_store", {"text": "I like traveling to the seaside"}
+        )
+    )
+
+    assert result == {
+        "ok": True,
+        "result": "Noted",
+        "status": "deferred-urgent",
+    }
+    context = provider._context({})
+    assert get_runtime_store().prompt_values(context.store_key) == [
+        "I like traveling to the seaside"
+    ]
+    assert get_runtime_store().consume_urgent(context.store_key) is True
+
+
+def test_provider_error_diagnostic_redacts_credentials():
+    result = json.loads(_error_payload("memory_open", RuntimeError("api_key=secret-value")))
+
+    assert result["error"] == "Celia memory operation failed"
+    assert _redact_diagnostic("api_key=secret-value") == "api_key=<redacted>"
+    assert _redact_diagnostic("authorization: bearer-value") == "authorization: <redacted>"
+
+
+@pytest.mark.asyncio
 async def test_provider_preserves_openclaw_memory_state_zero_write(tmp_path):
     runtime = tmp_path / ".xiaoyiruntime"
     runtime.write_text("MEMORYSTATE=false\n", encoding="utf-8")
@@ -197,9 +245,12 @@ async def test_provider_preserves_openclaw_memory_state_zero_write(tmp_path):
 
     disabled = await provider.handle_tool_call("memory_record_search", {"query": "where"})
     assert "memory_disabled" in disabled
+    noted = json.loads(await provider.handle_tool_call("memory_store", {"text": "keep this"}))
+    assert noted["result"] == "Noted"
     await provider.sync_turn("user question", "assistant answer")
     add_call = next(args for name, args in client.calls if name == "memory_add")
     assert add_call["memoryState"] == 0
+    assert add_call["ingestMode"] == "deferred-urgent"
 
 
 @pytest.mark.asyncio

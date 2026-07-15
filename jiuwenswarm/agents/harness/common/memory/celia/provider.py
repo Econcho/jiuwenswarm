@@ -50,13 +50,33 @@ def _items(value: Any) -> list[dict[str, Any]]:
     return []
 
 
-def _error_payload(tool_name: str, exc: Exception) -> str:
+def _error_payload(
+    tool_name: str,
+    exc: Exception,
+    *,
+    context: CeliaRuntimeContext | None = None,
+    db_path: str = "",
+) -> str:
+    message = _redact_diagnostic(str(exc))
     logger.warning(
-        "[CeliaMemoryProvider] tool '%s' failed: %s",
+        "[CeliaMemoryProvider] tool '%s' failed: method=tools/call exception=%s "
+        "message=%s sessionId=%s db=%s",
         tool_name,
         type(exc).__name__,
+        message,
+        context.tool_session_id if context is not None else "",
+        db_path,
     )
     return result_payload(None, ok=False, error="Celia memory operation failed", tool=tool_name)
+
+
+def _redact_diagnostic(value: str) -> str:
+    """Keep exception diagnostics useful without exposing credential values."""
+    return re.sub(
+        r"(?i)(api[_-]?key|authorization|token|secret|password)(\s*[:=]\s*)\S+",
+        r"\1\2<redacted>",
+        value[:2000],
+    )
 
 
 _TIME_EXPRESSION = re.compile(
@@ -109,22 +129,45 @@ class CeliaMemoryProvider(MemoryProvider):
     async def initialize(self, **kwargs: Any) -> None:
         if self._initialized:
             return
-        if not self.config.is_available():
-            raise CeliaError("Celia binary is not available on this host")
-        lease = await get_celia_client_manager().acquire(self.config)
+        stage = "preflight"
+        lease: CeliaClientLease | None = None
         try:
+            issues = self.config.preflight_issues()
+            if issues:
+                raise CeliaError("; ".join(issues))
+            stage = "acquire"
+            lease = await get_celia_client_manager().acquire(self.config)
+            stage = "tools/list"
             supported_tools = await lease.client.list_tools()
             missing = sorted(_REQUIRED_MCP_TOOLS - supported_tools)
             if missing:
                 raise CeliaError("Celia MCP is missing required tools: " + ", ".join(missing))
+            stage = "memory_open"
             context = self._context(kwargs)
             await lease.sessions.ensure_tool_session(context.user_id)
-        except Exception:
-            await get_celia_client_manager().release(lease)
+        except Exception as exc:
+            if lease is not None:
+                await get_celia_client_manager().release(lease)
+            logger.warning(
+                "[CeliaMemoryProvider] initialization failed: stage=%s exception=%s "
+                "message=%s db=%s log=%s",
+                stage,
+                type(exc).__name__,
+                _redact_diagnostic(str(exc)),
+                self.config.normalized_db_path,
+                self.config.log_path,
+            )
             raise
+        assert lease is not None
         self._lease = lease
         self._supported_mcp_tools = supported_tools
         self._initialized = True
+        logger.info(
+            "[CeliaMemoryProvider] initialized: tools=%d db=%s log=%s",
+            len(supported_tools),
+            self.config.normalized_db_path,
+            self.config.log_path,
+        )
 
     def _context(self, explicit: Mapping[str, Any] | None = None) -> CeliaRuntimeContext:
         return resolve_runtime_context(
@@ -174,8 +217,14 @@ class CeliaMemoryProvider(MemoryProvider):
             if prompt_values:
                 fixed = f"{fixed}\n\n## CELIA_SESSION_MEMORY\n" + "\n".join(prompt_values)
             return fixed
-        except Exception:
-            logger.warning("[CeliaMemoryProvider] fixed context prefetch failed", exc_info=True)
+        except Exception as exc:
+            logger.warning(
+                "[CeliaMemoryProvider] fixed context prefetch failed: exception=%s "
+                "message=%s db=%s",
+                type(exc).__name__,
+                _redact_diagnostic(str(exc)),
+                self.config.normalized_db_path,
+            )
             return ""
 
     async def _load_fixed_context(self, context: CeliaRuntimeContext, session_id: str) -> str:
@@ -222,9 +271,15 @@ class CeliaMemoryProvider(MemoryProvider):
         context = self._context(args)
         if tool_name in {"memory_scene_load", "memory_record_search", "memory_scene_list_load"} and not context.memory_state:
             return disabled_payload(tool_name)
-        try:
-            session_id = await self._ensure_session(context)
-            if tool_name == "memory_store":
+
+        # OpenClaw's memory_store is deliberately local to the current
+        # conversation.  It writes the prompt buffer and raises the ingest
+        # priority; the real MCP memory_add happens at agent_end.  Do not
+        # require an MCP process/session here, otherwise an unrelated
+        # memory_open failure makes the user's explicit "remember this"
+        # request fail instead of returning Noted.
+        if tool_name == "memory_store":
+            try:
                 text = sanitize_memory_text(args.get("text"))
                 if not text:
                     return result_payload(None, ok=False, status="rejected")
@@ -232,7 +287,16 @@ class CeliaMemoryProvider(MemoryProvider):
                 self._store.mark_urgent(context.store_key)
                 self._fixed_cache.mark_dirty(context.fixed_context_key)
                 return result_payload("Noted", status="deferred-urgent")
+            except Exception as exc:
+                return _error_payload(
+                    tool_name,
+                    exc,
+                    context=context,
+                    db_path=self.config.normalized_db_path,
+                )
 
+        try:
+            session_id = await self._ensure_session(context)
             if tool_name == "memory_forget":
                 return await self._forget(args, context, session_id)
 
@@ -397,7 +461,12 @@ class CeliaMemoryProvider(MemoryProvider):
 
             return result_payload(None, ok=False, error="unknown tool", tool=tool_name)
         except Exception as exc:
-            return _error_payload(tool_name, exc)
+            return _error_payload(
+                tool_name,
+                exc,
+                context=context,
+                db_path=self.config.normalized_db_path,
+            )
 
     async def _forget(self, args: dict[str, Any], context: CeliaRuntimeContext, session_id: str) -> str:
         memory_id = args.get("memoryId")
