@@ -288,11 +288,16 @@ class CeliaMcpClient:
                 line = await process.stderr.readline()
                 if not line:
                     break
-                logger.debug(
-                    "[CeliaMcpClient][stderr][%s] line_length=%d",
-                    generation,
-                    len(line),
+                text = line.decode("utf-8", errors="replace").strip()
+                # Keep diagnostics useful while redacting common credential forms.
+                import re
+
+                text = re.sub(
+                    r"(?i)(api[_-]?key|authorization|token|secret|password)(\s*[:=]\s*)\S+",
+                    r"\1\2<redacted>",
+                    text,
                 )
+                logger.warning("[CeliaMcpClient][stderr][%s] %s", generation, text[:4000])
         except asyncio.CancelledError:
             return
 
@@ -330,19 +335,27 @@ class CeliaMcpClient:
         self._restart_task = asyncio.create_task(self._restart_loop(), name="celia-mcp-restart")
 
     async def _restart_loop(self) -> None:
-        attempt = max(self._restart_attempts, 1)
-        delay = min(2 ** (attempt - 1), self._MAX_BACKOFF)
-        try:
-            await asyncio.sleep(delay)
-            if self._should_restart:
+        while self._should_restart and self._restart_attempts <= self._MAX_RESTARTS:
+            attempt = max(self._restart_attempts, 1)
+            delay = min(2 ** (attempt - 1), self._MAX_BACKOFF)
+            try:
+                await asyncio.sleep(delay)
+                if not self._should_restart:
+                    return
                 await self.start()
-        except asyncio.CancelledError:
-            return
-        except Exception:
-            logger.warning("[CeliaMcpClient] restart attempt failed", exc_info=True)
-            if self._should_restart:
+                return
+            except asyncio.CancelledError:
+                return
+            except Exception:
                 self._restart_attempts += 1
-                self._schedule_restart()
+                logger.warning(
+                    "[CeliaMcpClient] restart attempt %d failed; next delay <= %.0fs",
+                    attempt,
+                    self._MAX_BACKOFF,
+                    exc_info=True,
+                )
+        if self._should_restart:
+            logger.error("[CeliaMcpClient] restart limit reached")
 
     async def _terminate_process(
         self,

@@ -42,6 +42,14 @@ class CeliaClientManager:
             if entry is None:
                 client = CeliaMcpClient(config)
                 entry = _Entry(config=config, client=client, sessions=CeliaSessionManager(client))
+                async def _clear_runtime_state() -> None:
+                    from .fixed_context import get_fixed_context_cache
+                    from .runtime_store import get_runtime_store
+
+                    get_fixed_context_cache().clear()
+                    get_runtime_store().clear_all()
+
+                client.add_restart_callback(_clear_runtime_state)
                 self._entries[key] = entry
             entry.ref_count += 1
 
@@ -59,16 +67,13 @@ class CeliaClientManager:
         if lease.released:
             return
         lease.released = True
-        entry: _Entry | None = None
         async with self._lock:
             current = self._entries.get(lease.key)
             if current is None:
                 return
-            current.ref_count -= 1
-            if current.ref_count <= 0:
-                entry = self._entries.pop(lease.key)
-        if entry is not None:
-            await entry.client.close()
+            # Agent/session teardown must not kill the process: Celia owns the
+            # overnight dream schedule. AgentServer shutdown calls close_all.
+            current.ref_count = max(0, current.ref_count - 1)
 
     async def close_all(self) -> None:
         async with self._lock:

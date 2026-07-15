@@ -4,14 +4,18 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import os
 import platform
 import shutil
+import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Mapping
 
 from ..config import get_embed_config
+
+logger = logging.getLogger(__name__)
 
 
 def _text(value: Any, default: str = "") -> str:
@@ -80,9 +84,11 @@ class CeliaConfig:
     embed: CeliaEndpointConfig = field(default_factory=CeliaEndpointConfig)
     chat: CeliaEndpointConfig = field(default_factory=CeliaEndpointConfig)
     rerank: CeliaEndpointConfig = field(default_factory=CeliaEndpointConfig)
+    dedup_policy: dict[str, Any] = field(default_factory=dict)
+    workspace_dir: str = ""
     procedural_dir: str = ""
     procedural_learn_debug: bool = False
-    dreaming_enabled: bool = False
+    dreaming_enabled: str = "inherit"
     startup_timeout: float = 20.0
     request_timeout: float = 10.0
     flush_timeout: float = 120.0
@@ -112,7 +118,14 @@ class CeliaConfig:
         return (
             self.normalized_binary_path,
             self.normalized_db_path,
+            str(Path(self.log_path).expanduser().absolute()),
+            str(Path(self.runtime_state_path).expanduser().absolute()),
+            self.dreaming_enabled,
             self.tenant_id,
+            str(self.vector_dim or ""),
+            hashlib.sha256(
+                json.dumps(self.dedup_policy, sort_keys=True, default=str).encode("utf-8")
+            ).hexdigest(),
             self.embed.base_url,
             secret(self.embed.api_key),
             self.embed.model,
@@ -133,18 +146,42 @@ class CeliaConfig:
 
     def is_available(self) -> bool:
         """Perform only local static checks; never start a process or call a network."""
+        return not self.preflight_issues()
+
+    def preflight_issues(self) -> list[str]:
+        issues: list[str] = []
         if platform.system().lower() != "linux":
-            return False
+            return ["Celia requires Linux"]
         if platform.machine().lower() not in {"aarch64", "arm64"}:
-            return False
+            return [f"Celia requires ARM64, current architecture is {platform.machine()}"]
         binary = Path(self.normalized_binary_path)
-        if not binary.is_file() or not os.access(binary, os.X_OK):
-            return False
+        if not binary.is_file():
+            return [f"Celia binary not found: {binary}"]
+        if not os.access(binary, os.X_OK):
+            issues.append(f"Celia binary is not executable: {binary}")
         db = Path(self.normalized_db_path)
         parent = db.parent
         while not parent.exists() and parent != parent.parent:
             parent = parent.parent
-        return parent.exists() and os.access(parent, os.W_OK)
+        if not parent.exists() or not os.access(parent, os.W_OK):
+            issues.append(f"Celia DB directory is not writable: {db.parent}")
+        for target in (Path(self.log_path).expanduser().parent, Path(self.runtime_state_path).expanduser().parent):
+            current = target
+            while not current.exists() and current != current.parent:
+                current = current.parent
+            if not current.exists() or not os.access(current, os.W_OK):
+                issues.append(f"Celia runtime directory is not writable: {target}")
+        if not issues and shutil.which("ldd"):
+            try:
+                result = subprocess.run(
+                    ["ldd", str(binary)], capture_output=True, text=True, timeout=5, check=False
+                )
+                missing = [line.strip() for line in result.stdout.splitlines() if "not found" in line]
+                if missing:
+                    issues.append("Celia shared libraries missing: " + "; ".join(missing))
+            except (OSError, subprocess.SubprocessError):
+                logger.debug("Celia ldd preflight unavailable", exc_info=True)
+        return issues
 
     def child_env(self, base: Mapping[str, str] | None = None) -> dict[str, str]:
         env = dict(os.environ if base is None else base)
@@ -155,6 +192,26 @@ class CeliaConfig:
                 env[name] = value
 
         def put_endpoint(prefix: str, endpoint: CeliaEndpointConfig) -> None:
+            env_names = [
+                f"OPENAI_{prefix}_BASE_URL",
+                f"OPENAI_{prefix}_API_KEY",
+                f"OPENAI_{prefix}_MODEL",
+                f"OPENAI_{prefix}_HEADERS_JSON",
+            ]
+            if endpoint.uid and (not endpoint.base_url or not endpoint.api_key):
+                for name in env_names:
+                    env.pop(name, None)
+                logger.warning(
+                    "Celia %s sandbox endpoint disabled: missing %s",
+                    prefix.lower(),
+                    ", ".join(
+                        name for name, value in (
+                            (f"OPENAI_{prefix}_BASE_URL", endpoint.base_url),
+                            (f"OPENAI_{prefix}_API_KEY", endpoint.api_key),
+                        ) if not value
+                    ),
+                )
+                return
             put(f"OPENAI_{prefix}_BASE_URL", endpoint.base_url)
             put(f"OPENAI_{prefix}_API_KEY", endpoint.api_key)
             put(f"OPENAI_{prefix}_MODEL", endpoint.model)
@@ -171,13 +228,23 @@ class CeliaConfig:
         put_endpoint("EMBED", self.embed)
         put_endpoint("CHAT", self.chat)
         put_endpoint("RERANK", self.rerank)
-        put("CELIA_EMBED_UID", self.embed.uid)
-        put("CELIA_CHAT_UID", self.chat.uid)
+        if not self.embed.uid or (self.embed.base_url and self.embed.api_key):
+            put("CELIA_EMBED_UID", self.embed.uid)
+        else:
+            env.pop("CELIA_EMBED_UID", None)
+        if not self.chat.uid or (self.chat.base_url and self.chat.api_key):
+            put("CELIA_CHAT_UID", self.chat.uid)
+        else:
+            env.pop("CELIA_CHAT_UID", None)
         put("CELIA_TENANT_ID", self.tenant_id)
         put("CELIA_VECTOR_DIM", self.vector_dim)
         put("CELIA_PROCEDURAL_DIR", self.procedural_dir)
         put("CELIA_PROCEDURAL_LEARN_DEBUG", str(self.procedural_learn_debug).lower())
-        put("CELIA_DREAMING_ENABLED", str(self.dreaming_enabled).lower())
+        put("CELIA_XIAOYI_RUNTIME_PATH", self.runtime_state_path)
+        if self.dreaming_enabled in {"on", "off"}:
+            put("CELIA_DREAMING_ENABLED", "true" if self.dreaming_enabled == "on" else "false")
+        else:
+            env.pop("CELIA_DREAMING_ENABLED", None)
         return env
 
 
@@ -202,39 +269,90 @@ def _endpoint(
     uid_fallback: Any = None,
 ) -> CeliaEndpointConfig:
     fallback = fallback or {}
-    headers = _mapping(section.get("headers"))
-    if not headers:
-        headers = _mapping(section.get("custom_headers"))
-    if not headers:
-        headers = _mapping(fallback.get("headers"))
-    if not headers:
-        headers = _mapping(fallback.get("custom_headers"))
+    explicit_headers = _mapping(section.get("headers") or section.get("custom_headers"))
+    fallback_headers = _mapping(fallback.get("headers") or fallback.get("custom_headers"))
+    env_headers: dict[str, Any] = {}
+    try:
+        parsed_headers = json.loads(os.getenv(f"OPENAI_{env_prefix}_HEADERS_JSON", "") or "{}")
+        if isinstance(parsed_headers, dict):
+            env_headers = parsed_headers
+    except json.JSONDecodeError:
+        logger.warning("Ignoring invalid OPENAI_%s_HEADERS_JSON", env_prefix)
+
+    env_base = _text(os.getenv(f"OPENAI_{env_prefix}_BASE_URL"))
+    env_api_key = _text(os.getenv(f"OPENAI_{env_prefix}_API_KEY"))
+    env_model = _text(os.getenv(f"OPENAI_{env_prefix}_MODEL"))
+    env_uid = _text(os.getenv(uid_env or ""))
+    if env_prefix == "CHAT":
+        if not env_base and os.getenv("SERVICE_URL"):
+            env_base = _text(os.getenv("SERVICE_URL")).rstrip("/") + "/celia-claw/v1/sse-api"
+        env_api_key = env_api_key or _text(os.getenv("PERSONAL_API_KEY"))
+        env_uid = env_uid or _text(os.getenv("PERSONAL_UID"))
+
+    candidates = [
+        {
+            "base": _first(section.get("base_url"), section.get("api_base")),
+            "key": _text(section.get("api_key")),
+            "model": _first(section.get("model"), section.get("model_name")),
+            "uid": _text(section.get("uid")),
+            "headers": explicit_headers,
+        },
+        {
+            "base": _first(fallback.get("base_url"), fallback.get("api_base")),
+            "key": _text(fallback.get("api_key")),
+            "model": _first(fallback.get("model"), fallback.get("model_name")),
+            "uid": _text(uid_fallback),
+            "headers": fallback_headers,
+        },
+        {
+            "base": env_base,
+            "key": env_api_key,
+            "model": env_model,
+            "uid": env_uid,
+            "headers": env_headers,
+        },
+    ]
+    selected = next((item for item in candidates if item["base"] and item["key"]), None)
+    if selected is None:
+        if _first(section.get("uid"), env_uid, uid_fallback):
+            present = next((item for item in candidates if item["base"] or item["key"]), candidates[0])
+            missing = []
+            if not present["base"]:
+                missing.append(f"OPENAI_{env_prefix}_BASE_URL")
+            if not present["key"]:
+                missing.append(f"OPENAI_{env_prefix}_API_KEY")
+            logger.warning(
+                "Celia %s sandbox endpoint disabled: missing %s",
+                env_prefix.lower(),
+                ", ".join(missing) or "complete endpoint candidate",
+            )
+        return CeliaEndpointConfig()
+
+    normalized_headers = {str(k): str(v) for k, v in selected["headers"].items()}
+    if not any(key.lower() == "x-hag-trace-id" for key in normalized_headers):
+        normalized_headers["x-hag-trace-id"] = "celia-memo"
+    resolved_uid = _first(selected["uid"], env_uid, uid_fallback)
+    resolved_base = str(selected["base"])
+    if resolved_uid and ("/celia-claw/" in resolved_base or "/sse-api" in resolved_base):
+        if not any(key.lower() == "x-request-from" for key in normalized_headers):
+            normalized_headers["x-request-from"] = "openclaw"
+        if not any(key.lower() == "accept" for key in normalized_headers):
+            normalized_headers["Accept"] = "application/json"
     return CeliaEndpointConfig(
-        base_url=_first(
-            section.get("base_url"),
-            section.get("api_base"),
-            fallback.get("base_url"),
-            fallback.get("api_base"),
-            os.getenv(f"OPENAI_{env_prefix}_BASE_URL"),
-        ),
-        api_key=_first(
-            section.get("api_key"),
-            fallback.get("api_key"),
-            os.getenv(f"OPENAI_{env_prefix}_API_KEY"),
-        ),
-        model=_first(
-            section.get("model"),
-            section.get("model_name"),
-            fallback.get("model"),
-            fallback.get("model_name"),
-            os.getenv(f"OPENAI_{env_prefix}_MODEL"),
-        ),
-        uid=_first(section.get("uid"), os.getenv(uid_env or ""), uid_fallback),
-        headers={str(k): str(v) for k, v in headers.items()},
+        base_url=resolved_base,
+        api_key=str(selected["key"]),
+        model=str(selected["model"]),
+        uid=resolved_uid,
+        headers=normalized_headers,
     )
 
 
-def build_celia_config(config: Mapping[str, Any], ext_cfg: Mapping[str, Any]) -> CeliaConfig:
+def build_celia_config(
+    config: Mapping[str, Any],
+    ext_cfg: Mapping[str, Any],
+    *,
+    workspace_dir: str = "",
+) -> CeliaConfig:
     section = _mapping(ext_cfg.get("celia"))
     embed_section = _mapping(section.get("embed"))
     chat_section = _mapping(section.get("chat"))
@@ -248,23 +366,31 @@ def build_celia_config(config: Mapping[str, Any], ext_cfg: Mapping[str, Any]) ->
         "model": _first(embed.get("model"), top_embed.get("embed_model")),
     }
     chat_fallback = _model_defaults(config)
-    service_url = _text(os.getenv("SERVICE_URL"))
-    if service_url and not chat_section.get("base_url") and not chat_fallback.get("api_base"):
-        chat_fallback = dict(chat_fallback)
-        chat_fallback["api_base"] = service_url.rstrip("/") + "/celia-claw/v1/sse-api"
-    if not chat_section.get("api_key") and not chat_fallback.get("api_key"):
-        chat_fallback = dict(chat_fallback)
-        chat_fallback["api_key"] = _text(os.getenv("PERSONAL_API_KEY"))
 
-    default_db = Path.home() / ".jiuwenswarm" / "memory" / "celia_memory.db"
+    from jiuwenswarm.common.utils import get_agent_workspace_dir, get_user_workspace_dir
+
+    resolved_workspace = Path(workspace_dir).expanduser() if workspace_dir else get_agent_workspace_dir()
+    data_dir = get_user_workspace_dir()
+    default_binary = data_dir / "celia" / "bin" / "gspd_memory_mcp_server"
+    default_db = resolved_workspace / "memory" / "celia_memory" / "celia_memory.db"
+    default_log = Path.home() / ".openclaw" / "logs" / "Celia_memory.log"
+    default_runtime = Path.home() / ".openclaw" / ".xiaoyiruntime"
+    dream_value = _text(section.get("dreaming_enabled"), "inherit").lower()
+    if dream_value in {"true", "1", "on"}:
+        dream_value = "on"
+    elif dream_value in {"false", "0", "off"}:
+        dream_value = "off"
+    elif dream_value != "inherit":
+        dream_value = "inherit"
     return CeliaConfig(
         server_binary_path=_first(
             section.get("server_binary_path"),
             section.get("binary_path"),
             os.getenv("CELIA_MEMORY_BINARY_PATH"),
+            default_binary,
         ),
         db_path=_first(section.get("db_path"), os.getenv("CELIA_MEMORY_DB_PATH"), default_db),
-        log_path=_first(section.get("log_path"), os.getenv("CELIA_MEMORY_LOG_PATH")),
+        log_path=_first(section.get("log_path"), os.getenv("CELIA_MEMORY_LOG_PATH"), default_log),
         tenant_id=_first(
             section.get("tenant_id"),
             os.getenv("CELIA_TENANT_ID"),
@@ -280,12 +406,13 @@ def build_celia_config(config: Mapping[str, Any], ext_cfg: Mapping[str, Any]) ->
             fallback=chat_fallback,
             env_prefix="CHAT",
             uid_env="CELIA_CHAT_UID",
-            uid_fallback=os.getenv("PERSONAL_UID"),
         ),
         rerank=_endpoint(rerank_section, env_prefix="RERANK"),
+        dedup_policy=_mapping(section.get("dedup_policy")),
+        workspace_dir=str(resolved_workspace.absolute()),
         procedural_dir=_first(section.get("procedural_dir"), os.getenv("CELIA_PROCEDURAL_DIR")),
         procedural_learn_debug=_bool(section.get("procedural_learn_debug"), False),
-        dreaming_enabled=_bool(section.get("dreaming_enabled"), False),
+        dreaming_enabled=dream_value,
         startup_timeout=_number(section.get("startup_timeout"), 20.0),
         request_timeout=_number(section.get("request_timeout"), 10.0),
         flush_timeout=_number(section.get("flush_timeout"), 120.0),
@@ -293,5 +420,6 @@ def build_celia_config(config: Mapping[str, Any], ext_cfg: Mapping[str, Any]) ->
         runtime_state_path=_first(
             section.get("runtime_state_path"),
             os.getenv("CELIA_XIAOYI_RUNTIME_PATH"),
+            default_runtime,
         ),
     )

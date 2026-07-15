@@ -46,7 +46,9 @@ def build_external_memory_rail(
     provider = None
     try:
         if provider_name == "celia":
-            return _build_celia_rail(config or {}, ext_cfg, session_id=session_id)
+            celia_source_config = dict(config or {})
+            celia_source_config["__celia_workspace_dir"] = workspace_dir
+            return _build_celia_rail(celia_source_config, ext_cfg, session_id=session_id)
         if provider_name == "openjiuwen":
             provider = _build_openjiuwen_provider(ext_cfg)
         elif provider_name == "mem0":
@@ -84,12 +86,21 @@ def build_external_memory_rail(
         return None
 
 
-def _build_celia_rail(config: Dict[str, Any], ext_cfg: Dict[str, Any], *, session_id: str):
+def _build_celia_rail(
+    config: Dict[str, Any],
+    ext_cfg: Dict[str, Any],
+    *,
+    session_id: str,
+):
     from .celia.config import build_celia_config
     from .celia.provider import CeliaMemoryProvider
     from .celia.rail import CeliaMemoryRail
 
-    celia_config = build_celia_config(config, ext_cfg)
+    celia_config = build_celia_config(
+        config,
+        ext_cfg,
+        workspace_dir=str(config.get("__celia_workspace_dir") or "."),
+    )
     provider = CeliaMemoryProvider(
         celia_config,
         user_id=ext_cfg.get("user_id", celia_config.user_id),
@@ -97,8 +108,10 @@ def _build_celia_rail(config: Dict[str, Any], ext_cfg: Dict[str, Any], *, sessio
         session_id=session_id,
     )
     if not provider.is_available():
+        issues = celia_config.preflight_issues()
         logger.warning(
-            "[ExternalMemoryBuilder] Celia unavailable: binary must be executable Linux ARM64"
+            "[ExternalMemoryBuilder] Celia unavailable: %s",
+            "; ".join(issues) if issues else "unknown preflight failure",
         )
         return None
     return CeliaMemoryRail(

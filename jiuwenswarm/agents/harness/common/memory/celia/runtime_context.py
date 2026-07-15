@@ -41,27 +41,6 @@ def _first_text(*values: Any) -> str:
     return ""
 
 
-def _state_value(metadata: Mapping[str, Any], params: Mapping[str, Any]) -> Any:
-    for source in (metadata, params):
-        for key in ("MEMORYSTATE", "memory_state", "memoryState"):
-            if key in source:
-                return source[key]
-    return None
-
-
-def _parse_state(value: Any) -> bool | None:
-    if isinstance(value, bool):
-        return value
-    if value is None:
-        return None
-    text = str(value).strip().strip("\"'").lower()
-    if text in {"1", "true", "yes", "on"}:
-        return True
-    if text in {"0", "false", "no", "off"}:
-        return False
-    return False
-
-
 def resolve_runtime_context(
     *,
     default_tenant_id: str,
@@ -80,7 +59,6 @@ def resolve_runtime_context(
         request = None
 
     metadata = dict(getattr(request, "metadata", None) or {})
-    params = dict(getattr(request, "params", None) or {})
     permission = getattr(request, "permission_context", None)
     request_session = _first_text(getattr(request, "session_id", None))
     request_chat = _first_text(getattr(request, "chat_id", None))
@@ -117,9 +95,9 @@ def resolve_runtime_context(
         default_session_id,
         user_id,
     )
-    state = _parse_state(_state_value(metadata, params))
-    if state is None:
-        state = read_memory_state(str(explicit.get("runtime_state_path") or ""))
+    # OpenClaw compatibility: .xiaoyiruntime is the only MEMORYSTATE source.
+    # Request parameters and process environment must never override it.
+    state = read_memory_state(str(explicit.get("runtime_state_path") or ""))
     return CeliaRuntimeContext(
         tenant_id=tenant_id,
         user_id=user_id,

@@ -48,12 +48,14 @@ class CeliaMemoryRail(DeepAgentRail):
         self._system_prompt_builder = None
         self._attachment_manager = None
         self._prewarm_task: asyncio.Task | None = None
-        self._prefetch_cache: str | None = None
-        self._prefetch_invoke_id: int | None = None
         self._sync_task: asyncio.Task | None = None
         self._sync_failures = 0
         self._sync_breaker_until = 0.0
         self._events: list[dict[str, Any]] = []
+        self._usage = {"prompt": 0, "cache": 0, "completion": 0}
+        self._llm_turns = 0
+        self._recall_tokens = 0
+        self._fixed_load_tokens = 0
 
     def init(self, agent) -> None:
         super().init(agent)
@@ -126,9 +128,10 @@ class CeliaMemoryRail(DeepAgentRail):
                 logger.debug("[CeliaMemoryRail] shutdown failed", exc_info=True)
 
     async def before_invoke(self, ctx) -> None:
-        self._prefetch_cache = None
-        self._prefetch_invoke_id = id(ctx)
         self._events = []
+        self._usage = {"prompt": 0, "cache": 0, "completion": 0}
+        self._llm_turns = 0
+        self._recall_tokens = 0
         query = self._resolve_user_text(ctx)
         if query:
             self._events.append({"role": "user", "text": query})
@@ -162,21 +165,18 @@ class CeliaMemoryRail(DeepAgentRail):
             await self._clear_attachment(ctx)
             return
         try:
-            invoke_id = id(ctx)
-            if self._prefetch_invoke_id == invoke_id and self._prefetch_cache is not None:
-                raw_context = self._prefetch_cache
-            else:
-                raw_context = await asyncio.wait_for(
-                    self._provider.prefetch(
-                        query,
-                        user_id=self._user_id,
-                        scope_id=self._scope_id,
-                        session_id=self._session_id,
-                    ),
-                    timeout=self.PREFETCH_TIMEOUT,
-                )
-                self._prefetch_cache = raw_context
-                self._prefetch_invoke_id = invoke_id
+            # PromptBuffer is intentionally fetched on every model call so a
+            # memory_store tool call is visible in the same tool loop.
+            raw_context = await asyncio.wait_for(
+                self._provider.prefetch(
+                    query,
+                    user_id=self._user_id,
+                    scope_id=self._scope_id,
+                    session_id=self._session_id,
+                ),
+                timeout=self.PREFETCH_TIMEOUT,
+            )
+            self._fixed_load_tokens = max(self._fixed_load_tokens, len(raw_context) // 4)
             if raw_context and self._attachment_manager is not None:
                 writer = self._attachment_manager.bind_context(ctx)
                 await writer.add_section(
@@ -195,6 +195,8 @@ class CeliaMemoryRail(DeepAgentRail):
             await self._clear_attachment(ctx)
 
     async def after_model_call(self, ctx) -> None:
+        self._llm_turns += 1
+        self._collect_usage(ctx)
         event = self._model_event(ctx)
         if event:
             self._events.append(event)
@@ -234,6 +236,8 @@ class CeliaMemoryRail(DeepAgentRail):
         if isinstance(inputs, dict) and "success" in inputs:
             success = bool(inputs["success"])
         self._events.append({"role": "tool", "name": str(name or ""), "content": result, "success": success})
+        if str(name or "").startswith("memory_") and result is not None:
+            self._recall_tokens += len(str(result)) // 4
 
     async def on_tool_exception(self, ctx) -> None:
         inputs = getattr(ctx, "inputs", None)
@@ -247,7 +251,7 @@ class CeliaMemoryRail(DeepAgentRail):
             return
         query = self._resolve_user_text(ctx)
         output = self._extract_assistant_output(ctx)
-        if not query or not output:
+        if not query or not output or query.strip().lower() in {"/new", "/reset"}:
             return
         events = list(self._events)
         if self._sync_task and not self._sync_task.done():
@@ -274,6 +278,29 @@ class CeliaMemoryRail(DeepAgentRail):
                 logger.warning("[CeliaMemoryRail] sync_turn failed", exc_info=True)
 
         self._sync_task = asyncio.create_task(_sync(), name="celia-memory-sync")
+        try:
+            await asyncio.wait_for(
+                asyncio.shield(self._sync_task),
+                timeout=max(5.0, self._provider.config.request_timeout),
+            )
+        except asyncio.TimeoutError:
+            self._sync_task.cancel()
+            await asyncio.gather(self._sync_task, return_exceptions=True)
+            logger.warning("[CeliaMemoryRail] memory_add timed out and was cancelled")
+        try:
+            await self._provider.report_round_usage(
+                user_id=self._user_id,
+                scope_id=self._scope_id,
+                session_id=self._session_id,
+                prompt_tokens=self._usage["prompt"],
+                cache_read_tokens=self._usage["cache"],
+                completion_tokens=self._usage["completion"],
+                llm_turns=self._llm_turns,
+                recall_tokens=self._recall_tokens,
+                fixed_load_tokens=self._fixed_load_tokens,
+            )
+        except Exception:
+            logger.warning("[CeliaMemoryRail] round usage report failed", exc_info=True)
 
     def _register_provider_tools(self, agent) -> None:
         manager = getattr(agent, "ability_manager", None)
@@ -405,6 +432,27 @@ class CeliaMemoryRail(DeepAgentRail):
             return json.loads(arguments)
         except json.JSONDecodeError:
             return arguments[:1024]
+
+    def _collect_usage(self, ctx) -> None:
+        inputs = getattr(ctx, "inputs", None)
+        response = getattr(inputs, "response", None) or getattr(inputs, "result", None)
+        usage = response.get("usage") if isinstance(response, dict) else getattr(response, "usage", None)
+        if usage is None:
+            return
+
+        def value(*names: str) -> int:
+            for name in names:
+                item = usage.get(name) if isinstance(usage, dict) else getattr(usage, name, None)
+                try:
+                    if item is not None:
+                        return int(item)
+                except (TypeError, ValueError):
+                    continue
+            return 0
+
+        self._usage["prompt"] += value("input", "prompt_tokens", "input_tokens")
+        self._usage["cache"] += value("cache_read", "cache_read_tokens", "cached_tokens")
+        self._usage["completion"] += value("output", "completion_tokens", "output_tokens")
 
     async def on_session_end(self, messages=None) -> None:
         await self._provider.on_session_end(messages or [])

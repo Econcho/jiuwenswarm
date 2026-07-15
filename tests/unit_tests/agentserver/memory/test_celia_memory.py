@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+from dataclasses import replace
 from types import SimpleNamespace
 
 import pytest
@@ -159,9 +160,13 @@ async def test_session_manager_deduplicates_concurrent_memory_open():
 
 
 @pytest.mark.asyncio
-async def test_provider_maps_l2_and_urgent_memory_add(monkeypatch):
-    monkeypatch.setenv("MEMORYSTATE", "1")
-    provider = CeliaMemoryProvider(_config(), user_id="alice", scope_id="user", session_id="conversation-a")
+async def test_provider_maps_l2_and_urgent_memory_add(tmp_path):
+    runtime = tmp_path / ".xiaoyiruntime"
+    runtime.write_text("MEMORYSTATE=true\n", encoding="utf-8")
+    provider = CeliaMemoryProvider(
+        replace(_config(), runtime_state_path=str(runtime)),
+        user_id="alice", scope_id="user", session_id="conversation-a"
+    )
     client = _FakeClient()
     provider._lease = SimpleNamespace(client=client, sessions=_FakeSessions())
     provider._initialized = True
@@ -179,9 +184,13 @@ async def test_provider_maps_l2_and_urgent_memory_add(monkeypatch):
 
 
 @pytest.mark.asyncio
-async def test_provider_preserves_openclaw_memory_state_zero_write(monkeypatch):
-    monkeypatch.setenv("MEMORYSTATE", "0")
-    provider = CeliaMemoryProvider(_config(), user_id="alice", scope_id="user", session_id="conversation-a")
+async def test_provider_preserves_openclaw_memory_state_zero_write(tmp_path):
+    runtime = tmp_path / ".xiaoyiruntime"
+    runtime.write_text("MEMORYSTATE=false\n", encoding="utf-8")
+    provider = CeliaMemoryProvider(
+        replace(_config(), runtime_state_path=str(runtime)),
+        user_id="alice", scope_id="user", session_id="conversation-a"
+    )
     client = _FakeClient()
     provider._lease = SimpleNamespace(client=client, sessions=_FakeSessions())
     provider._initialized = True

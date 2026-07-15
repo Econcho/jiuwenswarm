@@ -23,6 +23,7 @@ class CeliaRuntimeStore:
         self._prompt: OrderedDict[str, _PromptEntry] = OrderedDict()
         self._urgent: set[str] = set()
         self._served_l1: OrderedDict[str, set[str]] = OrderedDict()
+        self._rounds: OrderedDict[str, int] = OrderedDict()
 
     def append_prompt(self, key: str, text: str) -> None:
         clean = sanitize_prompt_text(text)
@@ -70,11 +71,21 @@ class CeliaRuntimeStore:
         self._prompt.pop(key, None)
         self._urgent.discard(key)
         self._served_l1.pop(key, None)
+        self._rounds.pop(key, None)
+
+    def next_round(self, key: str) -> int:
+        value = self._rounds.get(key, 0) + 1
+        self._rounds[key] = value
+        self._rounds.move_to_end(key)
+        while len(self._rounds) > self._max_entries:
+            self._rounds.popitem(last=False)
+        return value
 
     def clear_all(self) -> None:
         self._prompt.clear()
         self._urgent.clear()
         self._served_l1.clear()
+        self._rounds.clear()
 
     def _trim(self) -> None:
         while len(self._prompt) > self._max_entries:

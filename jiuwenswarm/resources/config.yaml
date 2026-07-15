@@ -100,7 +100,7 @@ memory:
   #   external — 仅外接记忆（LTM / Mem0 / OpenViking / 插件）
   #   both     — 内置 + 外接并存
   #   none     — 全部关闭
-  engine: ${MEMORY_ENGINE:-builtin}
+  engine: ${MEMORY_ENGINE:-external}
   forbidden_memory_definition:
     enabled: false
     patterns: []
@@ -147,7 +147,7 @@ memory:
   # - 失败降级：provider 构建失败或网络异常不阻塞主流程
   external:
     # 选哪家 provider。空字符串 = 禁用外接（等价于 engine=builtin）
-    provider: ${MEMORY_EXTERNAL_PROVIDER:-}   # '' | openjiuwen | mem0 | openviking | lakebase | celia | <plugin-name>
+    provider: ${MEMORY_EXTERNAL_PROVIDER:-celia}   # openjiuwen | mem0 | openviking | lakebase | celia | <plugin-name>
     # 数据隔离标识（所有 provider 共用）
     user_id: ${MEMORY_USER_ID:-openclaw-user}
     scope_id: ${MEMORY_SCOPE_ID:-user}
@@ -158,6 +158,7 @@ memory:
       server_binary_path: ${CELIA_MEMORY_BINARY_PATH:-}
       db_path: ${CELIA_MEMORY_DB_PATH:-}
       log_path: ${CELIA_MEMORY_LOG_PATH:-}
+      runtime_state_path: ${CELIA_XIAOYI_RUNTIME_PATH:-}
       tenant_id: ${CELIA_TENANT_ID:-default}
       vector_dim: ${CELIA_VECTOR_DIM:-}
       embed:
@@ -178,7 +179,8 @@ memory:
         model: ${OPENAI_RERANK_MODEL:-}
       procedural_dir: ${CELIA_PROCEDURAL_DIR:-}
       procedural_learn_debug: false
-      dreaming_enabled: false
+      dedup_policy: {}
+      dreaming_enabled: inherit
 
     # -- OpenJiuwen LTM（本地长期记忆：KV + 向量 + DB）--
     # 生效条件：provider='openjiuwen'
