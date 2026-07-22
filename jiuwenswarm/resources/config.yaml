@@ -603,6 +603,8 @@ channels:
     uid:
     api_key:
     push_url:
+    # Enable terminal task Push for xiaoyi_claw explicitly; default is false.
+    push_on_task_complete: false
     file_upload_url:
     # 小艺手机端插件tools调用，会添加相关tools到系统提示词
     phone_tools_enabled: false
